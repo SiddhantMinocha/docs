@@ -1,0 +1,47 @@
+---
+title: "FAQ"
+description: "Frequently asked questions about Nexus."
+icon: "circle-question"
+---
+
+<AccordionGroup>
+  <Accordion title="Do I need to know programming to use Nexus?">
+    No. Nexus is designed for natural language interaction. You type questions in plain English, and Nexus handles the rest. If you do know Python, you can ask Nexus to write and run custom scripts for advanced analyses.
+  </Accordion>
+
+  <Accordion title="What happens to my data?">
+    Your patient data and conversation history are stored securely. Conversations are private by default and only visible to you unless you explicitly change the visibility setting.
+  </Accordion>
+
+  <Accordion title="Can I use Nexus without loading a patient case?">
+    Yes. Without a case selected, Nexus can still answer general genomics questions, search public databases (NCBI, ClinVar, OMIM, PubMed), and help you build gene panels. Case selection is only needed when you want to query patient-specific variant data.
+  </Accordion>
+
+  <Accordion title="What genomic databases does Nexus search?">
+    Nexus can query gene databases, dbSNP, ClinVar, OMIM, and PubMed. It automatically determines which database to search based on your question.
+  </Accordion>
+
+  <Accordion title="How do gene panels work?">
+    A gene panel is a curated list of genes associated with a disease or clinical question. You can create your own panels, use public ones, or ask Nexus to suggest panels. Panels act as filters — apply one to a case to see only variants in the panel's genes.
+  </Accordion>
+
+  <Accordion title="Can I share gene panels with my team?">
+    Yes. When creating a panel, set the visibility to **public** to make it available to other users. Private panels are only visible to you.
+  </Accordion>
+
+  <Accordion title="What chart types are available?">
+    Nexus can generate pie charts, donut charts, bar charts, horizontal bar charts, line charts, and area charts. Describe the visualization you want, and Nexus creates it.
+  </Accordion>
+
+  <Accordion title="How does code execution work?">
+    When you ask Nexus to run Python code, it executes in your browser using Pyodide. Libraries like pandas, matplotlib, and seaborn are available. Your data stays in your session.
+  </Accordion>
+
+  <Accordion title="Why does a case take a moment to load?">
+    Cases that haven't been accessed recently are stored in long-term storage for efficiency. When you open them, Nexus loads the variant data into the fast query layer. This usually takes a few seconds.
+  </Accordion>
+
+  <Accordion title="Can I export my analysis results?">
+    Yes. You can ask Nexus to create spreadsheet artifacts with your data in CSV format, or generate text reports summarizing your findings. These artifacts can be downloaded from the side panel.
+  </Accordion>
+</AccordionGroup>

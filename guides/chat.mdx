@@ -1,0 +1,87 @@
+---
+title: "Chat"
+description: "Use natural language to search, analyze, and explore genomic data."
+icon: "comments"
+---
+
+The chat is the primary way you interact with Nexus. You type questions or instructions in plain language, and Nexus responds with answers, data tables, charts, or documents.
+
+## Starting a conversation
+
+Click **New chat** in the sidebar to begin. Each conversation gets its own thread, so you can have multiple analyses going at once.
+
+Your conversation history is saved automatically and accessible from the sidebar at any time.
+
+## What you can ask
+
+Nexus understands a wide range of genomics-related questions. Here are some examples:
+
+<AccordionGroup>
+  <Accordion title="Variant queries" icon="dna">
+    When you have a case selected, you can ask about patient variants:
+
+    - "Show me all pathogenic variants in this case"
+    - "Are there any BRCA1 or BRCA2 variants?"
+    - "List homozygous variants with allele frequency below 1%"
+    - "How many missense variants are in this patient?"
+  </Accordion>
+
+  <Accordion title="Gene and disease lookups" icon="book-medical">
+    Ask about genes, diseases, or clinical significance:
+
+    - "What is the function of the TP53 gene?"
+    - "Find ClinVar entries for CFTR"
+    - "Search PubMed for recent studies on Lynch syndrome"
+    - "What OMIM entries exist for Marfan syndrome?"
+  </Accordion>
+
+  <Accordion title="Analysis and visualization" icon="chart-bar">
+    Request aggregations, statistics, or charts:
+
+    - "Show me the distribution of variant consequences"
+    - "Create a pie chart of pathogenicity classifications"
+    - "What's the breakdown of zygosity across all variants?"
+  </Accordion>
+
+  <Accordion title="Reports and documents" icon="file-lines">
+    Ask Nexus to create documents:
+
+    - "Write a summary of the pathogenic findings in this case"
+    - "Create a report of all high-impact variants"
+    - "Generate a Python script to analyze this variant data"
+  </Accordion>
+</AccordionGroup>
+
+## Working with case context
+
+When you select a case from the sidebar, Nexus gains access to that patient's variant data. This means your questions can reference the patient directly:
+
+```
+What are the most clinically significant variants in this patient?
+```
+
+Without a case selected, Nexus can still answer general genomics questions and search public databases.
+
+<Note>You can switch cases at any time. Nexus updates its context automatically.</Note>
+
+## Chat history
+
+All conversations are saved and listed in the sidebar. You can:
+
+- Click any past conversation to resume it
+- Delete conversations you no longer need
+- Start a new chat at any time without losing previous work
+
+## Artifacts
+
+During a conversation, Nexus may create **artifacts** — documents that appear in a side panel next to the chat. These can be text reports, code scripts, or data tables.
+
+Artifacts are versioned. If you ask Nexus to revise a document, you can compare versions and revert if needed.
+
+<Card title="Learn more about artifacts" icon="file-code" href="/concepts">
+  See how artifacts fit into the Nexus workflow.
+</Card>
+
+## Feedback
+
+You can upvote or downvote any message from Nexus. This helps improve response quality over time.

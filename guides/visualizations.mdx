@@ -1,0 +1,75 @@
+---
+title: "Visualizations and code execution"
+description: "Generate charts and run Python code for custom genomic analyses."
+icon: "chart-pie"
+---
+
+Nexus can create visual representations of your data and run custom Python code — all from the chat.
+
+## Charts
+
+Ask Nexus to visualize your data, and it generates interactive charts directly in the conversation.
+
+### Supported chart types
+
+| Type | Best for |
+| --- | --- |
+| **Pie / Donut** | Showing proportions (e.g., pathogenicity distribution) |
+| **Bar** | Comparing categories (e.g., variants per gene) |
+| **Horizontal bar** | Long category labels or ranked lists |
+| **Line** | Trends over ordered data |
+| **Area** | Volume or cumulative distributions |
+
+### Example prompts
+
+```
+Create a pie chart showing the pathogenicity distribution for this patient.
+```
+
+```
+Show me a bar chart of the top 10 genes by variant count.
+```
+
+```
+Make a donut chart of variant consequence types.
+```
+
+<Tip>You can ask Nexus to adjust colors, labels, or chart type after it generates the initial visualization.</Tip>
+
+## Code execution
+
+For analyses that go beyond built-in tools, Nexus can write and execute Python code with access to common data science libraries.
+
+### Available libraries
+
+- **pandas** — data manipulation and analysis
+- **matplotlib** — plotting and visualization
+- **seaborn** — statistical data visualization
+
+### Example prompts
+
+```
+Write a Python script to calculate the transition/transversion ratio for this variant set.
+```
+
+```
+Create a matplotlib heatmap showing variant density across chromosomes.
+```
+
+Nexus writes the code, runs it, and displays the results (including plots) directly in the chat.
+
+### How it works
+
+Code runs securely in your browser using Pyodide, a Python runtime for the web. Your data doesn't leave your session.
+
+<Note>Code execution is best for custom analyses that aren't covered by the built-in chart and analytics tools. For standard queries, natural language is usually faster.</Note>
+
+## Documents
+
+Nexus can create longer-form artifacts during a conversation:
+
+- **Text documents** — clinical summaries, variant reports, or research notes
+- **Code files** — reusable Python scripts
+- **Spreadsheets** — tabular data in CSV format
+
+These appear in a side panel and are saved with version history, so you can track changes and revert if needed.

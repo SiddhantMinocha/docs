@@ -1,0 +1,60 @@
+---
+title: "Cases"
+description: "Organize patient data, track findings, and manage variant workflows."
+icon: "folder-open"
+---
+
+Cases are how you organize patient or sample data in Nexus. Each case contains a set of genetic variants and associated clinical information.
+
+## Viewing your cases
+
+Navigate to **Cases** in the sidebar to see all your cases. Each case shows key information at a glance, including the case name and current status.
+
+## Creating a case
+
+Click **New case** to create one. You'll provide:
+
+- A name for the case
+- Any relevant clinical details
+
+Once created, variants can be loaded into the case for analysis.
+
+## Working with a case
+
+Select a case from the sidebar to make it active. When a case is active:
+
+- The chat gains access to that patient's variant data
+- You can use the variant table to browse and filter results
+- AI tools like variant search and analytics work within that case's data
+
+### Variant table
+
+The variant table provides a detailed view of all variants in a case. You can:
+
+- **Filter** by gene, pathogenicity, zygosity, consequence type, and allele frequency
+- **Sort** columns to find what matters most
+- **Resize** columns by dragging their edges
+- **Select** multiple variants for batch actions
+
+<Tip>Use the filters panel on the left side of the variant table to narrow down results quickly.</Tip>
+
+### Findings
+
+As you review variants, you can mark specific variants as **findings** — variants of interest that you want to track. Findings can include clinical notes to capture your interpretation.
+
+## Case data loading
+
+Nexus uses a storage system that keeps your active cases ready for fast querying. If a case hasn't been accessed recently, it may take a moment to load when you first open it. You'll see a loading indicator while the data prepares.
+
+<Note>Cases that haven't been accessed in a while are automatically archived for storage efficiency. They reload on demand when you open them.</Note>
+
+## Asking questions about a case
+
+Once a case is selected, you can return to the chat and ask questions about the patient's data:
+
+- "Show me all pathogenic variants"
+- "Are there any variants in RAS pathway genes?"
+- "Create a chart of variant consequences"
+- "Summarize the key findings"
+
+Nexus automatically scopes its search to the active case.

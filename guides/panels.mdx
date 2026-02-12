@@ -1,0 +1,73 @@
+---
+title: "Gene panels"
+description: "Create and manage virtual gene panels for targeted variant filtering."
+icon: "dna"
+---
+
+Virtual gene panels are curated lists of genes associated with a specific disease or clinical question. Use them to focus your variant analysis on the genes that matter most.
+
+## Why use gene panels
+
+When a patient has thousands of variants, looking at all of them is impractical. A gene panel narrows the search to a targeted set of genes, so you can focus on variants with clinical relevance to a specific condition.
+
+## Viewing panels
+
+Navigate to **Panels** in the sidebar to see all available panels. You'll see:
+
+- Panels you created
+- Public panels shared by your team or organization
+
+## Creating a panel
+
+Click **New panel** to get started. You can configure:
+
+<AccordionGroup>
+  <Accordion title="Basic information" icon="circle-info">
+    - **Name** — a descriptive name for the panel
+    - **Description** — what condition or use case this panel covers
+    - **Visibility** — whether the panel is private or public
+  </Accordion>
+
+  <Accordion title="Clinical details" icon="stethoscope">
+    - **Clinical intent** — diagnostic, differential, confirmatory, carrier screening, or research
+    - **Validation status** — draft, validated, or deprecated
+    - **Inheritance models** — autosomal dominant, autosomal recessive, X-linked, or mitochondrial
+    - **Variant types** — SNV, indel, CNV, or structural variants
+  </Accordion>
+</AccordionGroup>
+
+## Managing genes
+
+After creating a panel, add genes to it by searching for gene symbols. You can:
+
+- **Add genes** one at a time using the gene search
+- **Remove genes** you no longer want in the panel
+- **View gene details** including associated diseases and function
+
+## Linking diseases
+
+Associate diseases with your panel to document the clinical context. Search for diseases by name and link them to the panel.
+
+## Using panels in analysis
+
+There are two ways to use a panel for variant analysis:
+
+### From the chat
+
+Ask Nexus to find a panel and apply it:
+
+```
+Search for a cardiomyopathy panel and show me matching variants in this patient.
+```
+
+Nexus searches your accessible panels, finds matching ones, and uses the gene list to filter the patient's variants.
+
+### From the variant table
+
+Apply a panel as a filter in the variant table to restrict the display to only genes in that panel.
+
+## Panel versioning
+
+Nexus tracks changes to your panels over time. You can view the changelog to see when genes were added or removed, and who made the changes.
+
+<Tip>Duplicate an existing panel to create a starting point for a new one, instead of building from scratch.</Tip>

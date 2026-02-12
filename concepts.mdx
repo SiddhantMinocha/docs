@@ -1,0 +1,52 @@
+---
+title: "Key concepts"
+description: "Understand the core building blocks of Nexus."
+---
+
+Before diving into features, here are the key concepts that make up the Nexus workflow.
+
+## Chat
+
+The chat is your primary interface for interacting with Nexus. You type questions or instructions in natural language, and Nexus responds with answers, data, visualizations, or actions.
+
+Every conversation is saved automatically, so you can revisit past analyses at any time.
+
+## Cases
+
+A case represents a patient or sample. Each case contains a set of genetic variants that you can search, filter, and analyze. Selecting a case gives Nexus the context it needs to answer questions about that patient's data.
+
+## Variants
+
+Variants are the individual genetic changes found in a patient's sequencing data. Nexus lets you search variants by gene, pathogenicity, zygosity, allele frequency, consequence type, and more.
+
+## Gene panels
+
+A virtual gene panel is a curated list of genes associated with a specific disease or condition. You can create your own panels, use public panels, or let Nexus suggest panels based on a clinical question.
+
+Panels work as filters — once you have a panel, you can apply it to a case to focus on the most relevant variants.
+
+## Artifacts
+
+Artifacts are documents that Nexus creates during a conversation. These can be:
+
+- **Text documents** — summaries, reports, or notes
+- **Code** — Python scripts for custom analysis
+- **Spreadsheets** — tabular data exports
+
+Artifacts appear in a side panel and are versioned, so you can track changes over time.
+
+## AI tools
+
+Nexus has access to a set of specialized tools that it uses automatically based on your questions:
+
+| Tool | What it does |
+| --- | --- |
+| **Variant search** | Finds variants in a patient case using filters |
+| **Variant analytics** | Aggregates variant data for statistics and charts |
+| **Panel search** | Looks up gene panels by disease or condition |
+| **NCBI search** | Queries gene, SNP, ClinVar, OMIM, and PubMed databases |
+| **Chart creation** | Generates pie, bar, line, and area charts |
+| **Code execution** | Runs Python code with pandas and matplotlib |
+| **Web search** | Searches the web for additional context |
+
+You don't need to invoke these tools manually. Nexus decides which tools to use based on your question.

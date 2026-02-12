@@ -1,0 +1,62 @@
+---
+title: "Variant analysis"
+description: "Search, filter, and analyze genetic variants with AI-powered tools."
+icon: "chart-bar"
+---
+
+Nexus provides multiple ways to explore variant data — from natural language questions in the chat to detailed filters in the variant table.
+
+## Searching variants
+
+With a case selected, ask Nexus to search for variants using any combination of criteria:
+
+```
+Show me pathogenic or likely pathogenic variants in BRCA1 with allele frequency below 0.01
+```
+
+### Available filters
+
+You can filter variants by:
+
+| Filter | Description | Example |
+| --- | --- | --- |
+| **Gene** | One or more gene symbols | BRCA1, TP53, EGFR |
+| **Pathogenicity** | Clinical classification | Pathogenic, likely pathogenic, VUS |
+| **Zygosity** | Variant genotype | Homozygous, heterozygous |
+| **Consequence** | Predicted effect | Missense, nonsense, frameshift, splice |
+| **Allele frequency** | Population frequency threshold | Below 1%, below 0.1% |
+
+<Tip>You don't need to remember filter names. Describe what you're looking for in plain language, and Nexus applies the right filters.</Tip>
+
+## Variant analytics
+
+Beyond searching, you can ask Nexus to aggregate and analyze variant data:
+
+- "How many pathogenic variants does this patient have?"
+- "What's the distribution of variant consequences?"
+- "Show me the top 10 genes by variant count"
+
+Nexus returns statistics and can generate charts to visualize the results.
+
+## Using the variant table
+
+The variant table in the case view gives you a hands-on way to explore variants:
+
+- **Filters panel** — toggle filters on the left to narrow results
+- **Column sorting** — click column headers to sort
+- **Resizable columns** — drag column edges to adjust width
+- **Batch selection** — select multiple variants for group actions
+
+## Combining panels with variant search
+
+For targeted analysis, apply a gene panel to restrict your search:
+
+```
+Use the hereditary cancer panel to filter this patient's variants and show only pathogenic ones.
+```
+
+This combines the panel's gene list with your pathogenicity filter to show only the most relevant results.
+
+## Marking findings
+
+When you identify a variant of interest, you can mark it as a **finding**. Findings are saved to the case and can include your clinical notes and interpretation.
