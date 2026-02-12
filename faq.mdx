@@ -4,44 +4,228 @@ description: "Frequently asked questions about Nexus."
 icon: "circle-question"
 ---
 
+import { AccordionGroup, Accordion } from "@/components/Accordion";
+
+## Frequently Asked Questions
+
 <AccordionGroup>
   <Accordion title="Do I need to know programming to use Nexus?">
-    No. Nexus is designed for natural language interaction. You type questions in plain English, and Nexus handles the rest. If you do know Python, you can ask Nexus to write and run custom scripts for advanced analyses.
+    No, you don't need programming knowledge to use Nexus. You can interact with the platform entirely through natural language—just ask questions about genomic data and analysis in plain English.
+
+    However, if you're familiar with Python, you can take advantage of advanced capabilities. You can ask Nexus to write and run custom Python scripts directly in your browser using Pyodide. The platform supports popular data science libraries including pandas for data manipulation, matplotlib for visualizations, and seaborn for statistical graphics. This gives you the flexibility to perform custom analyses beyond the built-in tools without leaving the platform.
+  </Accordion>
+
+  <Accordion title="What is the difference between Agent Mode and Case Mode?">
+    Agent Mode and Case Mode serve different purposes in Nexus:
+
+    **Agent Mode** is a chat-first interface designed for general genomics questions and database searches. Use this mode when you want to explore genomic databases, ask conceptual questions about genes or diseases, build gene panels, or perform research without patient context.
+
+    **Case Mode** is specifically for managing patient cases. In this mode, you work with variant data, patient phenotypes, and clinical findings. You can upload VCF files, analyze variants in the context of a specific patient, track findings, and collaborate with your team.
+
+    You can easily toggle between these two modes using the buttons located in the top-right corner of the interface.
+  </Accordion>
+
+  <Accordion title="What file format is required for uploading variants?">
+    Nexus requires **VCF (Variant Call Format)** files for variant uploads. This is the standard format for genomic variant data and ensures compatibility with the platform's analysis tools.
+
+    You can upload your VCF file during case creation. Simply drag and drop your file into the designated area, or use the **Upload VCF** button to select your file from your computer. Once uploaded, Nexus processes your variant data and makes it available for analysis within your case.
   </Accordion>
 
   <Accordion title="What happens to my data?">
-    Your patient data and conversation history are stored securely. Conversations are private by default and only visible to you unless you explicitly change the visibility setting.
+    Your data is securely stored in Nexus. By default, your conversations and case data are private and visible only to you.
+
+    You have control over conversation visibility. Click the **lock icon** next to any conversation to change its privacy settings. You can make conversations visible to team members, share them with specific collaborators, or keep them completely private based on your needs.
+
+    For team collaboration, you can grant specific team members access to cases through the **Access** tab within each case, allowing you to control exactly who can view and work with your data.
   </Accordion>
 
   <Accordion title="Can I use Nexus without loading a patient case?">
-    Yes. Without a case selected, Nexus can still answer general genomics questions, search public databases (NCBI, ClinVar, OMIM, PubMed), and help you build gene panels. Case selection is only needed when you want to query patient-specific variant data.
+    Yes, absolutely. You can use Nexus productively in **Agent Mode** without any patient case loaded.
+
+    In Agent Mode, you can search genomic databases, ask general genomics questions, research genes and diseases, and build custom gene panels. Case context is only necessary when you need to perform patient-specific analysis, such as filtering variants based on patient phenotypes or marking findings related to a particular patient's genome.
+
+    This flexibility allows you to use Nexus as a genomic research and learning tool independently of clinical case management.
   </Accordion>
 
   <Accordion title="What genomic databases does Nexus search?">
-    Nexus can query gene databases, dbSNP, ClinVar, OMIM, and PubMed. It automatically determines which database to search based on your question.
+    Nexus searches a comprehensive collection of genomic databases across multiple categories through the **Research Sources** panel. You can toggle individual sources on or off based on your needs:
+
+    **Research Papers:** PubMed, Nature, Cell, NEJM, Lancet, arXiv, bioRxiv
+
+    **Clinical Evidence:** ClinVar, ClinicalTrials, OMIM, ClinGen, Orphanet
+
+    **Variant Databases:** gnomAD, GWAS Catalog, dbSNP, VarSome, Franklin
+
+    **Guidelines:** ACMG, NCCN, UpToDate, CDC, WHO
+
+    **Drugs & Therapies:** PharmGKB, DrugBank, FDA, ClinicalTrials
+
+    This broad database integration allows you to access curated clinical evidence, variant frequency data, therapeutic information, and clinical guidelines—all within Nexus. You maintain full control over which sources are active during your search.
   </Accordion>
 
   <Accordion title="How do gene panels work?">
-    A gene panel is a curated list of genes associated with a disease or clinical question. You can create your own panels, use public ones, or ask Nexus to suggest panels. Panels act as filters — apply one to a case to see only variants in the panel's genes.
+    Gene panels in Nexus are curated lists of genes relevant to specific diseases or clinical conditions. They help you focus your analysis on genes known to be associated with particular phenotypes or conditions.
+
+    You can create custom gene panels by defining clinical details specific to your case, or you can search and use existing gene panels that have already been compiled. Once you've selected or created a panel, you can apply it in two ways:
+
+    1. **From chat:** Ask Nexus to apply a gene panel during conversation
+    2. **From the Variants tab:** Use the **Virtual Panels** filter to apply gene panels directly to your variant analysis
+
+    This flexibility allows you to quickly narrow your analysis to the most relevant genes for your patient's clinical presentation.
   </Accordion>
 
-  <Accordion title="Can I share gene panels with my team?">
-    Yes. When creating a panel, set the visibility to **public** to make it available to other users. Private panels are only visible to you.
+  <Accordion title="Can I share cases with my team?">
+    Yes, you can easily share cases with your team members. Within any case, navigate to the **Access** tab to manage who has access. You can add team members and assign them one of two roles:
+
+    - **Admin:** Full control over the case including editing, sharing, and deletion
+    - **General:** Ability to view and analyze the case without modification rights
+
+    You can manage broader team settings and member management from **Settings > Team**. This allows you to control collaboration permissions at both the case and team level.
   </Accordion>
 
   <Accordion title="What chart types are available?">
-    Nexus can generate pie charts, donut charts, bar charts, horizontal bar charts, line charts, and area charts. Describe the visualization you want, and Nexus creates it.
+    Nexus supports multiple chart types to visualize your data:
+
+    - **Pie and donut charts** for showing proportional data
+    - **Bar and horizontal bar charts** for categorical comparisons
+    - **Line charts** for trend analysis over time
+    - **Area charts** for cumulative data visualization
+
+    You don't need to specify the exact chart type manually. Simply describe the visualization you want in natural language, and Nexus will generate the appropriate chart. After generation, you can easily adjust the visualization by changing colors, updating labels, or switching to a different chart type.
   </Accordion>
 
   <Accordion title="How does code execution work?">
-    When you ask Nexus to run Python code, it executes in your browser using Pyodide. Libraries like pandas, matplotlib, and seaborn are available. Your data stays in your session.
+    Nexus supports Python code execution directly in your browser through Pyodide, a Python runtime that runs entirely client-side. This means your data never leaves your session.
+
+    The available libraries include:
+    - **pandas** for data manipulation and analysis
+    - **matplotlib** for creating static visualizations
+    - **seaborn** for statistical graphics and enhanced visualizations
+
+    Code execution is best used for custom analyses that aren't covered by Nexus's built-in tools. You can ask Nexus to write Python code for your specific analytical needs, and it will execute the code immediately in your browser. All data remains in your current session and is never transmitted elsewhere.
+  </Accordion>
+
+  <Accordion title="What are findings?">
+    Findings are variants that you mark as significant during your analysis of a patient's genome. Each finding represents a variant of interest that you've identified as potentially relevant to the patient's clinical presentation.
+
+    Findings include comprehensive information:
+    - **Gene name** where the variant is located
+    - **Position** in the genome
+    - **HGVS notation** for standardized variant naming
+    - **Pathogenicity** assessment (likely pathogenic, uncertain significance, etc.)
+    - **Zygosity** (homozygous, heterozygous, hemizygous)
+    - **Consequence** (frameshift, missense, splice site, etc.)
+    - **Reviewer** information noting who made the assessment
+
+    Findings are categorized into four types:
+    - **Primary:** The variant most likely explains the patient's phenotype
+    - **Causal:** Confirmed to cause the patient's condition
+    - **Secondary:** Related to the patient's condition but not the primary cause
+    - **Incidental:** Unrelated variants identified during analysis
+
+    You can export all findings from the **Findings** tab to generate reports and share results with colleagues.
+  </Accordion>
+
+  <Accordion title="What are HPO phenotypes and how do I use them?">
+    HPO (Human Phenotype Ontology) phenotypes are standardized terms that describe the clinical features and symptoms observed in a patient. They provide a precise, globally recognized vocabulary for documenting patient characteristics.
+
+    You can add HPO phenotypes to your case in two ways:
+
+    1. **AI Assist:** Let Nexus suggest relevant phenotypes based on the case description
+    2. **Manual search:** Browse and select phenotypes from the HPO database directly
+
+    Add phenotypes through the **Phenotypes** tab in your case. Once added, HPO phenotypes become powerful filtering tools during variant analysis. You can use them in two contexts:
+
+    - **Primary Phenotypes:** Filter variants to those known to cause the patient's observed clinical features
+    - **Secondary Phenotypes:** Filter variants associated with additional or secondary clinical features
+
+    This phenotype-driven approach helps you prioritize variants that align with the patient's specific clinical presentation.
   </Accordion>
 
   <Accordion title="Why does a case take a moment to load?">
-    Cases that haven't been accessed recently are stored in long-term storage for efficiency. When you open them, Nexus loads the variant data into the fast query layer. This usually takes a few seconds.
+    When you open a case that hasn't been accessed recently, it may be archived to optimize system performance. Archived cases are not immediately available in memory—they need to be reloaded on demand.
+
+    When you access an archived case, Nexus retrieves and loads it for you. During this process, you'll see a loading indicator. This brief delay ensures the system runs efficiently while still giving you instant access to any case whenever you need it.
+
+    The loading time is typically short, and once loaded, your case data is ready for analysis.
   </Accordion>
 
   <Accordion title="Can I export my analysis results?">
-    Yes. You can ask Nexus to create spreadsheet artifacts with your data in CSV format, or generate text reports summarizing your findings. These artifacts can be downloaded from the side panel.
+    Yes, Nexus provides multiple export options for your analysis:
+
+    - **Export findings:** From the **Findings** tab, you can export all marked findings with their associated metadata
+    - **Create spreadsheet artifacts:** Generate CSV files containing your analysis data for use in external tools
+    - **Generate text reports:** Create formatted text reports summarizing your analysis and conclusions
+    - **Export Python scripts:** Save the code you've written or that Nexus generated for future use and reproducibility
+
+    These export options allow you to share your results with colleagues, integrate findings into medical records, or preserve your analysis methodology for future reference.
+  </Accordion>
+
+  <Accordion title="What plans are available?">
+    Nexus offers three subscription plans to fit different needs:
+
+    **Individual Plan - $50/month**
+    - 50 queries per day
+    - 100K tokens per month
+    - Ideal for single users doing focused genomic research
+
+    **Pro Plan - $125/month**
+    - 125 queries per day
+    - API access for integrating Nexus into external applications
+    - Background analysis capabilities for longer-running processes
+    - Best for active researchers and clinicians
+
+    **Team Plan - $999/month**
+    - Unlimited queries
+    - Single Sign-On (SSO) for easy team management
+    - Custom branding options
+    - Unlimited team members
+    - Perfect for institutions and clinical teams
+
+    You can review and manage your current plan from **Settings > Plan**. Upgrade or downgrade anytime based on your evolving needs.
+  </Accordion>
+
+  <Accordion title="How do I customize how Nexus responds?">
+    You can personalize Nexus's communication style to match your preferences through **Settings > General > Personalization**. Configure four key dimensions:
+
+    **Base Style:**
+    - Detailed: Comprehensive, in-depth responses with thorough explanations
+    - Concise: Brief, focused responses that get straight to the point
+
+    **Tone:**
+    - Professional: Formal, clinical language appropriate for medical contexts
+    - Casual: Conversational, approachable communication style
+
+    **Characteristics:**
+    - Balanced: Neutral presentation of information with multiple perspectives
+    - Cautious: Emphasizes uncertainties and limitations in findings
+    - Confident: Assertive recommendations based on evidence
+
+    **Output Format:**
+    - Structured: Organized with headers, bullet points, and clear sections
+    - Conversational: Flowing narrative style with natural transitions
+
+    These customization options ensure Nexus communicates in the way that's most useful for your workflow and preferences.
+  </Accordion>
+
+  <Accordion title="What case types does Nexus support?">
+    Nexus currently supports the following case type:
+
+    **Single Inherited Disease** – Analyze genetic variants in a single individual for suspected inherited conditions
+
+    Two additional case types are coming soon:
+
+    - **Family Inherited Disease** – Analyze variants across multiple family members to identify inherited patterns
+    - **Somatic Case** – Analyze somatic variants in cancer and other somatic genetic conditions
+
+    These upcoming case types will expand Nexus's capabilities for family-based analysis and oncology applications. Check back for updates on their release.
+  </Accordion>
+
+  <Accordion title="How do citations work in Nexus responses?">
+    Nexus includes inline citation badges throughout its responses to help you verify the sources of information. These badges display the database or source name (for example: ClinVar, NCBI, PubMed, etc.) and appear as clickable elements within the text.
+
+    When you click any citation badge, you're taken directly to the original source database where you can review the data yourself. This citation system ensures transparency and gives you the ability to verify every claim Nexus makes about variants, genes, or clinical evidence.
+
+    By clicking through to the source, you can confirm findings, access additional details, and maintain the scientific rigor necessary for clinical decision-making.
   </Accordion>
 </AccordionGroup>

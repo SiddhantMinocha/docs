@@ -1,75 +1,171 @@
 ---
-title: "Quickstart"
-description: "Get up and running with Nexus in a few minutes."
+title: Quickstart
+description: Get started with Nexus in minutes. Sign in, ask questions, and explore cases.
 ---
 
-This guide walks you through signing in, starting a conversation, and running your first variant search.
+Get up and running with Nexus in just a few minutes. You'll learn how to sign in, explore Agent Mode for genomics queries, and switch to Case Mode for patient case management.
 
-## Get started
+## Sign in to Nexus
 
 <Steps>
-<Step title="Sign in to Nexus">
-
-Open Nexus in your browser. You can sign in with your credentials or continue as a guest to explore the interface.
-
-<Tip>Guest accounts let you try Nexus immediately. Create a full account to save your work and access all features.</Tip>
-
-</Step>
-
-<Step title="Start a new chat">
-
-Click **New chat** from the sidebar. This opens a conversation where you can ask Nexus anything about genomics, variants, or your patient data.
-
-Try asking something like:
-
-```
-What genes are associated with hereditary breast cancer?
-```
-
-Nexus responds with referenced information pulled from genomic databases.
-
-</Step>
-
-<Step title="Select a case">
-
-If you have patient cases loaded, select one from the sidebar under **Cases**. Once a case is active, Nexus can search and analyze the variants within that case.
-
-```
-Show me all pathogenic variants in BRCA1 for this patient.
-```
-
-</Step>
-
-<Step title="Explore results">
-
-Nexus returns results directly in the chat. You can:
-
-- View variant tables with filters
-- Generate charts and visualizations
-- Create documents and reports
-- Ask follow-up questions to refine your analysis
-
-</Step>
+  <Step title="Open Nexus">
+    Navigate to **mip.purna.ai** in your web browser.
+  </Step>
+  <Step title="Sign in">
+    Enter your Purna Biotech credentials. If you don't have an account, contact your organization administrator.
+  </Step>
+  <Step title="View the home screen">
+    After signing in, you'll see the Nexus home screen with the greeting "Hello there! How can I help you today?"
+    
+    ![Nexus home screen](/images/guides/chat-home.png)
+  </Step>
 </Steps>
 
-## What to try next
+## Start chatting in Agent Mode
+
+Agent Mode is your entry point to Nexus. Use natural language to ask questions about genes, variants, diseases, and clinical implications.
+
+<Steps>
+  <Step title="Choose a suggested prompt">
+    The home screen offers helpful starting points. Click any suggestion to begin:
+    
+    - "Find pathogenic variants in BRCA1 and BRCA2 genes"
+    - "What are the clinical implications of a VUS in TP53?"
+    - Or browse other suggested prompts relevant to your interests
+  </Step>
+  <Step title="Or ask your own question">
+    Click in the chat input box and type your genomics question. For example:
+    
+    - "Which genes are associated with hereditary breast cancer?"
+    - "What does the OMIM database say about p.Val397Met in EGFR?"
+    - "Find all pathogenic variants in genes related to cardiomyopathy"
+  </Step>
+  <Step title="View the response">
+    Nexus analyzes your question and returns evidence-based answers with citations from genomic databases. You can continue the conversation by asking follow-up questions.
+  </Step>
+</Steps>
+
+<Tip>
+You can ask Nexus complex, multi-part questions. The AI understands genomics terminology and context, so natural language queries work best.
+</Tip>
+
+## Switch to Case Mode
+
+Case Mode lets you work with patient-specific data. Switch from Agent Mode to Case Mode using the toggle in the top-right corner.
+
+<Steps>
+  <Step title="Enable Case Mode">
+    In the top-right corner of the Nexus interface, toggle from **Agent Mode** to **Case Mode**.
+  </Step>
+  <Step title="View your cases">
+    You'll now see a list of your existing patient cases. If you're new to Nexus, the list will be empty.
+    
+    ![Case Mode list](/images/guides/cases-list.png)
+  </Step>
+</Steps>
+
+## Create a new case
+
+Follow these steps to add your first patient case to Nexus:
+
+<Steps>
+  <Step title="Click Create New Case">
+    In Case Mode, select the button to create a new case. A dialog will open with the case creation form.
+    
+    ![New case dialog](/images/guides/new-case.png)
+  </Step>
+  <Step title="Fill in case details">
+    Complete the following fields:
+    
+    | Field | Description |
+    | --- | --- |
+    | **Case Name** | Identifier for the case (e.g., "Patient A - 2024") |
+    | **Case Type** | Single Inherited Disease (Somatic and Family coming soon) |
+    | **Consanguinity** | Whether the patient has consanguineous parents |
+    | **Sex** | Patient biological sex |
+    | **Date of Birth** | Patient DOB for age calculation |
+    | **Ethnicity** | Patient ethnicity for allele frequency context |
+    | **Secondary Findings** | Opt-in to identify clinically actionable genes beyond your primary indication |
+    | **Order Details** | Additional clinical context or lab requisition info |
+  </Step>
+  <Step title="Upload genomic data">
+    Upload a VCF (Variant Call Format) file containing the patient's genomic variants. This file is the foundation for case analysis.
+  </Step>
+  <Step title="Create the case">
+    Click **Create** to save the case. Nexus processes your VCF file and prepares the case for analysis.
+  </Step>
+</Steps>
+
+## Explore case tabs
+
+Once you've created or selected a case, you can explore the structured case workspace:
+
+<Columns cols={2}>
+  <Card title="Overview" icon="layout-grid">
+    View case summary with charts and statistics about the patient's variants and phenotypes.
+  </Card>
+  <Card title="Findings" icon="search">
+    Review prioritized findings and interpretations from the genomic analysis.
+  </Card>
+</Columns>
+
+<Columns cols={2}>
+  <Card title="Phenotypes" icon="tag">
+    Manage the patient's clinical phenotypes to inform variant interpretation.
+  </Card>
+  <Card title="Variants" icon="dna">
+    Explore detailed variant data with classifications, evidence, and research context.
+  </Card>
+</Columns>
+
+<Columns cols={2}>
+  <Card title="Access" icon="lock">
+    Control who can view and edit this case within your organization.
+  </Card>
+</Columns>
+
+## Ask contextual questions
+
+Once you're in a case, you can ask Nexus questions specific to that patient:
+
+<Steps>
+  <Step title="Use the cases dropdown">
+    At the bottom of the chat input, you'll see a **Cases** dropdown. Select the patient case you want to ask about.
+  </Step>
+  <Step title="Ask case-specific questions">
+    Now your queries are in the context of the selected case. Examples:
+    
+    - "What are the top 3 pathogenic variants in this patient?"
+    - "Are these phenotypes consistent with the findings?"
+    - "Which variants have clinical significance according to ClinVar?"
+  </Step>
+  <Step title="Nexus delivers patient-specific answers">
+    The AI uses both the patient's genomic data and the broader genomic databases to provide precise, contextual answers.
+  </Step>
+</Steps>
+
+<Note>
+You can toggle between different cases at any time by changing the **Cases** dropdown selection. Your chat history persists across cases.
+</Note>
+
+## What's next?
+
+Now that you're familiar with Nexus basics, explore the full feature set:
 
 <CardGroup cols={2}>
+  <Card title="Case management" href="/guides/cases" icon="folder-plus">
+    Learn advanced case organization and team collaboration.
+  </Card>
+  <Card title="AI chat" href="/guides/chat" icon="message-circle-2">
+    Master genomics queries and get the most from natural language search.
+  </Card>
+</CardGroup>
 
-<Card title="Learn about chat" icon="comments" href="/guides/chat">
-  Understand everything you can do in a conversation.
-</Card>
-
-<Card title="Manage cases" icon="folder-open" href="/guides/cases">
-  Create cases and explore patient variants.
-</Card>
-
-<Card title="Build gene panels" icon="dna" href="/guides/panels">
-  Create virtual panels for targeted analysis.
-</Card>
-
-<Card title="Search databases" icon="magnifying-glass" href="/guides/genomic-search">
-  Query NCBI, ClinVar, OMIM, and more.
-</Card>
-
+<CardGroup cols={2}>
+  <Card title="Gene panels" href="/guides/panels" icon="list">
+    Build virtual gene panels for targeted analysis.
+  </Card>
+  <Card title="Database search" href="/guides/genomic-search" icon="search">
+    Deep dive into ClinVar, OMIM, PubMed, and other genomic databases.
+  </Card>
 </CardGroup>

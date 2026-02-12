@@ -1,78 +1,88 @@
 ---
-title: "Genomic database search"
-description: "Query NCBI, ClinVar, OMIM, PubMed, and other genomic databases from the chat."
-icon: "magnifying-glass"
+title: Genomic database search
+description: Query ClinVar, OMIM, PubMed, and other genomic databases from the chat.
+icon: magnifying-glass
 ---
 
-Nexus connects to major genomic databases so you can look up genes, variants, diseases, and literature without leaving the conversation.
+Nexus connects to major genomic databases so you can look up genes, variants, diseases, and literature without leaving the conversation. Ask your question naturally, and Nexus queries the right databases to find evidence-based answers.
 
 ## Supported databases
 
+Nexus integrates with multiple specialized databases across genomics, clinical evidence, and research literature:
+
 <AccordionGroup>
   <Accordion title="Gene databases" icon="dna">
-    Search for gene information, function, and annotations.
-
+    Query gene function, transcript information, protein annotations, and pathway relationships.
+    
     **Example queries:**
-    - "What is the function of BRCA1?"
-    - "Give me details on the TP53 gene"
-    - "What pathways involve EGFR?"
+    - "What's the function of the BRCA1 gene?"
+    - "Show me the known transcripts for TP53"
+    - "Which pathways involve the CFTR gene?"
   </Accordion>
 
   <Accordion title="ClinVar" icon="flask">
-    Look up clinical significance of specific variants.
-
+    Search for clinical significance of specific variants, including interpretation classifications and assertion criteria.
+    
     **Example queries:**
-    - "Search ClinVar for CFTR variants"
-    - "Is there a ClinVar entry for this BRCA2 variant?"
-    - "What pathogenic variants are reported in MLH1?"
+    - "What's the clinical significance of BRCA1 c.68_69delAG?"
+    - "Show variants in ClinVar marked as pathogenic for cystic fibrosis"
+    - "Is this variant in ClinVar?"
   </Accordion>
 
   <Accordion title="OMIM" icon="book-medical">
-    Find disease-gene associations and inheritance patterns.
-
+    Explore disease-gene associations, inheritance patterns, clinical features, and phenotypic descriptions.
+    
     **Example queries:**
-    - "What OMIM entries exist for Marfan syndrome?"
-    - "Which genes are linked to hypertrophic cardiomyopathy in OMIM?"
+    - "Which genes cause Marfan syndrome?"
+    - "What's the inheritance pattern of familial hypercholesterolemia?"
+    - "Tell me about the clinical features of Duchenne muscular dystrophy"
   </Accordion>
 
   <Accordion title="SNP database" icon="circle-nodes">
-    Look up SNP identifiers and variant details.
-
+    Look up SNP identifiers, minor allele frequencies, and variant functional annotations.
+    
     **Example queries:**
-    - "What is rs1800497?"
-    - "Give me information about this dbSNP entry"
+    - "What do you know about rs1234567?"
+    - "Show me common variants in the APOE gene"
+    - "What's the population frequency of this SNP?"
   </Accordion>
 
   <Accordion title="PubMed" icon="newspaper">
-    Search for published literature and research articles.
-
+    Search published literature and research articles on genes, variants, diseases, and therapies.
+    
     **Example queries:**
-    - "Find recent papers on CRISPR gene editing in oncology"
-    - "Search PubMed for Lynch syndrome screening guidelines"
-    - "What studies discuss PALB2 and breast cancer risk?"
+    - "What recent research exists on PTEN mutations in cancer?"
+    - "Find papers on de novo variants in autism"
+    - "What does the literature say about penetrance of BRCA mutations?"
   </Accordion>
 </AccordionGroup>
 
 ## How it works
 
-You don't need to specify which database to search. Describe what you're looking for, and Nexus determines the right database to query:
+You describe what you're looking for in natural language. Nexus understands the context and automatically queries the appropriate databases. Often you'll get results from multiple sources in a single response—for instance, asking about a gene might return functional information, disease associations, and relevant publications.
 
-```
-Tell me about the clinical significance of BRCA1 and any recent PubMed studies.
-```
+## Research sources panel
 
-Nexus may query multiple databases in a single response to give you a complete picture.
+Control which databases Nexus searches using the **Sources** dropdown at the bottom of the chat. You'll find five categories:
 
-## Citations
+| Category | Databases |
+|----------|-----------|
+| **Research Papers** | PubMed, Nature, Cell, NEJM, Lancet, arXiv, bioRxiv |
+| **Clinical Evidence** | ClinVar, ClinicalTrials, OMIM, ClinGen, Orphanet |
+| **Variant Databases** | gnomAD, GWAS Catalog, dbSNP, VarSome, Franklin |
+| **Guidelines** | ACMG, NCCN, UpToDate, CDC, WHO |
+| **Drugs & Therapies** | PharmGKB, DrugBank, FDA, ClinicalTrials |
 
-When Nexus returns information from a database, it includes references so you can verify the source. Look for database identifiers (gene IDs, ClinVar accession numbers, PubMed IDs) in the response.
+Toggle sources on or off based on your research needs. For instance, turn on **Guidelines** when you need interpretation recommendations, or enable **Variant Databases** for population frequency data.
+
+## Citations and evidence tracking
+
+Nexus includes database identifiers in responses as clickable badges—ClinVar accession numbers, PubMed IDs, OMIM gene symbols, and dbSNP accessions. This lets you trace findings back to source records and verify information independently.
 
 ## Web search
 
-For information not covered by genomic databases, Nexus can also search the web:
+For information beyond specialized genomic databases, you can also query the broader web. For example: "What are the latest clinical trials for spinal muscular atrophy?" Nexus searches both genomic sources and general web results when appropriate.
 
-```
-What are the latest ACMG guidelines for variant classification?
-```
-
-<Note>Web search results are for reference only. Always verify clinical information against authoritative sources.</Note>
+<Note>
+Always verify clinical information against authoritative sources before making clinical decisions. Nexus aggregates information from multiple databases, but definitive interpretation should come from specialists and official clinical guidelines.
+</Note>

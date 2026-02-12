@@ -1,75 +1,70 @@
 ---
-title: "Visualizations and code execution"
-description: "Generate charts and run Python code for custom genomic analyses."
-icon: "chart-pie"
+title: Visualizations and code execution
+description: Generate charts and run Python code for custom genomic analyses.
+icon: chart-pie
 ---
 
-Nexus can create visual representations of your data and run custom Python code — all from the chat.
+Nexus generates interactive charts directly in your conversation and executes Python code for custom analyses. You ask for a visualization or analysis, and Nexus creates the output right there—no need to export data or use external tools.
 
-## Charts
+## Generating charts
 
-Ask Nexus to visualize your data, and it generates interactive charts directly in the conversation.
+Ask Nexus to visualize your data and it generates an interactive chart embedded in the conversation. You can see proportions, compare categories, track trends, and communicate findings visually.
 
 ### Supported chart types
 
-| Type | Best for |
-| --- | --- |
-| **Pie / Donut** | Showing proportions (e.g., pathogenicity distribution) |
-| **Bar** | Comparing categories (e.g., variants per gene) |
-| **Horizontal bar** | Long category labels or ranked lists |
-| **Line** | Trends over ordered data |
-| **Area** | Volume or cumulative distributions |
+| Chart Type | Best For | Example Use |
+|-----------|----------|-------------|
+| **Pie / Donut** | Proportions and percentages | Showing pathogenicity distribution across variants |
+| **Bar** | Comparing categories | Number of variants per gene or per functional class |
+| **Horizontal bar** | Long labels and rankings | Genes ranked by variant count |
+| **Line** | Trends over time or sequence | Coverage depth across chromosomal regions |
+| **Area** | Volume and cumulative totals | Cumulative variant count by discovery date |
 
 ### Example prompts
 
 ```
-Create a pie chart showing the pathogenicity distribution for this patient.
+"Create a bar chart showing variants per gene in my panel"
+"Visualize the breakdown of pathogenic vs benign variants"
+"Show me a pie chart of variants by variant type"
+"Make a line graph of VAF (variant allele frequency) across samples"
 ```
 
-```
-Show me a bar chart of the top 10 genes by variant count.
-```
-
-```
-Make a donut chart of variant consequence types.
-```
-
-<Tip>You can ask Nexus to adjust colors, labels, or chart type after it generates the initial visualization.</Tip>
+<Tip>
+After Nexus generates a chart, ask to adjust it—change colors, labels, chart type, or add more data. For example: "Make this a horizontal bar chart instead" or "Use a red color scheme."
+</Tip>
 
 ## Code execution
 
-For analyses that go beyond built-in tools, Nexus can write and execute Python code with access to common data science libraries.
+For analyses beyond built-in tools, Nexus writes and runs Python code directly in your session. You get results instantly with full control over the analysis logic.
 
 ### Available libraries
 
-- **pandas** — data manipulation and analysis
-- **matplotlib** — plotting and visualization
-- **seaborn** — statistical data visualization
+- **pandas**: Data manipulation and filtering
+- **matplotlib**: Chart creation and customization
+- **seaborn**: Statistical visualization
 
 ### Example prompts
 
 ```
-Write a Python script to calculate the transition/transversion ratio for this variant set.
+"Write a Python script to calculate allele frequencies for each sample"
+"Use pandas to group variants by gene and count them"
+"Create a custom analysis comparing VAF distribution across cohort groups"
 ```
-
-```
-Create a matplotlib heatmap showing variant density across chromosomes.
-```
-
-Nexus writes the code, runs it, and displays the results (including plots) directly in the chat.
 
 ### How it works
 
-Code runs securely in your browser using Pyodide, a Python runtime for the web. Your data doesn't leave your session.
+Nexus runs Python using Pyodide, which executes in your browser. Your data stays in the session and never leaves your machine. You get instant feedback with results displayed in the conversation.
 
-<Note>Code execution is best for custom analyses that aren't covered by the built-in chart and analytics tools. For standard queries, natural language is usually faster.</Note>
+<Note>
+Use code execution when you need custom logic or combination of analyses. For standard visualizations and operations, ask for a chart or use built-in filters—these are faster and require no setup.
+</Note>
 
-## Documents
+## Documents and artifacts
 
-Nexus can create longer-form artifacts during a conversation:
+During your conversation, Nexus creates longer-form content that appears in a side panel:
 
-- **Text documents** — clinical summaries, variant reports, or research notes
-- **Code files** — reusable Python scripts
-- **Spreadsheets** — tabular data in CSV format
+- **Text documents**: Clinical summaries, variant reports, case notes, and research documentation
+- **Code files**: Reusable Python scripts you can run in your own environment
+- **Spreadsheets**: Tabular data in CSV format for downstream analysis
 
-These appear in a side panel and are saved with version history, so you can track changes and revert if needed.
+Each artifact maintains version history, letting you track changes and revert if needed. You can download artifacts anytime or reference them later in the conversation.

@@ -4,57 +4,253 @@ description: "Organize patient data, track findings, and manage variant workflow
 icon: "folder-open"
 ---
 
-Cases are how you organize patient or sample data in Nexus. Each case contains a set of genetic variants and associated clinical information.
+Cases are your workspace for managing patient genetic data, analyzing variants, and tracking clinical findings. Whether you're conducting initial assessment or managing complex multi-variant scenarios, Cases provide the structure you need to organize, analyze, and collaborate on patient data securely.
 
 ## Viewing your cases
 
-Navigate to **Cases** in the sidebar to see all your cases. Each case shows key information at a glance, including the case name and current status.
+You can access and manage all your patient cases from the cases list view.
+
+Switch to **Case Mode** using the toggle in the top-right corner. Once enabled, you'll see a comprehensive list of all your cases with their names and most recent activity dates. Cases are automatically sorted by recent activity, making it easy to find what you've been working on.
+
+Use the search bar at the top of the cases list to quickly locate a specific case by name. For faster navigation, the sidebar on the left also lists your cases, allowing you to switch between them without scrolling.
+
+![Cases list](/images/guides/cases-list.png)
 
 ## Creating a case
 
-Click **New case** to create one. You'll provide:
+To start analyzing a new patient, create a case to organize their data and findings.
 
-- A name for the case
-- Any relevant clinical details
+Click **+ New Case** to open the case creation dialog. The dialog guides you through entering patient information, sample details, and uploading variant data all in one workflow.
 
-Once created, variants can be loaded into the case for analysis.
+![New case dialog](/images/guides/new-case.png)
 
-## Working with a case
+### Case details section
 
-Select a case from the sidebar to make it active. When a case is active:
+The case details section captures essential information about the patient and the genetic analysis.
 
-- The chat gains access to that patient's variant data
-- You can use the variant table to browse and filter results
-- AI tools like variant search and analytics work within that case's data
+**Case Name** (required)
+An identifier for the case that helps you distinguish it from other cases. Use a naming convention that makes sense for your workflow (for example, "Patient_12345" or "Smith_Family_WES").
 
-### Variant table
+**Case Type**
+Select the type of analysis you're performing:
+- **Single Inherited Disease** (currently active) - for analyzing a single patient's genetic data
+- **Family Inherited Disease** (coming soon) - for multi-generational family analysis
+- **Somatic Case** (coming soon) - for somatic variant analysis
 
-The variant table provides a detailed view of all variants in a case. You can:
+**Known consanguinity in family**
+Indicate whether there is known consanguinity in the patient's family. Choose from:
+- **Yes** - known consanguineous relationship
+- **No** - no known consanguinity
+- **Unknown** - consanguinity status unclear
 
-- **Filter** by gene, pathogenicity, zygosity, consequence type, and allele frequency
-- **Sort** columns to find what matters most
-- **Resize** columns by dragging their edges
-- **Select** multiple variants for batch actions
+**Sex**
+Select the patient's biological sex from the dropdown: Unknown, Male, or Female.
 
-<Tip>Use the filters panel on the left side of the variant table to narrow down results quickly.</Tip>
+**Date of Birth**
+Use the date picker to enter the patient's date of birth. This information helps contextualize age-related clinical presentations.
 
-### Findings
+**Ethnicity**
+Select the patient's ethnicity from the dropdown list. This demographic information is important for accurate variant interpretation, as allele frequencies vary across populations.
 
-As you review variants, you can mark specific variants as **findings** — variants of interest that you want to track. Findings can include clinical notes to capture your interpretation.
+**Secondary Findings Opt-In**
+Toggle between Opt-in and Opt-out for secondary findings. This controls whether incidental findings in medically actionable genes are reported.
 
-## Case data loading
+### Sample information section
 
-Nexus uses a storage system that keeps your active cases ready for fast querying. If a case hasn't been accessed recently, it may take a moment to load when you first open it. You'll see a loading indicator while the data prepares.
+Provide details about the biological sample and the ordering information.
 
-<Note>Cases that haven't been accessed in a while are automatically archived for storage efficiency. They reload on demand when you open them.</Note>
+**Order Number**
+Enter the order or requisition number associated with this sample.
+
+**Collected**
+Use the date picker to specify when the biological sample was collected from the patient.
+
+**Received**
+Use the date picker to specify when the sample was received by the laboratory.
+
+**Specimen Type**
+Select the specimen type from the dropdown (for example: Whole Blood, Saliva, Tissue, Buccal Swab).
+
+**Ordering Physician**
+Enter the name of the physician who ordered the genetic testing.
+
+**Ordering Institution**
+Enter the name of the institution or clinic where the order originated.
+
+### Case variants
+
+Upload your variant data in VCF format to populate the case with genetic variants.
+
+Drag and drop a VCF file directly onto the upload area, or click **Upload VCF** to browse your file system. Only VCF (Variant Call Format) files are supported. Once uploaded, Nexus processes the variants and makes them available for filtering, annotation, and analysis across all case tabs.
+
+<Note>
+**Patient privacy is critical.** Whether you're sharing a case or posting a comment, you must never include identifying information such as patient names, medical record numbers, contact information, or other personally identifiable details.
+</Note>
+
+## Case tabs
+
+Once a case is open, you navigate between five tabs that organize different aspects of the case: **Overview**, **Findings**, **Phenotypes**, **Variants**, and **Access**.
+
+### Overview tab
+
+The Overview tab provides a dashboard view of your case with charts and summary statistics at a glance.
+
+**Pathogenicity Distribution**
+A donut chart displays the breakdown of your variants by pathogenicity classification. For example, you might see 74,161 total variants distributed across Pathogenic, Likely Pathogenic, Variants of Uncertain Significance, Likely Benign, and Benign categories.
+
+**Variant Location**
+A donut chart shows the genomic distribution of your variants across different regions of the genome or specific chromosomes.
+
+**Read Depth Distribution**
+A bar chart visualizes the sequencing coverage depth across your sample, helping you identify regions with sufficient or insufficient coverage for accurate variant calling.
+
+**Case Information**
+A summary section displays the case type (for example, "Single Inherited Disease"), providing quick reference to the analysis framework you've selected.
+
+**Findings Summary**
+A summary of curated findings shows counts organized by category:
+- **Primary** - variants directly related to the patient's presenting phenotype
+- **Causal** - variants confirmed as causing the patient's condition
+- **Secondary** - variants in genes related to the case but not directly explaining the phenotype
+- **Incidental** - variants in medically actionable genes discovered during analysis
+
+![Case overview](/images/guides/case-overview.png)
+
+### Findings tab
+
+The Findings tab displays "Variants of Interest" that you've curated during your analysis.
+
+Filter findings by category using the tabs at the top: **All**, **Primary**, **Causal**, **Secondary**, or **Incidental**. Each view shows only the variants in that category.
+
+Each finding card displays key information:
+- **Gene name** - the gene in which the variant occurs
+- **Genomic position** - the location on the chromosome
+- **Pathogenicity badge** - color-coded indicator of the variant's pathogenicity classification
+- **HGVS notation** - standardized nomenclature for the variant
+- **Zygosity** - whether the variant is heterozygous or homozygous
+- **Consequence type** - the predicted functional impact
+- **Reviewer name** - who added or last updated this finding
+
+For each finding, you have two action buttons:
+- **Details** - view comprehensive information about the variant
+- **Edit Notes** - add or modify clinical notes about this finding
+
+At the top of the tab, click **Export** to download your curated findings as a file for reporting or external sharing.
+
+![Case findings](/images/guides/case-findings.png)
+
+### Phenotypes tab
+
+The Phenotypes tab lets you manage HPO (Human Phenotype Ontology) terms that describe the patient's clinical presentation.
+
+Two sub-tabs organize your workflow:
+- **AI Assist** - leverage Nexus AI to suggest phenotypes based on clinical descriptions
+- **Search** - manually search and add phenotypes by name or HPO ID
+
+Search phenotypes by typing the phenotype name or HPO identifier. Associated phenotypes display as cards showing the phenotype name. Remove a phenotype by clicking the X on its card.
+
+![Case phenotypes](/images/guides/case-phenotypes.png)
+
+<Tip>
+Use **AI Assist** to let Nexus suggest phenotypes based on the patient's clinical description. Simply provide a brief summary of the patient's symptoms and clinical features, and Nexus will recommend relevant HPO terms to associate with the case.
+</Tip>
+
+### Variants tab
+
+The Variants tab is your full variant browser. The filter panel on the left lets you narrow down variants, while the right side displays your filtered results.
+
+In the top-right, toggle between **Cards** and **Table** views to see your variants in the format that works best for your workflow.
+
+A variant count stats bar shows your total variant count and breaks down the pathogenicity distribution with color-coded counts:
+- **Red** - pathogenic variant count
+- **Yellow** - Variants of Uncertain Significance (VUS) count
+- **Green** - benign variant count
+
+#### Filter panel
+
+The left sidebar contains powerful filters for narrowing your variant set:
+
+**Virtual Panels**
+Search for and apply curated gene panels to instantly filter variants to genes of interest. This is powerful for focusing on specific genetic pathways or disease areas.
+
+**Genes**
+Type gene symbols (for example, "PCSK9" or "BRCA1") to filter variants to specific genes. You can enter multiple gene names to build a custom gene list.
+
+**Primary Phenotypes**
+Toggle "Use case phenotypes" to automatically filter variants by the HPO terms you've associated with the case. The filter displays your associated phenotypes as chips, showing you which phenotypes are active in the filter.
+
+**Secondary Phenotypes**
+Apply additional phenotype filters beyond your primary case phenotypes for more granular analysis.
+
+At any time, click **Clear** to reset all filters and view the complete variant set.
+
+#### Cards view
+
+The Cards view displays variants in an easy-to-scan card layout. Each variant card shows:
+- **Gene name** - the affected gene
+- **Consequence type badge** - color-coded indicator of the variant's functional impact
+- **Genomic position** - chromosome and coordinates
+- **HGVS notation** - standardized variant description
+- **Zygosity** - Hom (homozygous) or Het (heterozygous)
+- **In Silico prediction** - computational predictions of functional impact
+- **Depth** - read depth (sequencing coverage)
+- **AF (pop)** - population allele frequency
+- **ClinVar classification** - ClinVar's pathogenicity assessment
+- **Inheritance pattern** - the expected inheritance mode
+- **rsID** - dbSNP identifier if available
+- **Pathogenicity badge** - overall pathogenicity classification
+
+![Variant cards view](/images/guides/case-variants-cards.png)
+
+#### Table view
+
+The Table view displays variants in a traditional tabular format. Columns include:
+- **Gene** - the affected gene
+- **Phenotype** - associated phenotypes
+- **Zygosity** - Hom or Het
+- **P.** - pathogenicity classification (shown as color-coded dots)
+- **C.** - consequence type
+
+Select variants using the checkboxes for batch operations. Click the **Columns** configurator button to customize which columns are visible, tailoring the view to your analysis needs.
+
+Pathogenicity is indicated with color-coded dots: red for pathogenic, yellow for VUS, and green for benign.
+
+![Variant table view](/images/guides/case-variants-table.png)
+
+### Access tab
+
+The Access tab controls who can view and edit your case, ensuring appropriate data governance.
+
+The tab contains:
+- **Add Team Member** section (appears when there are members without access)
+- **Members** sub-tab - lists current members with access
+- **Activity** sub-tab - shows the access change history
+
+In the Members sub-tab, the members table displays:
+- **Member name/email** - identifies the person
+- **Role dropdown** - set permission level (Admin or General)
+- **Added date** - when access was granted
+- **Three-dot menu** - additional options for each member
+
+Manage access by adjusting member roles or adding new team members who need to review or contribute to the case analysis.
+
+![Case access](/images/guides/case-access.png)
 
 ## Asking questions about a case
 
-Once a case is selected, you can return to the chat and ask questions about the patient's data:
+You can leverage Nexus AI to analyze your case data and answer clinical questions without leaving the interface.
 
-- "Show me all pathogenic variants"
-- "Are there any variants in RAS pathway genes?"
-- "Create a chart of variant consequences"
-- "Summarize the key findings"
+From Agent Mode, use the **Cases** dropdown at the bottom of the chat input to select the specific case you want to analyze. Once selected, Nexus scopes all its queries to that patient's genetic data and clinical information.
 
-Nexus automatically scopes its search to the active case.
+Example queries you might ask:
+- "What are the likely pathogenic variants in this case?"
+- "Do any of these variants match the patient's phenotypes?"
+- "Are there any known disease-causing mutations in the BRCA genes?"
+- "What is the inheritance pattern for these findings?"
+- "Summarize the most significant findings in this case"
+
+The AI maintains the context of your selected case throughout the conversation, allowing you to explore hypotheses and validate interpretations specific to your patient.
+
+## Case data loading
+
+Cases load their data from storage on demand. If you haven't accessed a case recently, Nexus retrieves the data when you open it. This ensures you always have access to your complete case history while optimizing performance across your case portfolio.
