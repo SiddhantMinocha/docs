@@ -17,9 +17,11 @@
             "group": "Getting started",
             "pages": [
               "index",
+              "platform",
               "quickstart",
               "concepts",
-              "usage"
+              "usage",
+              "pipeline"
             ]
           },
           {
