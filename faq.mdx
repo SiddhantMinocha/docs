@@ -1,14 +1,14 @@
 ---
 title: "FAQ"
-description: "Frequently asked questions about Nexus."
+description: "Frequently asked questions about Purna."
 icon: "circle-question"
 ---
 
 ## Frequently Asked Questions
 
 <AccordionGroup>
-  <Accordion title="Do I need to know programming to use Nexus?">
-    No. You can interact with Nexus entirely through natural language. However, if you're familiar with Python, you can ask Nexus to write and run custom scripts directly in your browser using Pyodide with pandas, matplotlib, and seaborn.
+  <Accordion title="Do I need to know programming to use Purna?">
+    No. You can interact with Purna entirely through natural language. However, if you're familiar with Python, you can ask Purna to write and run custom scripts directly in your browser using Pyodide with pandas, matplotlib, and seaborn.
   </Accordion>
 
   <Accordion title="What is the difference between Agent Mode and Case Mode?">
@@ -18,19 +18,19 @@ icon: "circle-question"
   </Accordion>
 
   <Accordion title="What file format is required for uploading variants?">
-    Nexus requires **VCF (Variant Call Format)** files. Upload during case creation by dragging and dropping or using the Upload VCF button.
+    Purna requires **VCF (Variant Call Format)** files. Upload during case creation by dragging and dropping or using the Upload VCF button.
   </Accordion>
 
   <Accordion title="What happens to my data?">
     Your data is securely stored. Conversations and case data are private by default. You control visibility with the lock icon for conversations and the Access tab for cases. Code execution runs in your browser via Pyodide — data never leaves your session.
   </Accordion>
 
-  <Accordion title="Can I use Nexus without loading a patient case?">
+  <Accordion title="Can I use Purna without loading a patient case?">
     Yes. In Agent Mode you can search genomic databases, research genes and diseases, build gene panels, and generate visualizations — all without patient data.
   </Accordion>
 
-  <Accordion title="What genomic databases does Nexus search?">
-    Nexus searches databases across five categories: Research Papers (PubMed, Nature, Cell, NEJM, Lancet, arXiv, bioRxiv), Clinical Evidence (ClinVar, ClinicalTrials, OMIM, ClinGen, Orphanet), Variant Databases (gnomAD, GWAS Catalog, dbSNP, VarSome, Franklin), Guidelines (ACMG, NCCN, UpToDate, CDC, WHO), and Drugs & Therapies (PharmGKB, DrugBank, FDA, ClinicalTrials). Toggle sources on/off with the Sources dropdown.
+  <Accordion title="What genomic databases does Purna search?">
+    Purna searches databases across five categories: Research Papers (PubMed, Nature, Cell, NEJM, Lancet, arXiv, bioRxiv), Clinical Evidence (ClinVar, ClinicalTrials, OMIM, ClinGen, Orphanet), Variant Databases (gnomAD, GWAS Catalog, dbSNP, VarSome, Franklin), Guidelines (ACMG, NCCN, UpToDate, CDC, WHO), and Drugs & Therapies (PharmGKB, DrugBank, FDA, ClinicalTrials). Toggle sources on/off with the Sources dropdown.
   </Accordion>
 
   <Accordion title="How do gene panels work?">
@@ -46,11 +46,11 @@ icon: "circle-question"
   </Accordion>
 
   <Accordion title="How does ACMG classification work?">
-    The ACMG tab in the variant detail panel shows the 28 standard ACMG/AMP criteria. Use **AI Enhance** to have Nexus automatically evaluate criteria using ClinVar, PubMed, gnomAD, and functional data. Review suggestions, accept or reject individual criteria, and manually reclassify with **Reclassify**. All changes are tracked in the reclassification history.
+    The ACMG tab in the variant detail panel shows the 28 standard ACMG/AMP criteria. Use **AI Enhance** to have Purna automatically evaluate criteria using ClinVar, PubMed, gnomAD, and functional data. Review suggestions, accept or reject individual criteria, and manually reclassify with **Reclassify**. All changes are tracked in the reclassification history.
   </Accordion>
 
-  <Accordion title="What clinical reports can Nexus generate?">
-    Five report types: variant interpretation, clinical findings, case summary, ACMG evidence, and variant comparison. Ask from chat (e.g., "Generate a case summary report") and Nexus creates the document in the artifacts panel for download.
+  <Accordion title="What clinical reports can Purna generate?">
+    Five report types: variant interpretation, clinical findings, case summary, ACMG evidence, and variant comparison. Ask from chat (e.g., "Generate a case summary report") and Purna creates the document in the artifacts panel for download.
   </Accordion>
 
   <Accordion title="What are findings?">
@@ -58,7 +58,7 @@ icon: "circle-question"
   </Accordion>
 
   <Accordion title="What are HPO phenotypes and how do I use them?">
-    HPO (Human Phenotype Ontology) phenotypes describe a patient's clinical features. Add them via **AI Assist** (Nexus suggests terms from clinical descriptions) or **Search** (manual lookup). Phenotypes become powerful filters in the Variants tab as Primary or Secondary Phenotypes.
+    HPO (Human Phenotype Ontology) phenotypes describe a patient's clinical features. Add them via **AI Assist** (Purna suggests terms from clinical descriptions) or **Search** (manual lookup). Phenotypes become powerful filters in the Variants tab as Primary or Secondary Phenotypes.
   </Accordion>
 
   <Accordion title="What is in the case Settings tab?">
@@ -66,15 +66,15 @@ icon: "circle-question"
   </Accordion>
 
   <Accordion title="What chart types are available?">
-    Pie/donut, bar, horizontal bar, line, and area charts. Describe the visualization you want in natural language and Nexus generates it. After generation, ask to adjust colors, labels, or chart type.
+    Pie/donut, bar, horizontal bar, line, and area charts. Describe the visualization you want in natural language and Purna generates it. After generation, ask to adjust colors, labels, or chart type.
   </Accordion>
 
   <Accordion title="How does code execution work?">
-    Nexus runs Python in your browser through Pyodide. Available libraries: pandas, matplotlib, and seaborn. Your data stays in your session and never leaves your machine.
+    Purna runs Python in your browser through Pyodide. Available libraries: pandas, matplotlib, and seaborn. Your data stays in your session and never leaves your machine.
   </Accordion>
 
   <Accordion title="Why does a case take a moment to load?">
-    Cases that haven't been accessed recently may be archived for performance. When you open one, Nexus retrieves and loads it. This is typically brief.
+    Cases that haven't been accessed recently may be archived for performance. When you open one, Purna retrieves and loads it. This is typically brief.
   </Accordion>
 
   <Accordion title="Can I export my analysis results?">
@@ -85,11 +85,11 @@ icon: "circle-question"
     Three tiers: **Individual** ($50/month, 50 queries/day), **Pro** ($125/month, API access, background analysis), and **Team** ($999/month, unlimited queries, SSO, custom branding, unlimited members). Manage from Settings > Plan.
   </Accordion>
 
-  <Accordion title="How do I customize how Nexus responds?">
+  <Accordion title="How do I customize how Purna responds?">
     Go to **Settings > General > Personalization** and configure Base Style (Detailed/Concise), Tone (Professional/Casual), Characteristics (Balanced/Cautious/Confident), and Output Format (Structured/Conversational).
   </Accordion>
 
-  <Accordion title="What case types does Nexus support?">
+  <Accordion title="What case types does Purna support?">
     Currently **Single Inherited Disease**. Family Inherited Disease and Somatic Case types are coming soon.
   </Accordion>
 
