@@ -52,14 +52,14 @@
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "https://storage.googleapis.com/health_reports/web_images/Logo_Purna-Green21.png",
+    "dark": "https://storage.googleapis.com/health_reports/web_images/Logo_Purna-Green21.png"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:support@purna.ai"
+        "href": "mailto:contact@purna.ai"
       }
     ],
     "primary": {
@@ -82,8 +82,7 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/purnabiotech",
-      "linkedin": "https://linkedin.com/company/purna-biotech"
+      "linkedin": "https://linkedin.com/company/purnahealth"
     }
   }
 }
