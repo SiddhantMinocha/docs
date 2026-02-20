@@ -3,52 +3,69 @@ title: "Key concepts"
 description: "Understand the core building blocks of Nexus."
 ---
 
-Nexus is a clinical genomics AI assistant that helps you analyze genetic data and discover insights. Here are the fundamental concepts you need to know to use the platform effectively.
+Nexus is a clinical genomics AI assistant that helps you analyze genetic data and discover insights. Here are the fundamental concepts you need to know.
 
-## Agent mode and case mode
+## Agent Mode and Case Mode
 
-You can toggle between two distinct modes using the buttons in the top-right corner. Each mode serves a different workflow:
+Toggle between two distinct modes using the buttons in the top-right corner:
 
-**Agent Mode** is your chat-first interface for exploring general genomics questions, searching databases, and conducting research. You don't need patient data to use this mode. Your sidebar displays chat history organized by Today, Yesterday, and Last 7 days. You can search through your previous conversations.
+**Agent Mode** is your chat-first interface for exploring general genomics questions, searching databases, and conducting research. You don't need patient data to use this mode. Your sidebar displays chat history organized by date.
 
 **Case Mode** is your case management interface for working with patient data. Your sidebar shows your cases list where you can create, search, and manage individual cases.
 
 ## Chat
 
-The chat interface is the primary way you interact with Nexus. You submit natural language queries and receive conversational responses. All conversations are auto-saved, and your chat history appears in the sidebar. You can start a new chat using the **+** button, and when you open an empty chat, Nexus shows you suggested prompts to get started.
+The chat interface is the primary way you interact with Nexus. Submit natural language queries and receive conversational responses with citations. All conversations are auto-saved and appear in the sidebar. Start a new chat using the **+** button.
 
 ## Cases
 
-A case represents a patient or sample in your analysis. Each case contains genetic variants extracted from VCF files and is organized into five tabs:
+A case represents a patient or sample in your analysis. Each case contains genetic variants extracted from VCF files and is organized into six tabs:
 
-- **Overview**: A dashboard with charts and key metrics
+- **Overview**: Dashboard with charts and key metrics
 - **Findings**: Curated variants of interest from your analysis
-- **Phenotypes**: HPO (Human Phenotype Ontology) terms associated with the case
+- **Phenotypes**: HPO terms associated with the case
 - **Variants**: Browsable and filterable variant data
 - **Access**: Team permissions and sharing settings
+- **Settings**: Case configuration, files, and audit log
 
 Currently, Nexus supports Single Inherited Disease cases. Family Inherited Disease and Somatic Case types are coming soon.
 
 ## Variants
 
-Variants are individual genetic changes you identify during analysis. For each variant, Nexus displays comprehensive information:
+Variants are individual genetic changes identified during analysis. For each variant, Nexus displays:
 
-- Gene name and consequence type (missense, intron variant, non-coding exon variant, etc.)
+- Gene name and consequence type (missense, frameshift, splice site, intron variant, etc.)
 - Genomic position and HGVS notation
 - Zygosity (homozygous or heterozygous)
-- In silico predictions
-- Read depth and allele frequency data
+- In silico predictions (SIFT, PolyPhen-2, AlphaMissense)
+- Read depth and population allele frequency
 - ClinVar classification
 - Inheritance pattern and rsID
-- Pathogenicity classification (Pathogenic, VUS, VUS/Conflicting, Benign, Likely Benign, or Likely Pathogenic)
+- Pathogenicity classification (Pathogenic, Likely Pathogenic, VUS, VUS/Conflicting, Likely Benign, Benign)
+
+## Variant detail panel
+
+Click any variant to open a detail panel with seven tabs of in-depth information:
+
+- **Assessment**: Pathogenicity predictions from SIFT, PolyPhen-2, and AlphaMissense
+- **Details**: Genomic location, HGVS nomenclature, allele frequencies, and conservation scores
+- **Research**: ClinVar entries, PubMed literature, gene expression, and Phen2Gene data
+- **ACMG**: ACMG/AMP classification criteria with AI-enhanced evidence review
+- **gnomAD**: Population frequency data via the embedded gnomAD browser
+- **AI Analysis**: AI-powered variant interpretation
+- **Notes**: Collaborative notes with visibility control
+
+## ACMG classification
+
+Nexus supports ACMG/AMP variant classification with 28 standard criteria. The ACMG tab displays active criteria with evidence summaries. Use **AI Enhance** to automatically evaluate criteria using evidence from ClinVar, PubMed, gnomAD, and functional data. You can also manually reclassify variants and track classification history.
 
 ## Gene panels
 
-Gene panels are virtual collections of curated gene lists. You use panels to filter variants in your case, focusing your analysis on genes relevant to your clinical question. When you create a panel, you specify the clinical intent, validation status, inheritance models, and variant types. You can also search existing panels to find ones that match your needs.
+Gene panels are virtual collections of curated gene lists used to filter variants. When you create a panel, you specify clinical intent, validation status, inheritance models, and variant types. Apply panels from the variant browser or from chat.
 
 ## Research sources
 
-You control which research sources Nexus searches using the **Sources** dropdown at the bottom of the chat. You can toggle individual sources on and off to shape your results. Nexus integrates with five research categories:
+Control which databases Nexus searches using the **Sources** dropdown at the bottom of the chat. Toggle sources on and off across five categories:
 
 <AccordionGroup>
   <Accordion title="Research Papers">
@@ -70,44 +87,48 @@ You control which research sources Nexus searches using the **Sources** dropdown
 
 ## Findings
 
-Findings are variants of interest that you mark during your analysis. You categorize each finding as Primary, Causal, Secondary, or Incidental. Each finding displays:
+Findings are variants of interest marked during analysis. Categorize each finding as:
 
-- Gene name and genomic position
-- Pathogenicity badge
-- HGVS notation
-- Zygosity and consequence type
-- Reviewer information
+- **Primary**: Variant directly related to the patient's presenting phenotype
+- **Causal**: Confirmed to cause the patient's condition
+- **Secondary**: Related to the case but not the primary explanation
+- **Incidental**: Clinically significant variant unrelated to the case phenotype
 
-You can export findings for reports and external use.
+Each finding displays gene name, genomic position, pathogenicity badge, HGVS notation, zygosity, consequence type, and reviewer information.
 
 ## Phenotypes
 
-Phenotypes are HPO (Human Phenotype Ontology) terms associated with your case. You add phenotypes either through the **AI Assist** feature or by manually searching by name or HPO ID. You then use phenotypes as filters during variant analysis, designating them as Primary Phenotypes or Secondary Phenotypes to refine your results.
+Phenotypes are HPO (Human Phenotype Ontology) terms associated with your case. Add phenotypes through **AI Assist** (Nexus suggests terms based on clinical descriptions) or by manually searching by name or HPO ID. Use phenotypes as Primary or Secondary filters during variant analysis.
+
+## Clinical reports
+
+Nexus generates structured clinical reports from your analysis data. Five report types are available: variant interpretation, clinical findings, case summary, ACMG evidence, and variant comparison. Reports include headings, tables, charts, and callout sections.
 
 ## Artifacts
 
-Artifacts are documents that Nexus creates during your conversation. You can generate three types of artifacts:
+Artifacts are documents Nexus creates during conversations:
 
 - **Text documents**: Clinical summaries, reports, and analysis narratives
 - **Code files**: Python scripts for custom analysis
 - **Spreadsheets**: CSV exports of variant data and findings
 
-Artifacts appear in a side panel with version history so you can track how documents evolve.
+Artifacts appear in a side panel with version history so you can track changes.
 
 ## AI tools
 
-Nexus automatically uses a suite of AI tools to assist your analysis. Here's what each tool does:
+Nexus automatically uses a suite of tools to assist your analysis:
 
 | Tool | What it does |
 |------|-------------|
 | Variant search | Finds variants in a patient case using your specified filters |
-| Variant analytics | Aggregates variant data to generate statistics and charts |
+| Variant analytics | Aggregates variant data for statistics and charts |
 | Panel search | Looks up gene panels by disease or clinical condition |
 | NCBI search | Queries gene, SNP, ClinVar, OMIM, and PubMed databases |
 | Chart creation | Generates pie, bar, line, and area charts from your data |
-| Code execution | Runs Python code with pandas and matplotlib libraries |
-| Web search | Searches the web for additional context and information |
+| Code execution | Runs Python code with pandas and matplotlib |
+| Clinical reports | Generates structured clinical documentation |
+| Web search | Searches the web for additional context |
 
 ## Citations
 
-When Nexus returns information from databases or research sources, responses include inline citation badges. These badges (for example, a green **ClinVar** badge or **NCBI** link) link directly to the original source. You can verify every claim and explore the evidence that supports Nexus's conclusions.
+Responses include inline citation badges linking to original sources. Badges are color-coded by database (ClinVar, NCBI, PubMed, etc.) and are clickable to open the source record directly.

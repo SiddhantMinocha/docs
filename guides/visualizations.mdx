@@ -4,18 +4,18 @@ description: Generate charts and run Python code for custom genomic analyses.
 icon: chart-pie
 ---
 
-Nexus generates interactive charts directly in your conversation and executes Python code for custom analyses. You ask for a visualization or analysis, and Nexus creates the output right there—no need to export data or use external tools.
+Nexus generates interactive charts directly in your conversation and executes Python code for custom analyses. Ask for a visualization or analysis, and Nexus creates the output right in the chat.
 
 ## Generating charts
 
-Ask Nexus to visualize your data and it generates an interactive chart embedded in the conversation. You can see proportions, compare categories, track trends, and communicate findings visually.
+Ask Nexus to visualize your data and it generates an interactive chart embedded in the conversation.
 
 ### Supported chart types
 
 | Chart Type | Best For | Example Use |
 |-----------|----------|-------------|
-| **Pie / Donut** | Proportions and percentages | Showing pathogenicity distribution across variants |
-| **Bar** | Comparing categories | Number of variants per gene or per functional class |
+| **Pie / Donut** | Proportions and percentages | Pathogenicity distribution across variants |
+| **Bar** | Comparing categories | Number of variants per gene or functional class |
 | **Horizontal bar** | Long labels and rankings | Genes ranked by variant count |
 | **Line** | Trends over time or sequence | Coverage depth across chromosomal regions |
 | **Area** | Volume and cumulative totals | Cumulative variant count by discovery date |
@@ -26,16 +26,16 @@ Ask Nexus to visualize your data and it generates an interactive chart embedded 
 "Create a bar chart showing variants per gene in my panel"
 "Visualize the breakdown of pathogenic vs benign variants"
 "Show me a pie chart of variants by variant type"
-"Make a line graph of VAF (variant allele frequency) across samples"
+"Make a line graph of VAF across samples"
 ```
 
 <Tip>
-After Nexus generates a chart, ask to adjust it—change colors, labels, chart type, or add more data. For example: "Make this a horizontal bar chart instead" or "Use a red color scheme."
+After Nexus generates a chart, ask to adjust it — change colors, labels, chart type, or add more data. For example: "Make this a horizontal bar chart instead" or "Use a red color scheme."
 </Tip>
 
 ## Code execution
 
-For analyses beyond built-in tools, Nexus writes and runs Python code directly in your session. You get results instantly with full control over the analysis logic.
+For analyses beyond built-in tools, Nexus writes and runs Python code directly in your session.
 
 ### Available libraries
 
@@ -53,18 +53,18 @@ For analyses beyond built-in tools, Nexus writes and runs Python code directly i
 
 ### How it works
 
-Nexus runs Python using Pyodide, which executes in your browser. Your data stays in the session and never leaves your machine. You get instant feedback with results displayed in the conversation.
+Nexus runs Python using Pyodide, which executes in your browser. Your data stays in the session and never leaves your machine.
 
 <Note>
-Use code execution when you need custom logic or combination of analyses. For standard visualizations and operations, ask for a chart or use built-in filters—these are faster and require no setup.
+Use code execution when you need custom logic or combination of analyses. For standard visualizations and operations, ask for a chart or use built-in filters — these are faster and require no setup.
 </Note>
 
 ## Documents and artifacts
 
-During your conversation, Nexus creates longer-form content that appears in a side panel:
+During conversations, Nexus creates longer-form content that appears in a side panel:
 
 - **Text documents**: Clinical summaries, variant reports, case notes, and research documentation
 - **Code files**: Reusable Python scripts you can run in your own environment
 - **Spreadsheets**: Tabular data in CSV format for downstream analysis
 
-Each artifact maintains version history, letting you track changes and revert if needed. You can download artifacts anytime or reference them later in the conversation.
+Each artifact maintains version history, letting you track changes and revert if needed. Download artifacts anytime or reference them later in the conversation.

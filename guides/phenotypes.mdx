@@ -1,0 +1,36 @@
+---
+title: "Phenotypes"
+description: "Manage HPO phenotypes to inform variant interpretation."
+icon: "tags"
+---
+
+The Phenotypes tab lets you manage HPO (Human Phenotype Ontology) terms that describe the patient's clinical presentation. Phenotypes drive variant filtering and help Nexus prioritize clinically relevant variants.
+
+## Adding phenotypes
+
+Two methods are available for adding phenotypes to your case:
+
+### AI Assist
+
+Click the **AI Assist** tab and provide a clinical description of the patient's symptoms. Nexus suggests relevant HPO terms based on your description. Review the suggestions and add the ones that apply.
+
+### Manual search
+
+Click the **Search** tab and type a phenotype name or HPO identifier (e.g., "HP:0001250" for Seizure). Browse results and click to add phenotypes to your case.
+
+![Case phenotypes](https://storage.googleapis.com/health_reports/web_images/docs/case-phenotypes.png)
+
+## Managing phenotypes
+
+Added phenotypes appear as cards showing the phenotype name and HPO ID. Remove a phenotype by clicking the **X** on its card.
+
+## Using phenotypes as variant filters
+
+Phenotypes become powerful filtering tools in the [Variants tab](/guides/variant-analysis):
+
+- **Primary Phenotypes** — Toggle "Use case phenotypes" in the filter panel to automatically filter variants by your case's HPO terms. Active phenotypes display as removable chips.
+- **Secondary Phenotypes** — Apply additional phenotype-based filtering beyond primary phenotypes for more granular analysis.
+
+<Tip>
+Use **AI Assist** to quickly populate phenotypes from a clinical summary, then refine the list manually. Phenotype-driven filtering is one of the most effective ways to prioritize clinically relevant variants.
+</Tip>

@@ -4,16 +4,14 @@ description: Query ClinVar, OMIM, PubMed, and other genomic databases from the c
 icon: magnifying-glass
 ---
 
-Nexus connects to major genomic databases so you can look up genes, variants, diseases, and literature without leaving the conversation. Ask your question naturally, and Nexus queries the right databases to find evidence-based answers.
+Nexus connects to major genomic databases so you can look up genes, variants, diseases, and literature without leaving the conversation. Ask your question naturally, and Nexus queries the right databases automatically.
 
 ## Supported databases
-
-Nexus integrates with multiple specialized databases across genomics, clinical evidence, and research literature:
 
 <AccordionGroup>
   <Accordion title="Gene databases" icon="dna">
     Query gene function, transcript information, protein annotations, and pathway relationships.
-    
+
     **Example queries:**
     - "What's the function of the BRCA1 gene?"
     - "Show me the known transcripts for TP53"
@@ -22,7 +20,7 @@ Nexus integrates with multiple specialized databases across genomics, clinical e
 
   <Accordion title="ClinVar" icon="flask">
     Search for clinical significance of specific variants, including interpretation classifications and assertion criteria.
-    
+
     **Example queries:**
     - "What's the clinical significance of BRCA1 c.68_69delAG?"
     - "Show variants in ClinVar marked as pathogenic for cystic fibrosis"
@@ -31,7 +29,7 @@ Nexus integrates with multiple specialized databases across genomics, clinical e
 
   <Accordion title="OMIM" icon="book-medical">
     Explore disease-gene associations, inheritance patterns, clinical features, and phenotypic descriptions.
-    
+
     **Example queries:**
     - "Which genes cause Marfan syndrome?"
     - "What's the inheritance pattern of familial hypercholesterolemia?"
@@ -40,7 +38,7 @@ Nexus integrates with multiple specialized databases across genomics, clinical e
 
   <Accordion title="SNP database" icon="circle-nodes">
     Look up SNP identifiers, minor allele frequencies, and variant functional annotations.
-    
+
     **Example queries:**
     - "What do you know about rs1234567?"
     - "Show me common variants in the APOE gene"
@@ -49,7 +47,7 @@ Nexus integrates with multiple specialized databases across genomics, clinical e
 
   <Accordion title="PubMed" icon="newspaper">
     Search published literature and research articles on genes, variants, diseases, and therapies.
-    
+
     **Example queries:**
     - "What recent research exists on PTEN mutations in cancer?"
     - "Find papers on de novo variants in autism"
@@ -59,11 +57,11 @@ Nexus integrates with multiple specialized databases across genomics, clinical e
 
 ## How it works
 
-You describe what you're looking for in natural language. Nexus understands the context and automatically queries the appropriate databases. Often you'll get results from multiple sources in a single response—for instance, asking about a gene might return functional information, disease associations, and relevant publications.
+Describe what you're looking for in natural language. Nexus understands the context and automatically queries the appropriate databases. You'll often get results from multiple sources in a single response — for instance, asking about a gene might return functional information, disease associations, and relevant publications.
 
 ## Research sources panel
 
-Control which databases Nexus searches using the **Sources** dropdown at the bottom of the chat. You'll find five categories:
+Control which databases Nexus searches using the **Sources** dropdown at the bottom of the chat:
 
 | Category | Databases |
 |----------|-----------|
@@ -73,15 +71,15 @@ Control which databases Nexus searches using the **Sources** dropdown at the bot
 | **Guidelines** | ACMG, NCCN, UpToDate, CDC, WHO |
 | **Drugs & Therapies** | PharmGKB, DrugBank, FDA, ClinicalTrials |
 
-Toggle sources on or off based on your research needs. For instance, turn on **Guidelines** when you need interpretation recommendations, or enable **Variant Databases** for population frequency data.
+Toggle sources on or off based on your research needs.
 
 ## Citations and evidence tracking
 
-Nexus includes database identifiers in responses as clickable badges—ClinVar accession numbers, PubMed IDs, OMIM gene symbols, and dbSNP accessions. This lets you trace findings back to source records and verify information independently.
+Nexus includes database identifiers in responses as clickable badges — ClinVar accession numbers, PubMed IDs, OMIM gene symbols, and dbSNP accessions. Click any badge to open the source record and verify information independently.
 
 ## Web search
 
-For information beyond specialized genomic databases, you can also query the broader web. For example: "What are the latest clinical trials for spinal muscular atrophy?" Nexus searches both genomic sources and general web results when appropriate.
+For information beyond specialized genomic databases, Nexus can query the broader web. For example: "What are the latest clinical trials for spinal muscular atrophy?"
 
 <Note>
 Always verify clinical information against authoritative sources before making clinical decisions. Nexus aggregates information from multiple databases, but definitive interpretation should come from specialists and official clinical guidelines.

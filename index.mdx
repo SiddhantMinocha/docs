@@ -4,70 +4,72 @@ description: AI-powered genomics analysis platform for clinical and research wor
 icon: sparkles
 ---
 
-Welcome to Nexus, an intelligent genomics AI platform designed to accelerate your genomic analysis and case management workflows. Whether you're exploring genomic data through natural language queries or managing complex patient cases, Nexus combines advanced AI with comprehensive genomic databases to deliver actionable insights.
+Welcome to Nexus, an intelligent genomics AI platform that accelerates your genomic analysis and case management workflows. Combine advanced AI with comprehensive genomic databases to get actionable insights through natural language.
 
 ## Key features
 
-Nexus empowers you with two flexible operating modes and a suite of genomics tools:
-
 <Columns cols={2}>
   <Card title="Agent Mode" icon="message-square">
-    Chat-first interface for general genomics queries. Ask natural language questions about genes, variants, diseases, and clinical implications without case context.
+    Chat-first interface for genomics queries. Ask natural language questions about genes, variants, diseases, and clinical implications.
   </Card>
   <Card title="Case Mode" icon="folder-open">
-    Manage patient cases with structured data. Track findings, phenotypes, variants, and access control in one integrated workspace.
+    Manage patient cases with structured data. Track findings, phenotypes, variants, and access control in one workspace.
   </Card>
 </Columns>
 
 <Columns cols={2}>
-  <Card title="AI chat" icon="brain">
-    Query genomic data and get instant answers using natural language. Nexus understands complex genomics questions and delivers evidence-based responses.
+  <Card title="Variant analysis" icon="dna">
+    Browse, filter, and analyze genetic variants with cards and table views. Apply gene panels and phenotype-driven filters.
   </Card>
-  <Card title="Virtual gene panels" icon="dna">
-    Create targeted filters for specific gene sets. Focus your analysis on clinically relevant genes with precision.
+  <Card title="ACMG classification" icon="clipboard-check">
+    AI-enhanced ACMG/AMP variant classification with evidence from ClinVar, PubMed, gnomAD, and functional data sources.
   </Card>
 </Columns>
 
 <Columns cols={2}>
   <Card title="Genomic database search" icon="database">
-    Access ClinVar, OMIM, PubMed, gene databases, and SNP repositories. Find clinical evidence and research context instantly.
+    Access ClinVar, OMIM, PubMed, gene databases, and SNP repositories. Toggle five categories of research sources.
   </Card>
-  <Card title="Research sources" icon="layers">
-    Toggle 5 categories of databases to customize your search scope. Control which sources inform your analysis.
+  <Card title="Clinical reports" icon="file-lines">
+    Generate variant interpretation reports, clinical findings summaries, ACMG evidence reports, and case summaries.
   </Card>
 </Columns>
 
 <Columns cols={2}>
   <Card title="Visualizations" icon="chart-bar">
-    Explore genomic data through interactive charts and visual representations. Understand patterns at a glance.
+    Interactive charts for genomic data. Pie, bar, line, and area charts generated from natural language requests.
   </Card>
   <Card title="Code execution" icon="code">
-    Run analysis scripts directly within Nexus. Automate workflows and generate custom reports.
+    Run Python scripts directly in your browser with pandas, matplotlib, and seaborn. Data never leaves your session.
   </Card>
 </Columns>
 
 ## Explore the guides
 
-Get started quickly with Nexus and master each feature:
-
 <CardGroup cols={2}>
   <Card title="Quickstart" href="/quickstart" icon="zap">
-    Sign in and chat with Nexus in under 5 minutes. Learn the basics of Agent Mode and Case Mode.
-  </Card>
-  <Card title="Case management" href="/guides/cases" icon="folder-plus">
-    Create and manage patient cases. Organize findings, phenotypes, and variants in structured workflows.
+    Sign in and start using Nexus in under 5 minutes.
   </Card>
   <Card title="AI chat" href="/guides/chat" icon="message-circle-2">
-    Master natural language queries about genomics. Get precise answers to complex questions.
+    Master natural language queries, sources, and artifacts.
+  </Card>
+  <Card title="Case management" href="/guides/cases" icon="folder-plus">
+    Create and manage patient cases with VCF data.
+  </Card>
+  <Card title="Variant analysis" href="/guides/variant-analysis" icon="dna">
+    Browse, filter, and analyze variants with the variant browser.
+  </Card>
+  <Card title="Variant detail" href="/guides/variant-detail" icon="microscope">
+    Deep-dive into individual variants across seven analysis tabs.
+  </Card>
+  <Card title="ACMG classification" href="/guides/acmg" icon="clipboard-check">
+    AI-enhanced ACMG/AMP classification with evidence review.
   </Card>
   <Card title="Gene panels" href="/guides/panels" icon="list">
-    Build and apply virtual gene panels. Filter variants by clinical relevance.
-  </Card>
-  <Card title="Database search" href="/guides/genomic-search" icon="search">
-    Search ClinVar, OMIM, PubMed, and more. Find clinical evidence for variants and genes.
+    Build and apply virtual gene panels for targeted analysis.
   </Card>
   <Card title="Settings" href="/guides/settings" icon="sliders">
-    Personalize your workspace. Manage team access, usage tracking, and subscription plans.
+    Personalize your workspace, manage usage, and configure your plan.
   </Card>
 </CardGroup>
 
@@ -77,4 +79,4 @@ Access Nexus at **mip.purna.ai** from any modern web browser. Sign in with your 
 
 ## What's next?
 
-Ready to start analyzing genomic data? Head to the [Quickstart](/quickstart) guide to sign in and explore your first case.
+Head to the [Quickstart](/quickstart) guide to sign in and explore your first case.

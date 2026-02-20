@@ -26,11 +26,19 @@
             "pages": [
               "guides/chat",
               "guides/cases",
+              "guides/case-overview",
+              "guides/findings",
+              "guides/phenotypes",
               "guides/variant-analysis",
+              "guides/variant-detail",
+              "guides/acmg",
               "guides/panels",
               "guides/genomic-search",
               "guides/visualizations",
-              "guides/settings"
+              "guides/clinical-reports",
+              "guides/case-settings",
+              "guides/settings",
+              "guides/team"
             ]
           },
           {

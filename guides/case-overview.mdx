@@ -1,0 +1,54 @@
+---
+title: "Case overview"
+description: "Dashboard view with charts, case information, and findings summary."
+icon: "chart-pie"
+---
+
+The Overview tab provides a dashboard view of your case with charts and summary statistics at a glance. Navigate to it by clicking the **Overview** tab after opening a case.
+
+## Pathogenicity distribution
+
+A donut chart displays the breakdown of your variants by pathogenicity classification. The chart shows the total variant count at the center and segments for each category:
+
+- **Pathogenic** (red)
+- **Likely Pathogenic** (orange)
+- **VUS** — Variants of Uncertain Significance (yellow)
+- **Likely Benign** (light green)
+- **Benign** (green)
+
+Hover over any segment to see the exact count and percentage.
+
+## Variant location
+
+A donut chart shows the genomic distribution of your variants across different regions — exonic, intronic, intergenic, UTR, and splice site regions. This helps you understand where in the genome your variants are concentrated.
+
+## Read depth distribution
+
+A bar chart visualizes the sequencing coverage depth across your sample. The x-axis shows depth ranges and the y-axis shows the number of variants at each depth. This helps identify whether your data has sufficient coverage for confident variant calling.
+
+![Case overview](https://storage.googleapis.com/health_reports/web_images/docs/case-overview.png)
+
+## Case information
+
+A summary card displays key case metadata:
+
+- **Case type** (e.g., "Single Inherited Disease")
+- **Patient demographics** (sex, ethnicity, date of birth)
+- **Sample information** (specimen type, collection date)
+
+## Findings summary
+
+A summary section shows the count of curated findings organized by category:
+
+| Category | Description |
+| --- | --- |
+| **Primary** | Variants directly related to the patient's presenting phenotype |
+| **Causal** | Variants confirmed as causing the patient's condition |
+| **Secondary** | Variants related to the case but not the primary explanation |
+| **Incidental** | Variants in medically actionable genes discovered during analysis |
+
+Click any category count to navigate directly to the [Findings](/guides/findings) tab filtered to that category.
+
+<Tip>
+Use the Overview tab as your starting point when opening a case. The charts give you an immediate sense of the variant landscape before diving into detailed analysis.
+</Tip>

@@ -1,76 +1,80 @@
 ---
 title: "Settings"
-description: "Configure your account, personalization, usage, plan, and team."
+description: "Configure your account, personalization, usage, and plan."
 icon: "gear"
 ---
 
-You can customize your account, personalization preferences, monitor your usage, manage your subscription plan, and administer your team members in the Settings page. Access Settings by clicking your profile name at the bottom-left of the sidebar, then selecting **Settings**. Alternatively, click the user profile menu to see a dropdown with options including Settings, Toggle dark mode, and Sign out.
+Customize your account, personalization preferences, monitor your usage, and manage your subscription plan. Access Settings by clicking your profile name at the bottom-left of the sidebar, then selecting **Settings**.
+
+![Profile menu](https://storage.googleapis.com/health_reports/web_images/docs/profile-menu.png)
 
 ## General
 
-Configure your personal information, credentials, and how the AI assistant communicates with you.
+Configure your personal information and how the AI assistant communicates with you.
 
 ### Profile
 
-You can update your core account information in this section:
+Update your core account information:
 
-- **Email** - Your account email address
-- **Name** - Your display name visible to team members
-- **Phone Number** - Your contact number
-- **Medical License** - Your medical license number (if applicable)
-- **Profession** - A dropdown menu with professional role options including Clinical Geneticist and other specialized roles
+- **Email** — Your account email address
+- **Name** — Your display name visible to team members
+- **Phone Number** — Your contact number
+- **Medical License** — Your medical license number (if applicable)
+- **Profession** — Professional role (Clinical Geneticist, etc.)
 
 ### Personalization
 
-You can shape how the Nexus AI assistant responds to you by adjusting these settings. The platform learns your preferences and applies them across all your conversations:
+Shape how the Nexus AI responds to you. These settings apply across all your conversations:
 
-- **Base Style** - Controls the level of detail in responses. Choose from options like Detailed (comprehensive explanations) or Concise (brief, focused answers) depending on your workflow.
-- **Tone** - Defines the voice and manner of responses. Options include Professional (formal and structured) and Casual (conversational and friendly).
-- **Characteristics** - Determines how cautious or confident the AI should be in its responses. Select from Balanced (measured approach), Cautious (prioritizes safety), or Confident (emphasizes certainty).
-- **Output Format** - Specifies the structure of responses. Choose between Structured (organized sections and lists) or Conversational (natural, flowing dialogue).
+| Setting | Options | Description |
+| --- | --- | --- |
+| **Base Style** | Detailed, Concise | Controls the level of detail in responses |
+| **Tone** | Professional, Casual | Defines the voice and manner of responses |
+| **Characteristics** | Balanced, Cautious, Confident | How cautious or confident the AI should be |
+| **Output Format** | Structured, Conversational | Whether responses use organized sections or flowing dialogue |
 
-Once you've adjusted your personalization settings, click **Save Changes** to apply your updates.
+Click **Save Changes** to apply your updates.
 
-![General settings](/images/guides/settings-general.png)
+![General settings](https://storage.googleapis.com/health_reports/web_images/docs/settings-general.png)
 
 <Tip>
-Adjusting personalization settings shapes how Nexus communicates across all your conversations. Experiment to find the style that fits your workflow.
+Experiment with personalization settings to find the style that fits your workflow. Changes apply across all conversations.
 </Tip>
 
 ## Usage
 
-Track your resource consumption across the platform to understand how you're using Nexus and whether you're approaching your plan limits.
+Track your resource consumption to understand how you're using Nexus and whether you're approaching plan limits.
 
-You can toggle between **Organisation** and **Personal** views to see either your team's aggregate usage or your individual usage. Use the month dropdown to select a specific month (for example, "Feb 2026") to review historical usage patterns. The current plan name displays at the top of this section.
+Toggle between **Organisation** and **Personal** views. Use the month dropdown to review historical usage patterns.
 
 ### Usage metrics
 
-Four metric cards show your current consumption against your plan limits:
+Four metric cards show current consumption against your plan limits:
 
-- **Queries today** - Displays your daily query count versus your daily limit (for example, 4 / 100 / day)
-- **Tokens** - Shows your monthly token usage versus your monthly limit (for example, 1.4M / 100.0M)
-- **Cases** - Indicates active cases versus your case limit (for example, 1 / 100)
-- **Compute** - Shows compute credits used versus your credit limit (for example, 0 / 720.0K credits)
+| Metric | Example |
+| --- | --- |
+| **Queries today** | 4 / 100 / day |
+| **Tokens** | 1.4M / 100.0M |
+| **Cases** | 1 / 100 |
+| **Compute** | 0 / 720.0K credits |
 
-Each card includes a progress bar that visualizes your consumption relative to your limit.
+Each card includes a progress bar visualizing consumption relative to your limit.
 
 ### Daily breakdown
 
-A table displays your day-by-day token consumption for the selected month. Each row shows the date and the number of tokens used that day (for example, "Feb 12 — 70,715 tokens"), helping you identify usage patterns and peak days.
+A table displays day-by-day token consumption for the selected month, helping you identify usage patterns and peak days.
 
-![Usage settings](/images/guides/settings-usage.png)
+![Usage settings](https://storage.googleapis.com/health_reports/web_images/docs/settings-usage.png)
 
 ## Plan
 
-View your current subscription plan and explore other available plans that may better suit your needs.
+View your current subscription and explore available plans.
 
-The **Current Plan** banner at the top displays your plan name and status badge (for example, "Custom (Siddhant) - active"), giving you a quick overview of your current subscription.
+The **Current Plan** banner shows your plan name and status (e.g., "Custom (Siddhant) - active").
 
 ### Available plans
 
-You can choose from three main plan tiers, each designed for different use cases:
-
-| Feature | Individual (starter) | Pro (professional) | Team (enterprise) |
+| Feature | Individual | Pro | Team |
 | --- | --- | --- | --- |
 | **Price** | $50/month | $125/month | $999/month |
 | **Queries/day** | 50 | 125 | Unlimited |
@@ -86,32 +90,10 @@ You can choose from three main plan tiers, each designed for different use cases
 | Background Analysis | No | Yes | Yes |
 | Priority Support | No | Yes | Yes |
 
-Each plan card displays a **Select** button if you want to upgrade, or a **Downgrade** button if you're viewing a lower-tier plan than your current one.
+Each plan card displays a **Select** or **Downgrade** button depending on your current plan.
 
-![Plan settings](/images/guides/settings-plan.png)
+![Plan settings](https://storage.googleapis.com/health_reports/web_images/docs/settings-plan.png)
 
 <Note>
-Contact support@purna.ai for custom enterprise plans or volume pricing tailored to your organization's specific needs.
+Contact support@purna.ai for custom enterprise plans or volume pricing tailored to your organization.
 </Note>
-
-## Team
-
-Manage your organization and administer team members who can collaborate with you on the Nexus platform.
-
-The top of this section displays your organization name and current member count (for example, "Purna Biotech Lifesciences Pvt Ltd - 2 members"). Click the **Invite** button to add new team members to your organization.
-
-### Team members table
-
-A table displays all members of your team with the following columns:
-
-- **Member** - The team member's name and email address
-- **Role** - The member's role in the organization. Owner roles display with a crown icon badge, while Member roles display with a person icon badge.
-- **Joined date** - The date the member joined your organization
-
-Each team member row includes a three-dot menu with additional options. These menu options are available for all members except the organization owner.
-
-### Organization billing
-
-At the bottom of the Team section, you'll find the Organization Billing area where you can manage billing details for your team account. Click the **Edit** button to configure your billing address and update payment information.
-
-![Team settings](/images/guides/settings-team.png)

@@ -1,0 +1,119 @@
+---
+title: "Variant detail"
+description: "Deep-dive into individual variants across seven analysis tabs."
+icon: "microscope"
+---
+
+Click any variant in the [variant browser](/guides/variant-analysis) to open the variant detail panel on the right side of the screen. This panel provides seven tabs of in-depth information for thorough variant analysis.
+
+## Assessment tab
+
+The Assessment tab displays computational pathogenicity predictions:
+
+### Pathogenicity predictor
+
+A summary section shows the overall classification (e.g., "Benign" or "Pathogenic") with a visual indicator on the benign-to-pathogenic spectrum.
+
+### In silico predictions
+
+| Predictor | What it measures |
+| --- | --- |
+| **SIFT** | Whether an amino acid substitution affects protein function. Scores range from 0 (damaging) to 1 (tolerated). |
+| **PolyPhen-2** | Probability that a missense mutation is damaging. Scores range from 0 (benign) to 1 (probably damaging). |
+| **AlphaMissense** | Deep learning-based pathogenicity prediction. Classifies variants as Likely Benign, Ambiguous, or Likely Pathogenic. |
+
+### Additional scores
+
+- **CADD** (Combined Annotation Dependent Depletion) — Integrative score ranking variant deleteriousness
+- Other computational evidence as available for the variant
+
+![Variant detail - Assessment](https://storage.googleapis.com/health_reports/web_images/docs/variant-detail-assessment.png)
+
+## Details tab
+
+The Details tab provides comprehensive variant information:
+
+### Genomic location
+- Chromosome, position, reference allele, and alternate allele
+- Cytoband location
+
+### HGVS nomenclature
+- **HGVSc** — Coding DNA notation (e.g., "NM_000492.4:c.1521_1523delCTT")
+- **HGVSp** — Protein notation (e.g., "NP_000483.3:p.Phe508del")
+
+### Population frequency
+Allele frequency data from gnomAD and other population databases, broken down by population group.
+
+### Conservation
+Cross-species conservation scores indicating evolutionary constraint on the variant position.
+
+![Variant detail - Details](https://storage.googleapis.com/health_reports/web_images/docs/variant-detail-details.png)
+
+## Research tab
+
+The Research tab aggregates evidence from multiple sources:
+
+### ClinVar
+Clinical significance interpretations submitted to ClinVar, including review status and assertion criteria.
+
+### PubMed
+Links to relevant published literature. Click to search PubMed for papers referencing this variant or gene.
+
+### Gene information
+Gene function, associated diseases, and pathway information from gene databases.
+
+### Phen2Gene
+Phenotype-to-gene ranking data showing how strongly this gene associates with the case's phenotypes.
+
+![Variant detail - Research](https://storage.googleapis.com/health_reports/web_images/docs/variant-detail-research.png)
+
+## ACMG tab
+
+The ACMG tab displays the variant's ACMG/AMP classification criteria. For full details, see the dedicated [ACMG classification](/guides/acmg) guide.
+
+Key features:
+- **Classification badge** — Current ACMG classification (Pathogenic, Likely Pathogenic, VUS, Likely Benign, Benign)
+- **Active criteria** — ACMG criteria that apply to this variant (e.g., BA1, BS1, BP7) with evidence summaries
+- **Computational evidence summary** — Aggregated computational prediction results
+- **AI Enhance** button — Trigger AI-powered evidence review
+- **Reclassify** button — Manually reclassify the variant
+
+![Variant detail - ACMG](https://storage.googleapis.com/health_reports/web_images/docs/variant-detail-acmg.png)
+
+## gnomAD tab
+
+The gnomAD tab embeds the gnomAD browser directly within the variant detail panel. View population frequency data across global populations without leaving Nexus.
+
+The embedded browser shows:
+- Allele count, allele number, and allele frequency
+- Population-specific frequencies
+- Variant quality metrics
+
+![Variant detail - gnomAD](https://storage.googleapis.com/health_reports/web_images/docs/variant-detail-gnomad.png)
+
+## AI Analysis tab
+
+The AI Analysis tab provides AI-powered variant interpretation. Click **Generate Analysis** to have Nexus analyze the variant using all available evidence — ClinVar data, population frequencies, in silico predictions, and published literature.
+
+The generated analysis includes:
+- Summary of clinical significance
+- Evidence evaluation
+- Interpretation in the context of the patient's phenotype
+- Recommendations for further investigation
+
+![Variant detail - AI Analysis](https://storage.googleapis.com/health_reports/web_images/docs/variant-detail-ai.png)
+
+## Notes tab
+
+The Notes tab lets you add collaborative notes to a variant. Notes are useful for documenting clinical reasoning, flagging variants for review, or communicating with team members.
+
+- Click **Add Note** to create a new note
+- Set note visibility (private or shared with team)
+- Edit or delete existing notes
+- View edit history
+
+![Variant detail - Notes](https://storage.googleapis.com/health_reports/web_images/docs/variant-detail-notes.png)
+
+<Tip>
+Use the Notes tab to document your clinical reasoning for each variant. This creates an audit trail that supports reproducible variant interpretation and team collaboration.
+</Tip>

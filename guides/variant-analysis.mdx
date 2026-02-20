@@ -4,168 +4,140 @@ description: "Search, filter, and analyze genetic variants with AI-powered tools
 icon: "chart-bar"
 ---
 
-## Searching variants
+The Variants tab is your full variant browser. Filter variants using gene panels, phenotypes, genes, and pathogenicity criteria, then analyze results in cards or table view.
 
-With a case selected, ask Nexus to search for variants using natural language queries. This AI-powered approach lets you describe what you're looking for in plain language rather than manually navigating complex filtering options.
+## Searching variants from chat
 
-<Tip>
-Describe what you want in plain language. Nexus understands genetic terminology and can translate your query into appropriate filters automatically. For example, ask about genes of interest, inheritance patterns, or predicted impact levels.
-</Tip>
-
-### Example variant search query
+With a case selected, ask Nexus to search for variants using natural language:
 
 ```
 Find all pathogenic variants in BRCA1 that are homozygous
 ```
 
-Or ask for more complex queries:
+Or more complex queries:
 
 ```
 Show me heterozygous variants affecting mRNA in genes from the cardiac gene panel with high in silico scores
 ```
 
-### Available filters
+<Tip>
+Describe what you want in plain language. Nexus translates your query into appropriate filters automatically.
+</Tip>
 
-When searching variants, you can apply the following filter categories to refine your results:
+### Available filters
 
 | Filter | Description | Example |
 |--------|-------------|---------|
-| **Gene** | Filter by specific gene symbol or list of genes | PCSK9, LDLR, APOB |
-| **Pathogenicity** | Filter by predicted or confirmed pathogenic status | Pathogenic, Likely Pathogenic, VUS, Benign |
-| **Zygosity** | Filter by inheritance pattern in the proband | Homozygous, Heterozygous, Hemizygous |
-| **Consequence** | Filter by variant effect type on transcript | Frameshift, Missense, Splice site, Intron variant |
-| **Allele frequency** | Filter by population frequency thresholds | Common (>1%), Rare (<0.1%), Novel (no frequency data) |
+| **Gene** | Filter by gene symbol or list | PCSK9, LDLR, APOB |
+| **Pathogenicity** | Filter by classification | Pathogenic, Likely Pathogenic, VUS, Benign |
+| **Zygosity** | Filter by inheritance pattern | Homozygous, Heterozygous, Hemizygous |
+| **Consequence** | Filter by variant effect type | Frameshift, Missense, Splice site, Intron variant |
+| **Allele frequency** | Filter by population frequency | Common (>1%), Rare (<0.1%), Novel |
 
-## Using the variant browser
+## Variant browser
 
-Navigate to a case and click the **Variants** tab in the navigation menu to access the variant browser. This interface displays all genetic variants identified in the case with comprehensive filtering and visualization options.
-
-You can toggle between two viewing formats using the toggle button in the top-right corner:
-- **Cards** view: Visual card-based layout showing one variant per card
-- **Table** view: Compact tabular format for comparing multiple variants
-
-### Filter panel
-
-The left sidebar contains collapsible filter sections that let you refine variant results:
-
-#### Virtual Panels
-Search and apply gene panel lists to your variants. Type the name of a gene panel to search available options. When you apply a panel, the variant display automatically restricts to genes included in that panel. This is useful for analyzing variants within clinically defined gene groups.
-
-#### Genes
-Type gene symbols (such as PCSK9, BRCA1, or TP53) and press Enter to filter. You can add multiple genes to the same filter—each gene name creates a separate chip that you can remove individually.
-
-#### Primary Phenotypes
-Toggle the **Use case phenotypes** option to automatically populate phenotypes from the case's HPO (Human Phenotype Ontology) terms. Selected phenotypes appear as removable chips (for example, "Abnormal LDL cholesterol conc..." or "Hypertriglyceridemia"). Click the settings gear icon to configure which phenotypes display.
-
-#### Secondary Phenotypes
-Apply additional phenotype-based filtering beyond primary phenotypes to further narrow variant results.
-
-#### Clear filters
-Click the **Clear** button at the top of the filter panel to reset all active filters and return to the full variant list.
-
-![Variant filters](/images/guides/case-variants-cards.png)
+Navigate to a case and click the **Variants** tab to access the variant browser. Toggle between **Cards** and **Table** views using the toggle button in the top-right corner.
 
 ### Variant count stats
 
-The top-right corner displays a stats bar showing:
-- **Total variant count**: The complete number of variants in the case (for example, "74,161 total")
-- **Pathogenicity breakdown**: Color-coded dots and counts for each category:
-  - Red dot: Pathogenic variants
-  - Yellow dot: Variants of Uncertain Significance (VUS)
-  - Green dot: Benign variants
+The top-right displays a stats bar showing:
+- **Total variant count** (e.g., "74,161 total")
+- **Pathogenicity breakdown** with color-coded dots:
+  - Red: Pathogenic
+  - Yellow: VUS (Variants of Uncertain Significance)
+  - Green: Benign
 
-### Cards view
+## Filter panel
 
-The cards view displays one variant per card with the following information:
+The left sidebar contains collapsible filter sections:
 
-**Card layout:**
-- **Gene symbol**: Displayed prominently in the top-left corner in large text
-- **Consequence badge**: A colored label indicating the variant effect type (for example, "non coding exon variant" or "intron variant")
-- **Genomic position**: Chromosome, position, and alleles in standard notation (for example, "chr19:11,086,757 G>A")
-- **HGVS notation**: Transcript-level variant description
+### Virtual Panels
 
-**Data fields row (left to right):**
-- **Zygosity**: Heterozygous (half-filled circle) or Homozygous (filled circle) status
-- **In Silico**: Functional prediction scores from computational tools
-- **Depth**: Read depth coverage (for example, "26x")
-- **AF (pop)**: Population allele frequency from reference databases
-- **ClinVar**: Classification status from the ClinVar database
-- **Inheritance**: Inheritance mode relevant to the case (for example, "Default (Recessive)")
-- **rsID**: Reference SNP identifier for known variants
+Search and apply gene panel lists to your variants. Type a panel name to search available options. When applied, the variant display restricts to genes in that panel.
 
-**Pathogenicity badge** (top-right):
+### Genes
+
+Type gene symbols (e.g., "PCSK9", "BRCA1", "TP53") and press Enter to filter. Each gene creates a removable chip. Add multiple genes to the same filter.
+
+### Primary Phenotypes
+
+Toggle **Use case phenotypes** to automatically filter by the case's HPO terms. Active phenotypes display as removable chips. Click the settings gear icon to configure which phenotypes are active.
+
+### Secondary Phenotypes
+
+Apply additional phenotype-based filtering beyond primary phenotypes for more granular analysis.
+
+Click **Clear** at the top of the filter panel to reset all filters.
+
+![Variant filters](https://storage.googleapis.com/health_reports/web_images/docs/case-variants-filters.png)
+
+## Cards view
+
+Each variant card shows:
+
+- **Gene symbol** — Prominently displayed in the top-left
+- **Consequence badge** — Color-coded variant effect (e.g., "missense variant", "intron variant")
+- **Genomic position** — Chromosome, position, and alleles (e.g., "chr19:11,086,757 G>A")
+- **HGVS notation** — Transcript-level variant description
+
+**Data fields row:**
+
+| Field | Description |
+| --- | --- |
+| **Zygosity** | Heterozygous (half-filled circle) or Homozygous (filled circle) |
+| **In Silico** | Functional prediction scores |
+| **Depth** | Read depth coverage (e.g., "26x") |
+| **AF (pop)** | Population allele frequency |
+| **ClinVar** | ClinVar classification |
+| **Inheritance** | Inheritance mode (e.g., "Default (Recessive)") |
+| **rsID** | Reference SNP identifier |
+
+**Pathogenicity badge** in the top-right corner:
 - Pathogenic (red)
 - Likely Pathogenic (orange)
 - VUS (yellow)
-- VUS/Conflicting (yellow with gray accent)
+- VUS/Conflicting (yellow/gray)
 - Likely Benign (light green)
 - Benign (green)
 
-### Table view
+Click any variant card to open the [variant detail panel](/guides/variant-detail).
 
-The table view presents variants in a compact tabular format for easy comparison.
+![Variant cards view](https://storage.googleapis.com/health_reports/web_images/docs/case-variants-cards.png)
 
-**Columns:**
-- Checkbox column for selecting multiple variants
-- **Gene**: Gene symbol
-- **Phenotype**: Associated phenotype information
-- **Zygosity**: Inheritance pattern (shown as filled or half-filled circle)
-- **P.**: Pathogenicity (shown as color-coded dot)
-- **C.**: Consequence type
+## Table view
 
-**Customization:**
-Click the **Columns** button in the table header to show or hide specific columns based on your analysis needs.
+A compact tabular format for comparing multiple variants:
 
-**Sorting:**
-Click any column header to sort the table by that field in ascending or descending order.
+| Column | Description |
+| --- | --- |
+| Checkbox | Select variants for batch operations |
+| **Gene** | Gene symbol |
+| **Phenotype** | Associated phenotype information |
+| **Zygosity** | Filled or half-filled circle |
+| **P.** | Pathogenicity (color-coded dot) |
+| **C.** | Consequence type |
+
+Click **Columns** to customize which columns are visible. Click any column header to sort.
+
+![Variant table view](https://storage.googleapis.com/health_reports/web_images/docs/case-variants-table.png)
 
 ## Variant analytics
 
-Ask Nexus to aggregate and analyze variant data from chat. Nexus can process queries about:
-- Variant distribution across genes, chromosomes, or consequence types
-- Variant counts by pathogenicity or zygosity categories
-- Top genes affected in your case
-- Phenotype-variant associations
+Ask Nexus to aggregate and analyze variant data from chat:
 
-Nexus can generate visual charts from these analytics, making it easy to identify patterns and prioritize variants for investigation.
+- "Show the variant distribution across genes"
+- "How many pathogenic variants are in this case?"
+- "Create a bar chart of variants per chromosome"
 
-## Combining panels with variant search
+Nexus generates visual charts from these analytics to help identify patterns.
 
-You can apply gene panels together with other filters to narrow your analysis:
+## Combining panels with filters
 
-1. **From the filter sidebar**: Click **Virtual Panels**, search for a panel name, and apply it. Then add additional filters (gene, phenotype, pathogenicity) as needed.
+Apply gene panels together with other filters for focused analysis:
 
-2. **From chat**: Ask Nexus a combined query such as "Apply the cardiac gene panel and show me only pathogenic or likely pathogenic variants."
-
-This combination approach is powerful for focused analysis on clinically relevant gene sets while maintaining control over variant quality and predicted impact.
-
-## Marking findings
-
-When you identify a variant of clinical interest during your analysis, mark it as a finding. Findings allow you to flag and document important discoveries for your case review and reporting.
-
-### Finding categories
-
-Each finding is assigned one of the following categories:
-- **Primary**: The variant is likely to be the cause of the patient's phenotype
-- **Causal**: Confirmed causal variant
-- **Secondary**: Relevant but not primary cause
-- **Incidental**: Clinically significant variant unrelated to the case phenotype
-
-### Finding details
-
-Each marked finding stores and displays the following information:
-- Gene symbol
-- Genomic position (chromosome:start-end)
-- HGVS notation
-- Pathogenicity classification
-- Zygosity status
-- Consequence type
-- Reviewer name (who marked the finding)
-
-### Accessing findings
-
-Navigate to the **Findings** tab in the case to view all marked findings, review their classifications, and prepare findings for clinical reporting.
+1. **From the filter sidebar**: Select a Virtual Panel, then add gene, phenotype, or pathogenicity filters.
+2. **From chat**: "Apply the cardiac gene panel and show only pathogenic variants."
 
 <Note>
-Findings can be exported for inclusion in clinical reports and case summaries. This makes it easy to generate standardized documentation of your variant analysis conclusions.
+Click any variant in cards view to open the [variant detail panel](/guides/variant-detail) with seven tabs of in-depth information including ACMG classification, research data, and AI analysis.
 </Note>

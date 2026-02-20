@@ -1,0 +1,53 @@
+---
+title: "Findings"
+description: "Curate and manage variants of clinical interest."
+icon: "flag"
+---
+
+The Findings tab displays variants you've marked as clinically significant during your analysis. These curated findings form the basis of your clinical interpretation and reporting.
+
+## Finding categories
+
+Filter findings using the category tabs at the top:
+
+| Category | Description |
+| --- | --- |
+| **All** | View all findings regardless of category |
+| **Primary** | Variant most likely explains the patient's phenotype |
+| **Causal** | Confirmed to cause the patient's condition |
+| **Secondary** | Related but not the primary cause |
+| **Incidental** | Clinically significant variant unrelated to the case phenotype |
+
+## Finding cards
+
+Each finding displays as a card with the following information:
+
+- **Gene symbol** — The gene where the variant occurs
+- **Genomic position** — Chromosome and coordinate (e.g., "chr17:43,091,578")
+- **Pathogenicity badge** — Color-coded classification (Pathogenic, Likely Pathogenic, VUS, etc.)
+- **HGVS notation** — Standardized variant description
+- **Zygosity** — Heterozygous or Homozygous
+- **Consequence type** — Predicted functional impact (missense, frameshift, splice site, etc.)
+- **Reviewer** — Who marked this finding
+
+Each card includes two action buttons:
+- **Details** — Opens the [variant detail panel](/guides/variant-detail) for comprehensive information
+- **Edit Notes** — Add or modify clinical notes for the finding
+
+![Case findings](https://storage.googleapis.com/health_reports/web_images/docs/case-findings.png)
+
+## Marking a finding
+
+To mark a variant as a finding:
+
+1. Open the [Variants tab](/guides/variant-analysis) and locate the variant
+2. Click on the variant to open the detail panel
+3. Use the marking controls to designate it as a finding and select a category
+
+## Exporting findings
+
+Click the **Export** button at the top of the Findings tab to download your curated findings. The export includes all finding metadata for use in clinical reports or external documentation.
+
+<Note>
+Findings can be included in [clinical reports](/guides/clinical-reports) generated from the chat interface.
+</Note>

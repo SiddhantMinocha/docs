@@ -1,0 +1,55 @@
+---
+title: "Clinical reports"
+description: "Generate structured clinical documentation from your analysis."
+icon: "file-medical"
+---
+
+Nexus generates structured clinical reports from your analysis data. Ask for a report from the chat interface and Nexus creates a comprehensive document based on your case data, findings, and variant analysis.
+
+## Report types
+
+Five report types are available:
+
+| Report Type | What it includes |
+| --- | --- |
+| **Variant interpretation** | Detailed interpretation of specific variants with evidence from ClinVar, literature, and in silico predictions |
+| **Clinical findings** | Summary of all curated findings with pathogenicity classifications and clinical significance |
+| **Case summary** | Overview of the entire case including patient information, variant statistics, and key findings |
+| **ACMG evidence** | ACMG/AMP criteria evaluation for selected variants with evidence citations |
+| **Variant comparison** | Side-by-side comparison of multiple variants across key metrics |
+
+## Generating a report
+
+Ask Nexus to create a report from the chat interface with a case selected:
+
+```
+"Generate a variant interpretation report for the BRCA1 pathogenic variant"
+"Create a case summary report"
+"Write a clinical findings report for all primary findings"
+"Generate an ACMG evidence report for the variants I've flagged"
+```
+
+Nexus gathers the relevant data from your case and produces a structured document in the artifacts panel.
+
+## Report structure
+
+Reports include:
+
+- **Headings and sections** — Organized by topic for easy navigation
+- **Tables** — Variant data, allele frequencies, and classification summaries
+- **Callout sections** — Highlighted warnings, notes, and clinical recommendations
+- **Charts** — Visual summaries of variant distributions or comparison data
+- **Citations** — References to ClinVar, PubMed, and other sources
+
+## Viewing and exporting
+
+Reports appear as artifacts in the side panel alongside your chat. You can:
+
+- **Review** the full report content within Nexus
+- **Download** the report for external use
+- **Reference** the report in subsequent conversations
+- **Track versions** as the report evolves through your analysis
+
+<Note>
+Clinical reports are generated based on the data available in your case at the time of generation. Update your findings and ACMG classifications before generating final reports to ensure accuracy.
+</Note>

@@ -4,55 +4,53 @@ description: Create and manage virtual gene panels for targeted variant filterin
 icon: dna
 ---
 
-Gene panels let you narrow thousands of genetic variants down to a clinically relevant subset. You create a virtual panel by selecting specific genes, optionally linking disease associations, and applying clinical context like inheritance patterns and phenotype.
+Gene panels let you narrow thousands of genetic variants down to a clinically relevant subset. Create a virtual panel by selecting specific genes, linking disease associations, and applying clinical context.
 
 ## Why use panels
 
-Genomic datasets contain tens of thousands of variants per sample. Without focus, you spend time reviewing variants unrelated to your clinical question. Panels solve this by letting you define a curated gene list—diagnostic panels for known conditions, differential diagnosis panels to explore multiple hypotheses, carrier screening panels for recessive disorders, or research panels for hypothesis-driven studies.
+Genomic datasets contain tens of thousands of variants per sample. Panels let you define a curated gene list — diagnostic panels for known conditions, differential diagnosis panels for multiple hypotheses, carrier screening panels for recessive disorders, or research panels for hypothesis-driven studies.
 
 ## Viewing existing panels
 
-Navigate to the **Variants** tab and look for the **Virtual Panels** filter. You can search your existing panels by name or description. Panels you create are listed here along with any shared with you.
+Navigate to the **Variants** tab and look for the **Virtual Panels** filter in the left sidebar. Search your existing panels by name or description.
 
 ## Creating a new panel
 
-Click **New panel** to start. You'll configure several sections:
+Click **New panel** to start. Configure the following sections:
 
 ### Basic information
 
-Give your panel a **Name** and optional **Description**. Set the **Visibility** to either:
-- **Private**: only you can access it
-- **Public**: shareable with your team
+- **Name** — A descriptive name for the panel
+- **Description** — Optional description of the panel's purpose
+- **Visibility** — **Private** (only you) or **Public** (shared with your team)
 
 ### Clinical details
 
-Specify the clinical context to help Nexus understand how you'll use this panel:
-
-- **Clinical intent**: Choose from diagnostic (confirming a suspected condition), differential diagnosis (exploring multiple possibilities), confirmatory (validating a prior finding), carrier screening (identifying heterozygous individuals), or research (hypothesis-driven investigation)
-- **Validation status**: Mark as draft (in development), validated (ready for clinical use), or deprecated (no longer recommended)
-- **Inheritance models**: Select applicable patterns: autosomal dominant, autosomal recessive, X-linked, or mitochondrial
-- **Variant types**: Include SNVs (single nucleotide variants), indels (insertions/deletions), CNVs (copy number variants), or structural variants
+- **Clinical intent** — Diagnostic, differential diagnosis, confirmatory, carrier screening, or research
+- **Validation status** — Draft (in development), Validated (ready for clinical use), or Deprecated (no longer recommended)
+- **Inheritance models** — Autosomal dominant, autosomal recessive, X-linked, or mitochondrial
+- **Variant types** — SNVs, indels, CNVs, or structural variants
 
 ## Managing genes
 
-Search for genes by symbol and add them to your panel. You'll see gene details like transcript count and disease associations. Remove genes anytime by clicking the trash icon next to each entry.
+Search for genes by symbol and add them to your panel. Each gene entry shows transcript count and disease associations. Remove genes by clicking the trash icon next to each entry.
 
 ## Linking diseases
 
-Associate diseases with your panel by searching disease names. This helps document the clinical phenotype your panel targets and improves Nexus's ability to contextualize variants.
+Associate diseases with your panel by searching disease names. Disease links help document the clinical phenotype your panel targets and improve Nexus's ability to contextualize variants.
 
 ## Using your panel
 
-You can apply panels in two ways:
+Apply panels in two ways:
 
-**From chat**: Ask Nexus directly—for example, "Find loss-of-function variants in my cardiomyopathy panel." Nexus retrieves and filters variants accordingly.
+**From chat** — Ask Nexus directly: "Find loss-of-function variants in my cardiomyopathy panel." Nexus retrieves and filters variants accordingly.
 
-**From the variant browser**: Open the **Virtual Panels** filter in the **Variants** tab and select your panel. Nexus filters the current dataset to show only variants in those genes.
+**From the variant browser** — Open the **Virtual Panels** filter in the [Variants tab](/guides/variant-analysis) and select your panel. Nexus filters the dataset to show only variants in those genes.
 
 ## Panel versioning
 
-Your panel maintains a changelog showing when genes were added or removed and who made the change. This audit trail is useful for tracking panel evolution and understanding clinical decisions over time.
+Your panel maintains a changelog showing when genes were added or removed and who made the change. This audit trail tracks panel evolution and supports clinical decision documentation.
 
 <Tip>
-Duplicate an existing panel to quickly create variations—for instance, a narrow diagnostic panel and a broader differential panel for the same condition.
+Duplicate an existing panel to quickly create variations — for instance, a narrow diagnostic panel and a broader differential panel for the same condition.
 </Tip>

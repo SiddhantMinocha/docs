@@ -4,182 +4,136 @@ description: "Use natural language to search, analyze, and explore genomic data.
 icon: "comments"
 ---
 
+The chat interface is the primary way you interact with Nexus. Ask questions in natural language and receive evidence-based answers with citations from genomic databases.
+
 ## Starting a conversation
 
-Begin exploring genomic data by starting a new chat conversation. Click the **+** button in the top bar or select **New chat** to begin your session.
+Click the **+** button in the top bar to start a new chat. The home screen displays suggested prompts to get you started, such as "Find pathogenic variants in BRCA1 and BRCA2 genes."
 
-When you first open the chat, you'll see the home screen with a greeting: "Hello there! How can I help you today?" The screen displays four suggested prompts to get you started:
+Click any suggestion or type your own question directly into the chat input.
 
-- "Find pathogenic variants in BRCA1 and BRCA2 genes"
-- "What are the clinical implications of a VUS in TP53?"
-- "Search for variants associated with cardiomyopathy"
-- "What genes are associated with Huntington disease?"
-
-You can click any suggested prompt to start your conversation, or type your own question directly into the chat input.
-
-![Chat home screen](/images/guides/chat-home.png)
+![Chat home screen](https://storage.googleapis.com/health_reports/web_images/docs/chat-home.png)
 
 <Tip>
-Start with specific, focused questions about variants, genes, or diseases to get the most relevant results from Nexus.
+Start with specific, focused questions about variants, genes, or diseases to get the most relevant results.
 </Tip>
 
 ## Switching between Agent Mode and Case Mode
 
-You'll find toggle buttons in the top-right corner of the chat interface: **Agent Mode** and **Case Mode**. These modes let you change how you interact with Nexus.
+Toggle buttons in the top-right corner switch between **Agent Mode** and **Case Mode**.
 
-**Agent Mode** is a chat-first experience focused on general genomics AI. In this mode, you don't need any patient context to ask questions and explore genomic databases. Use Agent Mode to research genes, diseases, variants, clinical implications, and general genomic knowledge.
+**Agent Mode** is a chat-first experience for general genomics queries. No patient context is needed — use it to research genes, diseases, variants, and clinical implications.
 
-**Case Mode** opens the case management view and displays your patient cases. This mode lets you work with patient-specific data and context. You can freely switch between modes at any time depending on your needs.
+**Case Mode** opens the case management view and displays your patient cases. Switch between modes at any time depending on your workflow.
 
 ## Working with patient case context
 
-When you want to analyze data from a specific patient, use the **Cases** dropdown at the bottom of the chat input. Click the dropdown to select a patient case from your available cases.
+To analyze data from a specific patient, use the **Cases** dropdown at the bottom of the chat input. Select a patient case and Nexus scopes its queries to that patient's variant data.
 
-Once you select a case, Nexus can query that patient's variant data and provide context-specific analysis and insights. The system understands the patient's genetic profile and can answer questions about their specific variants and clinical implications.
+Once a case is selected, you can ask questions like:
+- "What are the likely pathogenic variants in this case?"
+- "Find loss-of-function variants in BRCA1"
+- "Are there any ClinVar pathogenic variants in the cardiac gene panel?"
 
 <Note>
-Without a case selected, Nexus continues to answer general genomics questions and searches public databases, but cannot access patient-specific variant data.
+Without a case selected, Nexus answers general genomics questions and searches public databases but cannot access patient-specific variant data.
 </Note>
 
 ## Selecting research sources
 
-Control which databases Nexus searches by using the **Sources (5/5)** panel. Click **Sources** next to the Cases dropdown to open the sources panel and see all available research databases.
+Control which databases Nexus searches using the **Sources** dropdown next to the Cases dropdown. The counter (e.g., "5/5") shows how many source categories are active.
 
-The sources are organized into five categories, each containing multiple individual sources you can toggle on and off:
+Click **Sources** to open the panel with five toggleable categories:
 
-**Research Papers**
-- PubMed
-- Nature
-- Cell
-- NEJM
-- Lancet
-- arXiv
-- bioRxiv
+| Category | Databases |
+|----------|-----------|
+| **Research Papers** | PubMed, Nature, Cell, NEJM, Lancet, arXiv, bioRxiv |
+| **Clinical Evidence** | ClinVar, ClinicalTrials, OMIM, ClinGen, Orphanet |
+| **Variant Databases** | gnomAD, GWAS Catalog, dbSNP, VarSome, Franklin |
+| **Guidelines** | ACMG, NCCN, UpToDate, CDC, WHO |
+| **Drugs & Therapies** | PharmGKB, DrugBank, FDA, ClinicalTrials |
 
-**Clinical Evidence**
-- ClinVar
-- ClinicalTrials
-- OMIM
-- ClinGen
-- Orphanet
+Toggle categories on or off to focus results on specific types of evidence.
 
-**Variant Databases**
-- gnomAD
-- GWAS Catalog
-- dbSNP
-- VarSome
-- Franklin
-
-**Guidelines**
-- ACMG
-- NCCN
-- UpToDate
-- CDC
-- WHO
-
-**Drugs & Therapies**
-- PharmGKB
-- DrugBank
-- FDA
-- ClinicalTrials
-
-Toggle individual sources on and off to customize which databases Nexus queries. The counter at the top (e.g., "5/5") shows how many source categories are currently active. Disabling categories restricts the search scope and helps you focus results on specific types of evidence.
-
-![Research sources panel](/images/guides/chat-sources.png)
+![Research sources panel](https://storage.googleapis.com/health_reports/web_images/docs/chat-sources.png)
 
 <Tip>
-Enable only the sources you need for your query. For clinical variant analysis, the "Clinical Evidence" category is often most relevant. For drug interactions, focus on the "Drugs & Therapies" category.
+For clinical variant analysis, "Clinical Evidence" and "Variant Databases" are often most relevant. For drug interactions, focus on "Drugs & Therapies."
 </Tip>
 
 ## Types of questions you can ask
 
-Nexus can handle a wide variety of genomic queries. Here are the main categories:
-
 <AccordionGroup>
   <Accordion title="Variant queries" icon="dna">
-    When you have a case selected, ask Nexus about specific variants in your patient's data. You can ask about variant classification, pathogenicity, clinical significance, allele frequencies, and functional impacts. Example questions: "What is the clinical significance of this variant?" or "Is this variant pathogenic?"
+    With a case selected, ask about specific variants — classification, pathogenicity, clinical significance, allele frequencies, and functional impacts. Example: "What is the clinical significance of CFTR c.1521_1523delCTT?"
   </Accordion>
   <Accordion title="Gene and disease lookups" icon="book-medical">
-    Ask Nexus about genes and their associated diseases, clinical significance, and known variants. You can also search for diseases and learn which genes are associated with them. Example questions: "What genes are associated with cardiomyopathy?" or "What is the function of the BRCA1 gene?"
+    Research genes and their associated diseases, clinical significance, and known variants. Example: "What genes are associated with cardiomyopathy?"
   </Accordion>
   <Accordion title="Analysis and visualization" icon="chart-bar">
-    Request aggregations, statistics, and charts from your data. Nexus can generate visualizations and summaries. Example questions: "Create a distribution chart of variant types" or "What percentage of variants are pathogenic?"
+    Request aggregations, statistics, and charts from your data. Example: "Create a bar chart of variants per gene in my case."
   </Accordion>
   <Accordion title="Reports and documents" icon="file-lines">
-    Ask Nexus to generate summaries, reports, or documentation. The system can create clinical reports, variant summaries, and other documents based on your data and questions.
+    Generate clinical reports, variant summaries, and other structured documents. Example: "Generate a variant interpretation report for the pathogenic findings."
   </Accordion>
 </AccordionGroup>
 
-## Understanding AI tool usage indicators
+## AI tool usage indicators
 
-When Nexus uses a tool to search a database or retrieve information, it displays a status indicator above the response. This indicator shows you exactly which databases were queried and how many results were found.
+When Nexus uses a tool to query a database, a status indicator appears above the response showing which tool was used and the result count:
 
-The indicator format is: **✓ Tool Name — Found X results**
+- "Variant Annotation — Found 20 variants"
+- "PubMed — Found 15 papers"
+- "MyGene.info — Found gene information"
 
-For example, you might see:
-- "✓ ClinVar — Found 20 variants"
-- "✓ PubMed — Found 15 papers"
-- "✓ gnomAD — Found 1 variant"
-
-A green checkmark indicates successful tool usage. These indicators appear above each response so you always know which databases provided the information in Nexus's answer.
+A green checkmark indicates successful tool usage.
 
 ## Citations and references
 
-Responses from Nexus include inline citation badges that link directly to original sources. These badges are color-coded and indicate the source database:
+Responses include inline citation badges linking to original sources. Badges are color-coded by database — click any badge to open the source record in a new tab and verify the information.
 
-- Green **ClinVar** badges link to ClinVar entries for variants
-- **NCBI** badges link to National Center for Biotechnology Information resources
-- **Cancer database** badges link to cancer-related variant databases
-- Other database badges appear based on the sources queried
-
-Each badge is clickable and opens the source in a new tab, allowing you to quickly verify information or explore the original source data.
-
-![Chat conversation with citations](/images/guides/chat-conversation.png)
+![Chat conversation with citations](https://storage.googleapis.com/health_reports/web_images/docs/chat-conversation.png)
 
 <Note>
-Always check the original sources by clicking citation badges to verify findings and get the most recent information from the source databases.
+Always verify clinical findings by clicking citation badges to review the original source data.
 </Note>
 
-## Managing your chat history
+## Managing chat history
 
-The sidebar displays all your past conversations organized by time period: **Today**, **Yesterday**, and **Last 7 days**. This lets you quickly find recent conversations.
+The sidebar displays past conversations organized by **Today**, **Yesterday**, and **Last 7 days**. Use the search bar at the top to find conversations by keyword.
 
-Use the search bar at the top of the sidebar to search through your chat history by keywords or topics. Click any conversation to resume it and continue where you left off.
+Click any conversation to resume it. Hover over a conversation to reveal a three-dot menu with options to rename or delete it. Use the trash icon in the top bar to manage multiple chats.
 
-Hover over a conversation in the sidebar to reveal a three-dot menu with additional options, including the ability to delete conversations. You can also clear or delete multiple chats using the trash icon in the top bar.
+## Chat visibility
 
-## Controlling chat visibility
-
-The lock icon with a dropdown arrow in the top bar controls who can see your conversation. Click this icon to access visibility settings and choose between private and public visibility options for your chat.
+The lock icon with a dropdown arrow in the top bar controls conversation visibility. Click it to toggle between private and shared visibility for your current conversation.
 
 <Tip>
 Keep conversations private by default to protect patient data and confidential analysis.
 </Tip>
 
-## Changing your view layout
+## Attaching files
 
-The layout toggle icon in the top bar lets you switch between different view layouts. You can customize how the interface displays, such as enabling or disabling the side panel for artifacts, to match your workflow preferences.
+Click the paperclip icon next to the send button to attach files to your message. You can share genomic files, documents, or other relevant data for Nexus to analyze.
 
-## Attaching files to messages
+## Providing feedback
 
-You can attach files to your chat messages by clicking the paperclip icon next to the send button. This lets you share genomic files, documents, or other relevant data with Nexus for analysis and context.
-
-## Providing feedback on responses
-
-Each response from Nexus includes feedback options:
-
-- **Copy button**: Quickly copy the response text to your clipboard
-- **Thumbs up button**: Indicate that the response was helpful and accurate
-- **Thumbs down button**: Indicate that the response was not helpful or accurate
-
-Use these feedback buttons to help improve Nexus's response quality over time. Your feedback helps the system provide better answers for you and other users.
+Each response includes feedback options:
+- **Copy**: Copy the response text to your clipboard
+- **Thumbs up**: Mark the response as helpful
+- **Thumbs down**: Mark the response as unhelpful
 
 ## Working with artifacts
 
-During conversations, Nexus may create artifacts such as documents, code snippets, spreadsheets, or other structured content. These artifacts appear in a side panel alongside your chat, keeping them organized and accessible.
+During conversations, Nexus may create artifacts — documents, code files, or spreadsheets — that appear in a side panel alongside your chat. Artifacts are versioned with built-in change tracking.
 
-Artifacts are versioned with built-in change tracking, allowing you to see how the artifact evolved during your conversation. You can review previous versions, compare changes, and understand how the artifact was developed through your interaction with Nexus.
+You can generate three types of artifacts:
+- **Text documents**: Clinical summaries, variant reports, case notes
+- **Code files**: Reusable Python scripts
+- **Spreadsheets**: Tabular data in CSV format
+
+Each artifact maintains version history, and you can download artifacts or reference them later in the conversation.
 
 <Tip>
-Use artifacts to generate reports, code, datasets, and other structured outputs that you can download or export for use in other applications.
+Use artifacts to generate reports, scripts, and datasets that you can download or export for external use.
 </Tip>

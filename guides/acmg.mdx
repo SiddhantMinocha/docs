@@ -1,0 +1,91 @@
+---
+title: "ACMG classification"
+description: "AI-enhanced ACMG/AMP variant classification with evidence review."
+icon: "clipboard-check"
+---
+
+Nexus supports ACMG/AMP variant classification with 28 standard criteria. The ACMG tab in the [variant detail panel](/guides/variant-detail) displays active criteria, evidence summaries, and tools for both AI-enhanced and manual classification.
+
+## ACMG criteria overview
+
+The ACMG/AMP framework uses 28 criteria to classify variants across five categories:
+
+| Classification | Criteria prefix | Description |
+| --- | --- | --- |
+| **Pathogenic** | PVS, PS | Very strong and strong evidence of pathogenicity |
+| **Likely Pathogenic** | PM | Moderate evidence of pathogenicity |
+| **Supporting** | PP, BP | Supporting evidence for or against pathogenicity |
+| **Likely Benign** | BS | Strong evidence of benign impact |
+| **Benign** | BA | Stand-alone evidence of benign impact |
+
+## Viewing ACMG criteria
+
+Open the ACMG tab in the variant detail panel to see:
+
+- **Classification badge** — The current overall classification (Pathogenic, Likely Pathogenic, VUS, Likely Benign, or Benign)
+- **Active criteria** — Each criterion that applies to this variant, shown as a labeled badge (e.g., "BA1", "BS1", "BP7")
+- **Evidence summaries** — Brief descriptions of why each criterion was applied
+- **Computational evidence** — Aggregated results from SIFT, PolyPhen-2, AlphaMissense, and CADD
+
+Each criterion badge indicates whether it was determined by computational analysis (**DET**) or by AI review (**AI**).
+
+![ACMG tab](https://storage.googleapis.com/health_reports/web_images/docs/variant-detail-acmg.png)
+
+## AI-enhanced classification
+
+Click the **AI Enhance** button to trigger an AI-powered evaluation of ACMG criteria. This is a three-step workflow:
+
+### Step 1: Start
+
+Click **AI Enhance** to begin. Nexus initiates the analysis and begins gathering evidence.
+
+### Step 2: Running
+
+Nexus evaluates the variant against ACMG criteria using evidence from multiple sources:
+
+- **ClinVar** — Clinical significance submissions and review status
+- **PubMed** — Published literature on the variant and gene
+- **gnomAD** — Population allele frequency data
+- **Functional data** — In silico predictions and conservation scores
+- **Phen2Gene** — Phenotype-gene association ranking
+
+A progress indicator shows which evidence sources are being queried.
+
+### Step 3: Results
+
+The AI presents its findings:
+
+- **Suggested criteria** — ACMG criteria the AI recommends adding or modifying
+- **Confidence scores** — How confident the AI is in each suggestion
+- **Evidence citations** — Sources supporting each criterion
+- **DET vs AI badges** — Distinguishing computational determinations from AI-suggested criteria
+
+Review each suggestion and choose to **accept** or **reject** individual criteria. Accepted criteria update the variant's ACMG classification.
+
+<Note>
+AI-enhanced classification is a decision-support tool. Always review the evidence and apply your clinical judgment before accepting AI suggestions.
+</Note>
+
+## Manual reclassification
+
+Click the **Reclassify** button to manually update a variant's classification:
+
+1. Select the new classification from the dropdown (Pathogenic, Likely Pathogenic, VUS, Likely Benign, or Benign)
+2. Add criteria that support your reclassification
+3. Provide a justification note explaining your reasoning
+4. Click **Save** to apply the reclassification
+
+### Reclassification history
+
+Every reclassification is recorded in the variant's history. The history shows:
+
+- **Date** of each reclassification
+- **Previous classification** and **new classification**
+- **Who** made the change
+- **Justification** provided
+
+You can revert to a previous classification if needed.
+
+<Tip>
+Document your reasoning when reclassifying variants. The reclassification history creates an audit trail that supports reproducible interpretation and peer review.
+</Tip>
