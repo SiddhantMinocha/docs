@@ -1,16 +1,18 @@
 ---
-title: Visualizations and code execution
-description: Generate charts and run Python code for custom genomic analyses.
+title: Visualizations
+description: Generate interactive charts from your genomic data directly in chat.
 icon: chart-pie
 ---
 
-Purna generates interactive charts directly in your conversation and executes Python code for custom analyses. Ask for a visualization or analysis, and Purna creates the output right in the chat.
+Purna generates interactive charts embedded directly in your conversation. Ask for a visualization and Purna creates it inline — no code, no setup, no external tools.
 
-## Generating charts
+## How it works
 
-Ask Purna to visualize your data and it generates an interactive chart embedded in the conversation.
+With a patient case selected, ask Purna to visualize your data. It queries the relevant variants, aggregates the results, and renders an interactive chart right in the chat.
 
-### Supported chart types
+Without a case selected, Purna can still generate charts from data you provide or from public database queries.
+
+## Supported chart types
 
 | Chart Type | Best For | Example Use |
 |-----------|----------|-------------|
@@ -20,51 +22,25 @@ Ask Purna to visualize your data and it generates an interactive chart embedded 
 | **Line** | Trends over time or sequence | Coverage depth across chromosomal regions |
 | **Area** | Volume and cumulative totals | Cumulative variant count by discovery date |
 
-### Example prompts
+## Example prompts
 
 ```
 "Create a bar chart showing variants per gene in my panel"
 "Visualize the breakdown of pathogenic vs benign variants"
 "Show me a pie chart of variants by variant type"
 "Make a line graph of VAF across samples"
+"Show a donut chart of zygosity distribution"
 ```
+
+## Adjusting charts
+
+After Purna generates a chart, you can ask it to modify the output in the same conversation:
+
+- Change the chart type: *"Make this a horizontal bar chart instead"*
+- Update colors: *"Use a red color scheme"*
+- Add or remove data: *"Include VUS variants too"*
+- Change labels or titles: *"Rename the x-axis to Gene Symbol"*
 
 <Tip>
-After Purna generates a chart, ask to adjust it — change colors, labels, chart type, or add more data. For example: "Make this a horizontal bar chart instead" or "Use a red color scheme."
+For standard visualizations like variant distributions and gene-level summaries, inline charts are the fastest option. For custom or complex analyses — heatmaps, multi-panel figures, statistical plots — use [Code Execution](/code-execution) instead.
 </Tip>
-
-## Code execution
-
-For analyses beyond built-in tools, Purna writes and runs Python code directly in your session.
-
-### Available libraries
-
-- **pandas**: Data manipulation and filtering
-- **matplotlib**: Chart creation and customization
-- **seaborn**: Statistical visualization
-
-### Example prompts
-
-```
-"Write a Python script to calculate allele frequencies for each sample"
-"Use pandas to group variants by gene and count them"
-"Create a custom analysis comparing VAF distribution across cohort groups"
-```
-
-### How it works
-
-Purna runs Python using Pyodide, which executes in your browser. Your data stays in the session and never leaves your machine.
-
-<Note>
-Use code execution when you need custom logic or combination of analyses. For standard visualizations and operations, ask for a chart or use built-in filters — these are faster and require no setup.
-</Note>
-
-## Documents and artifacts
-
-During conversations, Purna creates longer-form content that appears in a side panel:
-
-- **Text documents**: Clinical summaries, variant reports, case notes, and research documentation
-- **Code files**: Reusable Python scripts you can run in your own environment
-- **Spreadsheets**: Tabular data in CSV format for downstream analysis
-
-Each artifact maintains version history, letting you track changes and revert if needed. Download artifacts anytime or reference them later in the conversation.

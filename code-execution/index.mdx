@@ -1,0 +1,159 @@
+---
+title: Code Execution
+description: Run Python and R code on a private compute server attached to your chat session.
+icon: terminal
+---
+
+Purna can write and execute Python and R code for analyses that go beyond built-in tools. When you request a custom analysis, Purna spins up a **private compute server** dedicated to your chat session, writes the code, runs it, and returns the results — all without you leaving the conversation.
+
+## Why use Code Execution?
+
+Built-in charts and variant filters handle common tasks well. Code Execution is for everything else — the analyses that require custom logic, advanced statistics, or visualizations that go beyond standard chart types.
+
+| Capability | Built-in Charts | Code Execution |
+|-----------|----------------|----------------|
+| Bar, pie, line charts | Yes | Yes |
+| Heatmaps and clustered plots | No | Yes |
+| Statistical tests and p-values | No | Yes |
+| Custom filtering logic | No | Yes |
+| Multi-step data pipelines | No | Yes |
+| Publication-quality figures | No | Yes |
+| R language support | No | Yes |
+
+## How it works
+
+<Steps>
+  <Step title="You ask for an analysis">
+    Describe what you need in plain language. For example: *"Create a heatmap of variant pathogenicity across genes in my case."*
+  </Step>
+  <Step title="Purna provisions a private server">
+    A dedicated compute server is created and attached to your chat session. This server is private to you — no other user shares it.
+  </Step>
+  <Step title="Your variant data is loaded">
+    Purna securely loads the relevant variant data from your selected case into the server environment, ready for analysis.
+  </Step>
+  <Step title="Code is written and executed">
+    Purna writes the Python or R code, executes it on the server, and streams the results — text output, tables, charts, and images — back into your chat.
+  </Step>
+  <Step title="Server persists for follow-ups">
+    The server stays attached to your chat session. Follow-up requests reuse the same environment, so variables, intermediate results, and loaded data carry over between executions.
+  </Step>
+</Steps>
+
+<Note>
+The server automatically pauses when not in use and shuts down after a period of inactivity. You are billed only for active server usage. See [Billing](#billing) for details.
+</Note>
+
+## Available libraries
+
+Your compute server comes pre-loaded with a full scientific computing environment.
+
+### Python
+
+| Category | Libraries |
+|----------|-----------|
+| **Data science** | pandas, NumPy |
+| **Visualization** | matplotlib, seaborn, Plotly |
+| **Statistics** | SciPy, statsmodels, scikit-learn, pingouin |
+| **Bioinformatics** | Biopython, pysam, cyvcf2, pybedtools, pyvcf3, pyfaidx |
+| **Survival analysis** | lifelines |
+
+### R
+
+R is supported as an execution language with access to standard statistical and bioinformatics packages.
+
+### System tools
+
+samtools, bcftools, bedtools, and tabix are available for command-line genomic operations.
+
+## Accessing your variant data
+
+Purna automatically loads your case's variant data when you start a code execution. There are two ways data is made available:
+
+### Preloaded CSV
+
+Variant data from your selected case is written as a CSV file into the server. Your code can load it directly with `pd.read_csv()`. The file includes columns for gene, chromosome, position, ref/alt alleles, zygosity, pathogenicity, consequence, gnomAD allele frequency, ClinVar significance, and rsID.
+
+### Direct data access
+
+For larger datasets or advanced queries, Purna injects a `nexus` module into your environment with functions that query your case data directly:
+
+- `nexus.fetch_variants(filters)` — Fetch variants matching specific criteria
+- `nexus.fetch_all_variants()` — Retrieve all variants with automatic pagination
+- `nexus.aggregate(group_by, metrics)` — Run fast aggregations without loading individual records
+- `nexus.get_af_histogram(bins)` — Get allele frequency distribution
+- `nexus.get_distribution(field)` — Get value distribution for any field
+- `nexus.get_schema()` — View all available fields
+
+<Tip>
+Use `nexus.aggregate()` for summary statistics — it runs directly on the database and is significantly faster than loading all variants into memory and computing in pandas.
+</Tip>
+
+## Use cases
+
+### Heatmaps and clustered visualizations
+
+Standard chart types cannot produce heatmaps. With Code Execution, Purna can generate heatmaps showing variant pathogenicity across genes, allele frequency distributions across chromosomes, or any two-dimensional data matrix with color-coded values.
+
+*Try: "Create a heatmap of variant consequence types across the top 20 genes in my case."*
+
+### Advanced filtering and categorization
+
+When built-in filters are not expressive enough, use code to apply multi-condition logic. For example, filter variants that are missense, have a gnomAD frequency below 0.01, are in genes on your cardiac panel, and have a SIFT score below 0.05 — all in one step.
+
+*Try: "Filter for rare missense variants in cardiac genes with damaging SIFT predictions and show me a summary table."*
+
+### Statistical analysis
+
+Run chi-squared tests, Fisher's exact tests, logistic regression, or survival analysis on your variant data. Compute odds ratios, confidence intervals, and p-values for variant enrichment across categories.
+
+*Try: "Run a Fisher's exact test comparing the proportion of pathogenic variants in coding vs non-coding regions."*
+
+### Publication-quality figures
+
+Generate multi-panel figures, violin plots, swarm plots, and annotated scatter plots suitable for manuscripts and presentations. Customize fonts, axis labels, legends, and color palettes.
+
+*Try: "Create a violin plot of allele frequencies grouped by pathogenicity classification, with a log-scaled y-axis."*
+
+### Variant prioritization pipelines
+
+Build custom scoring or ranking logic. Combine ClinVar classification, allele frequency, consequence type, and conservation scores into a weighted composite score to prioritize variants for review.
+
+*Try: "Score each variant based on pathogenicity, rarity, and functional impact, then rank the top 20."*
+
+### Cohort and batch comparisons
+
+Compare variant profiles across cases or samples. Identify shared variants, compute overlap statistics, or generate Venn diagrams.
+
+*Try: "Compare the pathogenic variants in this case with the findings from my previous three cases."*
+
+## Billing
+
+Code Execution uses a private compute server provisioned on demand. You are billed based on server usage:
+
+- **Server time** is counted while the server is actively running code.
+- **Paused servers** do not incur charges. Servers automatically pause between executions.
+- **Idle shutdown** occurs after an extended period of inactivity, freeing all resources.
+
+Usage details are available in your account settings.
+
+<Note>
+Each chat session gets its own server. Starting a new chat creates a new server. Returning to an existing chat resumes the same server with your previous state intact.
+</Note>
+
+## Tips for best results
+
+<CardGroup cols={2}>
+  <Card title="Be specific about output" icon="bullseye">
+    Tell Purna what format you want — a table, a plot, a single number, or a file. The more specific you are, the better the result.
+  </Card>
+  <Card title="Iterate in the same chat" icon="arrows-rotate">
+    Follow-up requests reuse the same server. Ask Purna to tweak the analysis, adjust a plot, or rerun with different parameters without starting over.
+  </Card>
+  <Card title="Use aggregations for speed" icon="bolt">
+    For summary statistics, ask Purna to use `nexus.aggregate()` instead of loading all variants. This runs on the database and returns results much faster.
+  </Card>
+  <Card title="Combine with built-in tools" icon="layer-group">
+    Use built-in variant search to narrow your dataset first, then switch to Code Execution for custom analysis on the filtered results.
+  </Card>
+</CardGroup>

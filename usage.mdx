@@ -1,0 +1,139 @@
+---
+title: Usage
+description: Understand how queries, tokens, storage, compute, cases, and other resources are metered on Purna.
+icon: gauge
+---
+
+Your Purna account includes a set of resource quotas that determine how much you can use each month. This page explains what each resource means, how it is measured, and what to expect.
+
+## Overview
+
+<CardGroup cols={3}>
+  <Card title="Queries" icon="message">
+    Daily chat conversations
+  </Card>
+  <Card title="Tokens" icon="coins">
+    Monthly conversation volume
+  </Card>
+  <Card title="Compute" icon="microchip">
+    Code execution server hours
+  </Card>
+  <Card title="Cases" icon="folder-open">
+    Active patient cases
+  </Card>
+  <Card title="Storage" icon="hard-drive">
+    Total data on disk
+  </Card>
+  <Card title="Users" icon="users">
+    Team members on your account
+  </Card>
+</CardGroup>
+
+---
+
+## Queries
+
+Queries are the number of chat conversations you can initiate per day. Each time you start a new conversation with Purna, it counts as one query. Continuing an existing conversation does not use additional queries.
+
+Queries reset daily at midnight UTC.
+
+<Tip>
+If you are running low on queries, continue working in an existing conversation instead of starting a new one. Follow-up messages in the same chat do not count as additional queries.
+</Tip>
+
+## Tokens
+
+Tokens represent your total monthly chat volume. Every message you send to Purna and every response Purna sends back consumes tokens. Think of tokens as the total size of your conversations — the longer and more detailed the exchange, the more tokens it uses.
+
+A typical clinical query uses roughly **2,000 to 5,000 tokens**. Complex analyses with large variant datasets or detailed reports will use more.
+
+**What counts toward tokens:**
+- Your messages and prompts
+- Purna's responses, including formatted text, tables, and citations
+- Data sent to and from AI tools during a conversation (variant search results, database lookups, etc.)
+
+<Note>
+Token usage resets at the start of each billing cycle. You can monitor your current usage in account settings.
+</Note>
+
+## Compute
+
+Compute measures how many hours your [Code Execution](/code-execution) servers run each month.
+
+By default, every account is allocated a **4 GB, 2-core machine** for custom analysis queries. When you ask Purna to write and run Python or R code, it provisions a private server attached to your chat session. Compute time is counted while that server is actively executing code.
+
+A typical analysis query takes **under 4 to 5 minutes**, though larger datasets or complex pipelines may take longer.
+
+**How compute is metered:**
+- Active execution time is billed per hour
+- Servers automatically pause between executions and do not consume compute while paused
+- Idle servers shut down after an extended period of inactivity
+
+<Tip>
+Each chat session gets its own server. If you are running multiple analyses, keep them in the same chat to reuse the server and avoid unnecessary startup time.
+</Tip>
+
+## Cases
+
+Cases represent the number of active patient cases you can work with in a month. An active case is one that is ready for analysis — its variants are indexed and available for querying.
+
+**Lifecycle:**
+- Cases are automatically moved to an **inactive** state after 90 days without activity
+- You can also deactivate cases manually at any time
+- Inactive cases **do not count** against your monthly quota but still consume [storage](#storage)
+- Reactivating a case makes it active again and counts toward your quota
+
+**Supported formats:**
+- VCF files in **GRCh37 (hg19)** or **GRCh38 (hg38)** genome builds
+- All annotations are processed through our pipeline built on Ensembl VEP
+
+<Note>
+If you reach your case limit, deactivate cases you are no longer actively analyzing to free up quota. Their data remains in storage and can be reactivated later.
+</Note>
+
+## Storage
+
+All cases, uploaded files, and generated artifacts count toward your storage quota. Storage is measured in total disk usage across your account.
+
+**Typical storage usage:**
+
+| Case Type | Approximate Size |
+|-----------|-----------------|
+| Whole Exome Sequencing (WES) | Up to **100 MB** per inactive case |
+| Whole Genome Sequencing (WGS) | Up to **1 GB** per case, including metadata |
+
+<Note>
+Inactive cases still consume storage even though they do not count against your case quota. To fully reclaim space, delete cases you no longer need.
+</Note>
+
+## Users
+
+Users are the number of team members on your account. Each user gets their own login, chat history, and case access based on the permissions you configure.
+
+User management is available in [Team settings](/guides/team). Invite new members, assign roles, and control who can access specific cases.
+
+## Tools & API
+
+All tools and API access are included in every plan, including the Free tier. This covers variant search, NCBI lookups, chart creation, code execution, gene panel search, and all other built-in capabilities.
+
+If you need a specific integration that is not currently available, contact our team at [contact@purna.ai](mailto:contact@purna.ai) and we will work with you to set it up.
+
+## Enterprise
+
+Enterprise customers have access to additional capabilities beyond standard plans.
+
+<AccordionGroup>
+  <Accordion title="Bring your own data sources" icon="database">
+    Connect your own professional databases and reference data. Enterprise accounts support integration with third-party sources such as HGMD Pro or VarSome Pro using your own API keys.
+  </Accordion>
+  <Accordion title="FastQ file processing" icon="dna">
+    Upload raw FastQ files for end-to-end processing. FastQ alignment and variant calling runs on Nvidia Parabricks GPU infrastructure for high-throughput analysis.
+  </Accordion>
+  <Accordion title="Custom pipeline configurations" icon="gears">
+    Request custom annotation pipelines, reference data sources, or processing configurations tailored to your workflow. Custom pipelines are available on request and charged separately.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+To discuss enterprise options, reach out to [contact@purna.ai](mailto:contact@purna.ai).
+</Tip>
