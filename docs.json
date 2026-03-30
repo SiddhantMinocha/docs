@@ -53,8 +53,11 @@
             ]
           },
           {
-            "group": "Code Execution",
+            "group": "Chat Experiences",
             "pages": [
+              "chat-experiences/deep-research",
+              "chat-experiences/protein-visualization",
+              "chat-experiences/structure-prediction",
               "code-execution/index"
             ]
           },

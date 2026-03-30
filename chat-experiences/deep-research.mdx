@@ -1,0 +1,132 @@
+---
+title: "Deep Research"
+description: "How MIP searches across 40+ databases and synthesizes evidence in real time."
+icon: "magnifying-glass-chart"
+---
+
+When you ask MIP a question, it doesn't generate an answer from memory. It reasons about what information is needed, queries the right databases in real time, interprets the results, and synthesizes a cited response. This page explains what happens behind the scenes — the databases MIP can reach, the tools it uses, and how to get the most out of deep research.
+
+## How it works
+
+Every question triggers a reasoning loop:
+
+1. **Decomposition** — MIP breaks your question into sub-problems and determines which databases and tools are relevant.
+2. **Tool calls** — MIP queries one or more databases. Each query is visible in the chat as a tool call indicator (e.g., "PubMed — Found 12 papers").
+3. **Interpretation** — Results are parsed, filtered, and cross-referenced. MIP reads abstracts, extracts allele frequencies, maps pathways, or compares protein domains — depending on the question.
+4. **Synthesis** — A final answer is composed with inline citations linking back to original sources.
+
+This loop can repeat multiple times within a single response. A complex question like "What is the evidence for PCSK9 as a drug target for familial hypercholesterolemia?" might trigger searches across PubMed, ClinVar, gnomAD, ChEMBL, Open Targets, and UniProt — all in one turn.
+
+<Tip>
+You can see exactly which databases MIP queried by looking at the tool call indicators above each response. Click any citation badge to open the original source.
+</Tip>
+
+## Integrated databases
+
+MIP connects to the following databases in real time. No data is pre-cached — every query hits the live API.
+
+### Literature and web
+
+| Database | What it provides |
+|----------|-----------------|
+| **PubMed / PMC** | Peer-reviewed publications with full abstracts, authors, journal, DOI. Supports complex boolean queries across titles, abstracts, and MeSH terms. |
+| **Exa Web Search** | General web search with deep and fast modes. Useful for guidelines, preprints, institutional pages, and resources not indexed in PubMed. |
+
+### Genomics and variant annotation
+
+| Database | What it provides |
+|----------|-----------------|
+| **NCBI Gene / SNP / OMIM** | Gene summaries, variant rsIDs, gene-disease relationships, inheritance patterns. Unified search across multiple NCBI databases. |
+| **Ensembl VEP** | Variant consequence prediction, SIFT/PolyPhen scores, transcript mapping, HGVS nomenclature. Accepts both HGVS notation and genomic coordinates. |
+| **Ensembl Lookup** | Gene and transcript metadata, genomic coordinates, cross-references. Sequence retrieval for genes and transcripts. |
+| **gnomAD** | Population allele frequencies (global and per-population), gene constraint metrics (pLI, LOEUF, missense O/E). |
+| **VariantValidator** | HGVS validation, normalization, and coordinate conversion between assemblies and transcript versions. |
+| **ClinVar** | Clinical significance classifications, review status, submitter information, associated conditions. Accessed via NCBI integration. |
+| **MyGene.info** | Comprehensive gene metadata aggregation — symbols, aliases, coordinates, pathways, GO terms, cross-database IDs. |
+
+### Protein and structural biology
+
+| Database | What it provides |
+|----------|-----------------|
+| **UniProt** | Protein sequence, function, domains, PTMs, active sites, disease associations. Supports lookup, search, and protein-protein comparison with sequence alignment. |
+| **AlphaFold Database** | AI-predicted protein structures by UniProt accession. Returns PDB/CIF URLs and per-residue confidence scores (pLDDT). |
+| **RCSB PDB** | Experimentally determined protein structures. Search by keyword, gene, or UniProt accession. Returns resolution, method, chains, and ligands. |
+| **STRING** | Protein-protein interaction networks with confidence scores. Returns interaction partners, co-expression data, and pathway context. |
+| **IntAct** | Curated molecular interaction data from the EBI. Binary interactions with experimental method and confidence scoring. |
+
+### Drug discovery and pharmacology
+
+| Database | What it provides |
+|----------|-----------------|
+| **ChEMBL** | Bioactivity data, compound-target relationships, drug mechanism of action. Search by target, compound, or activity type. |
+| **PubChem** | Chemical compound properties, SMILES strings, molecular weights, gene-chemical associations. |
+| **Open Targets** | Gene-disease association scores, tractability assessments, drug information with clinical trial phases. |
+| **ClinicalTrials.gov** | Active and completed clinical trials. Search by condition, intervention, phase, and recruitment status. |
+| **PharmGKB** | Pharmacogenomic drug-gene interactions and clinical dosing guidelines. Accessed via NCBI integration. |
+
+### Pathways and gene expression
+
+| Database | What it provides |
+|----------|-----------------|
+| **Reactome** | Curated biological pathway database. Search pathways by keyword or retrieve all pathways for a given gene. |
+| **Expression Atlas** | Tissue and condition-specific gene expression data from the EBI. Baseline and differential expression across experiments. |
+
+### Rare diseases and phenotypes
+
+| Database | What it provides |
+|----------|-----------------|
+| **Orphanet** | Rare disease classifications, prevalence data, inheritance modes, and associated genes. |
+| **Phen2Gene** | Phenotype-driven gene prioritization. Input HPO terms, get ranked candidate genes with scores. |
+| **HPO (Human Phenotype Ontology)** | Standardized clinical phenotype terms with definitions, synonyms, and gene associations. |
+
+### Microbiology
+
+| Database | What it provides |
+|----------|-----------------|
+| **BV-BRC** | Bacterial and viral genomics — gene search, virulence factors, and antimicrobial resistance genes. |
+
+## Structure prediction
+
+MIP can predict protein structures from amino acid sequences using **NVIDIA Boltz2**, a state-of-the-art structure prediction model. See [Structure Prediction](/chat-experiences/structure-prediction) for details.
+
+## How to get the best results
+
+### Be specific about what you need
+
+Vague questions get shallow answers. Specific questions trigger targeted database queries.
+
+| Instead of | Try |
+|-----------|-----|
+| "Tell me about TP53" | "What loss-of-function variants in TP53 are classified as pathogenic in ClinVar, and what are their population frequencies in gnomAD?" |
+| "Is this gene a drug target?" | "What compounds in ChEMBL target CDK4 with IC50 below 100nM, and are any in clinical trials?" |
+| "What does this protein do?" | "What are the known domains, PTMs, and disease associations for UniProt P38398 (BRCA1)?" |
+
+### Ask follow-up questions
+
+MIP retains context within a conversation. After an initial broad search, drill down:
+
+1. "What genes are associated with dilated cardiomyopathy?"
+2. "Which of those have pathogenic variants in ClinVar with at least 2-star review status?"
+3. "For TTN, what are the gnomAD constraint metrics and known loss-of-function variants?"
+
+### Combine databases explicitly
+
+You can ask MIP to cross-reference multiple sources:
+
+- "Search PubMed for recent papers on SGLT2 inhibitors in heart failure, then check ClinicalTrials.gov for ongoing Phase III trials"
+- "Look up the protein structure of EGFR in PDB, then find all ChEMBL compounds targeting it with activity data"
+- "Compare the UniProt entries for DR3 and DcR3, including domain alignment and sequence identity"
+
+<Note>
+MIP decides which databases to query based on your question. If you want a specific database searched, mention it by name. MIP will prioritize it.
+</Note>
+
+## Tool call visibility
+
+Every database query is shown as a collapsible tool call indicator in the chat:
+
+- **Tool name** — Which database was queried (e.g., "PubMed", "gnomAD", "ChEMBL")
+- **Result count** — How many results were returned
+- **Status** — Green checkmark for successful queries
+
+Click any citation badge in the response to open the original source record in a new tab. This lets you verify every claim MIP makes against the primary data.

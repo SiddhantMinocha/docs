@@ -1,0 +1,117 @@
+---
+title: "Protein Visualization"
+description: "View color-coded protein sequences, domains, features, and side-by-side comparisons."
+icon: "dna"
+---
+
+MIP can render interactive protein visualizations directly in your chat — color-coded sequence viewers with domain annotations, feature tracks, PTMs, active sites, and more. For protein comparisons, it computes sequence alignment and shows identity percentages alongside both proteins.
+
+All data is fetched live from UniProt. No sequences are fabricated — every amino acid, domain boundary, and identity percentage comes directly from tool output and deterministic computation.
+
+## Single protein view
+
+Ask MIP to show you a protein's features:
+
+- "Show me the protein features for BRCA1"
+- "Visualize the domains and PTMs of UniProt P04637"
+- "What are the annotated features of TNFRSF25?"
+
+MIP looks up the protein in UniProt, fetches all annotations, and opens a side-panel viewer with four sections:
+
+### Protein header
+
+Displays the gene name, UniProt accession (linked to uniprot.org), organism, protein name, length, and function summary.
+
+### Feature tracks
+
+A horizontal SVG overview of the full protein length with color-coded tracks grouped by category:
+
+| Track | What it shows | Visual |
+|-------|--------------|--------|
+| **Domains** | Named structural/functional domains (e.g., BRCT, Death domain) | Colored bars cycling through blue, purple, indigo, teal, cyan, sky |
+| **Repeats** | Repeat regions like cysteine-rich domains (CRDs) | Amber bars |
+| **Signal peptide** | N-terminal signal sequences | Emerald bars |
+| **Transmembrane** | Membrane-spanning regions | Rose bars |
+| **Coiled coil** | Coiled-coil regions | Lime bars |
+| **PTMs** | Phosphorylation, glycosylation, lipidation, disulfide bonds | Colored circles (orange, pink, yellow, violet) |
+| **Active/binding sites** | Catalytic residues and ligand-binding positions | Colored circles (red, sky) |
+
+Hover over any feature to see its name, position range, and description.
+
+### Sequence viewer
+
+The full amino acid sequence displayed in monospace, 60 characters per line, grouped in blocks of 10. Each character is color-coded based on the annotations that overlap it:
+
+- Domain regions get a colored background matching the feature tracks
+- PTM positions are marked with `*` above the character
+- Active site positions are marked with `^` below the character
+- Position numbers appear on the left of each line
+
+Hover over any residue to see all annotations at that position.
+
+### Legend
+
+A color key mapping each annotation type to its visual representation.
+
+## Protein comparison
+
+Ask MIP to compare two proteins:
+
+- "Compare DR3 and DcR3 proteins"
+- "Show me the differences between UniProt Q93038 and O95407"
+- "Compare the domain structure of TNFRSF25 vs TNFRSF6B"
+
+MIP fetches both proteins from UniProt, runs a global sequence alignment (Needleman-Wunsch algorithm), and computes per-domain identity. The comparison view shows:
+
+### Comparison header
+
+The two gene names, overall sequence identity percentage, aligned length, and gap count.
+
+### Domain comparisons table
+
+A table showing identity percentages for each matching domain pair. Domains are matched by normalized name across both proteins (e.g., "TNFR-Cys 1" in protein 1 aligns with "TNFR-Cys 1" in protein 2). Domains unique to one protein are listed as "only in protein 1/2."
+
+### Individual protein views
+
+Both proteins are rendered with their full feature tracks, sequence viewers, and annotations — identical to the single protein view. You can scroll through each independently.
+
+## How the data is fetched
+
+1. MIP calls the UniProt REST API with the protein accession, requesting sequence, domains, PTMs, active sites, and all feature annotations.
+2. Domain and feature sequences are extracted from the full protein sequence using UniProt's 1-indexed positions.
+3. For comparisons, a Needleman-Wunsch global alignment is computed in pure TypeScript with affine gap penalties — no external service is involved.
+4. All data is packaged as JSON and stored in the artifact. Subsequent opens read from the database — no re-fetch from UniProt.
+
+A timestamp at the top of the viewer shows exactly when the data was fetched from UniProt (in UTC), so you always know how current the annotations are.
+
+<Note>
+All identity percentages and domain sequences are computed deterministically from tool output. MIP never estimates or approximates protein data — if a number appears in the viewer, it was calculated from real sequences.
+</Note>
+
+## Available actions
+
+The protein viewer toolbar includes:
+
+- **Copy FASTA** — Copies the protein sequence in FASTA format to your clipboard
+- **Download JSON** — Downloads the full protein data (sequence, annotations, alignment results) as a JSON file
+
+## What you can learn from the viewer
+
+<AccordionGroup>
+  <Accordion title="Domain architecture" icon="layer-group">
+    See which functional domains a protein contains, their exact boundaries, and how they are arranged along the sequence. Useful for understanding protein function and predicting the impact of variants in specific regions.
+  </Accordion>
+  <Accordion title="Post-translational modifications" icon="circle-dot">
+    Identify phosphorylation, glycosylation, lipidation, and disulfide bond sites. Relevant for understanding regulation, signaling, and the functional consequences of missense variants near modification sites.
+  </Accordion>
+  <Accordion title="Structural features" icon="brackets-curly">
+    Locate signal peptides, transmembrane regions, and coiled-coil domains. Critical for understanding protein localization and whether a variant might disrupt membrane anchoring or secretion.
+  </Accordion>
+  <Accordion title="Evolutionary comparison" icon="code-compare">
+    Compare paralog or ortholog sequences to understand conservation. High identity in a domain suggests functional importance; divergence may explain different biological roles.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+Combine protein visualization with variant interpretation. After identifying a variant of interest, ask MIP to visualize the protein and check whether the variant falls within an annotated domain, near a PTM site, or in a conserved region.
+</Tip>

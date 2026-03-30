@@ -1,0 +1,100 @@
+---
+title: "Structure Prediction"
+description: "Predict and visualize 3D protein structures from amino acid sequences, and compare wildtype vs mutant conformations."
+icon: "cubes"
+---
+
+MIP can predict the 3D structure of any protein from its amino acid sequence and render it as an interactive viewer directly in your chat. You can also compare wildtype and mutant structures side by side to assess how a specific variant might affect protein conformation.
+
+Structure predictions are powered by **NVIDIA Boltz2**, a state-of-the-art deep learning model for biomolecular structure prediction. Results are rendered using **Mol\***, the same viewer used by RCSB PDB and the AlphaFold Database.
+
+## Predicting a structure
+
+Provide an amino acid sequence and ask MIP to predict its structure:
+
+- "Predict the structure of this sequence: MKWVTFISLLFLFSSAYS..."
+- "What would the 3D structure of BRCA1 RING domain look like?"
+- "Predict the structure from this FASTA file" (attach a .fasta file)
+
+MIP validates the input, submits the sequence to Boltz2, and polls for results. A loading card appears in chat while prediction runs (typically 1-3 minutes). When complete, the 3D viewer opens automatically.
+
+### Input requirements
+
+| Parameter | Limit |
+|-----------|-------|
+| Number of chains | 1-12 per prediction |
+| Residues per chain | Up to 4,096 amino acids |
+| Alphabet | Standard 20 amino acids |
+
+Multi-chain complexes are supported — provide a multi-sequence FASTA file or describe the chains in your message.
+
+## The 3D viewer
+
+The structure viewer supports standard molecular visualization controls:
+
+- **Rotate** — Click and drag to rotate the structure
+- **Zoom** — Scroll to zoom in and out
+- **Pan** — Right-click and drag to pan
+
+### Confidence coloring
+
+Structures are colored by **pLDDT** (predicted Local Distance Difference Test), the per-residue confidence metric:
+
+| Color | pLDDT range | Meaning |
+|-------|------------|---------|
+| Blue | > 90 | Very high confidence |
+| Cyan | 70-90 | High confidence |
+| Yellow | 50-70 | Low confidence |
+| Orange | < 50 | Very low confidence — treat with caution |
+
+<Tip>
+Regions with low pLDDT (yellow/orange) are often intrinsically disordered or flexible loops. High-confidence regions (blue) are the most reliable for structural interpretation.
+</Tip>
+
+## Comparing wildtype vs mutant
+
+Ask MIP to compare two structures:
+
+- "Predict the structure of TP53 wildtype and the R248W mutant, then compare them"
+- "How does the p.V600E mutation affect the structure of BRAF kinase domain?"
+- "Compare the structure of this sequence with and without the G12D mutation"
+
+MIP predicts both structures and displays them in a **side-by-side comparison view** with synchronized cameras — rotating one viewer rotates the other, making it easy to spot conformational differences.
+
+### Comparison workflow
+
+1. MIP predicts the wildtype structure first
+2. Then predicts the mutant structure with the variant applied
+3. Both viewers are linked so camera movements stay synchronized
+4. The comparison opens in a side panel with both structures labeled
+
+## Downloading results
+
+Click the download button in the viewer to save the predicted structure as a **.cif file** (mmCIF format). This file can be opened in any molecular visualization tool — PyMOL, ChimeraX, VMD, or Mol* standalone.
+
+## How it works
+
+1. **Validation** — MIP checks that your sequence uses standard amino acids and is within the length limit.
+2. **Submission** — The sequence is sent to NVIDIA Boltz2 via their health API.
+3. **Prediction** — Boltz2 runs the structure prediction (async, typically 1-3 minutes).
+4. **Storage** — The resulting mmCIF file is stored in cloud storage for access.
+5. **Rendering** — Mol* loads the CIF file and renders the 3D structure with pLDDT coloring.
+
+Identical sequences submitted within 10 minutes return the cached prediction — no duplicate computation.
+
+<Note>
+Structure predictions are computational estimates, not experimental results. Always check the pLDDT confidence coloring. For high-stakes interpretations, validate against experimental structures from PDB when available.
+</Note>
+
+## When to use structure prediction vs existing structures
+
+| Scenario | Recommended approach |
+|----------|---------------------|
+| Protein has an experimental structure in PDB | Ask MIP to look it up: "Show me the PDB structure of EGFR" |
+| Protein has an AlphaFold prediction | Ask MIP to fetch it: "Get the AlphaFold structure for UniProt P04637" |
+| No existing structure, or you need a specific mutant | Use structure prediction: "Predict the structure of this sequence" |
+| Comparing wildtype vs mutant conformation | Use structure prediction with comparison |
+
+<Tip>
+For well-studied proteins, check PDB and AlphaFold first — experimental and pre-computed structures are available instantly. Use on-demand prediction for novel sequences, custom mutants, or multi-chain complexes not in existing databases.
+</Tip>
