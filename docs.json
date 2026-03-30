@@ -25,9 +25,19 @@
             ]
           },
           {
-            "group": "Guides",
+            "group": "Platform",
             "pages": [
               "guides/chat",
+              "guides/files",
+              "guides/jobs",
+              "guides/consilium",
+              "guides/settings",
+              "guides/team"
+            ]
+          },
+          {
+            "group": "Workbench",
+            "pages": [
               "guides/cases",
               "guides/case-overview",
               "guides/findings",
@@ -39,10 +49,7 @@
               "guides/genomic-search",
               "guides/visualizations",
               "guides/clinical-reports",
-              "guides/case-settings",
-              "guides/settings",
-              "guides/team",
-              "guides/consilium"
+              "guides/case-settings"
             ]
           },
           {

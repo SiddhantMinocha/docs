@@ -1,137 +1,167 @@
 ---
 title: Platform
-description: What Purna is, who it is built for, how it works, and what it supports.
+description: How MIP works — architecture, databases, reasoning, and compute."
 icon: shield-check
 ---
 
 ## Overview
 
-Purna is a variant analysis and genomic interpretation platform designed for research and clinical workflows. It provides a comprehensive framework for genomic data management and analysis — enabling you to identify and classify genetic variants, annotate them with evidence from curated databases, and generate actionable insights.
+MIP is an AI-native research platform for biology. It combines a domain-specialized reasoning engine with real-time access to 40+ scientific databases, a live literature index, and a containerized compute environment — giving you a single surface to ask questions, analyze data, run pipelines, and generate structured outputs across the full breadth of biological research.
 
-The platform integrates raw genetic data with relevant patient metadata and applies validated pipelines for annotation, classification, and interpretation. It compiles publicly available datasets, laboratory-specific data, and community-curated evidence to produce comprehensive, custom genetic reports that support clinical decision-making and research activities.
+The platform is built around three layers: a **reasoning layer** that understands biology at the level of genes, proteins, pathways, variants, drugs, and disease mechanisms; a **data layer** that connects to authoritative public databases and your own uploaded datasets; and a **compute layer** that can execute code, run autonomous multi-step pipelines, and produce publication-quality results.
 
 <Note>
-Purna is a research and clinical decision-support tool. All outputs are intended to assist qualified professionals and should be reviewed by a genetic specialist before being used in any clinical context.
+MIP is a research and clinical decision-support tool. All outputs are intended to assist qualified professionals and should be reviewed by a domain expert before being used in any clinical or regulatory context.
 </Note>
 
-## Intended users
+## Who MIP is for
 
-Purna is built for laboratories, hospitals, and organizations specializing in genetic analysis, interpretation, and reporting. The platform is designed for use by genetic specialists — including clinical geneticists, genetic counselors, molecular biologists, and bioinformaticians — with advanced expertise in genomics and variant interpretation.
+MIP is built for researchers, clinicians, and teams working across biology and biomedicine. This includes:
 
-## Intended population
+- **Molecular and cell biologists** investigating gene function, protein interactions, and disease mechanisms
+- **Clinical geneticists and genetic counselors** interpreting variants and generating reports
+- **Bioinformaticians** running pipelines, validating data, and exploring multi-omics datasets
+- **Drug discovery scientists** mapping targets, pathways, and compound activity
+- **Translational researchers** bridging bench findings with clinical and population data
+- **Lab directors and principal investigators** overseeing analysis across projects and team members
 
-Purna is intended for use on genomic data obtained from individuals undergoing genetic testing across a range of clinical and research contexts, including diagnostic testing, carrier screening, predictive testing, and pharmacogenomic analysis.
+Whether you are working on a single gene or running a genome-wide screen, MIP adapts to the scope and depth of your question.
 
-## Specimen types
+## Architecture
 
-Purna operates on processed genomic sequence data derived from human biological specimens. The platform does not handle physical samples directly. It requires sequence data (VCF files, or FastQ and BAM files for enterprise customers) that originate from specimens such as:
-
-- Whole blood
-- Cord blood
-- Dried blood spots
-- Saliva swabs
-- Cultured fibroblasts
-- Frozen tissues
-- Buccal swabs
-- Other biological specimens yielding extractable DNA
-
-## Operating principles
-
-Purna operates by processing and interpreting next-generation sequencing (NGS) data derived from human biological specimens. The platform uses validated bioinformatics pipelines to detect, annotate, and classify genetic variants.
+MIP's architecture is designed to keep reasoning, data, and compute tightly integrated so you never have to context-switch between tools.
 
 <Steps>
-  <Step title="Data ingestion">
-    Upload VCF files in GRCh37 (hg19) or GRCh38 (hg38) format. The platform auto-detects the genome assembly and validates the input.
+  <Step title="Reasoning layer">
+    A domain-specialized AI engine that understands biological entities and relationships — genes, variants, proteins, pathways, diseases, drugs, phenotypes. It decomposes complex questions into tool calls, searches the right databases, interprets results, and synthesizes answers with citations. Multiple specialized agents (genomics, literature, structural biology, pharmacology) are composed dynamically based on your question.
   </Step>
-  <Step title="Annotation">
-    Variants are annotated using Ensembl VEP with RefSeq transcripts, population frequencies from gnomAD, clinical classifications from ClinVar, and in silico predictions from SIFT, PolyPhen-2, and AlphaMissense. See the [Annotation Pipeline](/pipeline) for full technical details.
+  <Step title="Data layer">
+    Real-time connections to 40+ public databases (see full list below), your uploaded datasets (VCFs, expression matrices, custom files), and a live PubMed/preprint literature index. The reasoning layer queries these sources on every request — results are never cached or stale.
   </Step>
-  <Step title="Classification">
-    Each variant receives an automated ACMG/AMP pathogenicity classification based on 28 standard criteria. Classifications can be refined interactively using AI-enhanced evidence gathering from multiple databases.
+  <Step title="Compute layer">
+    A containerized execution environment with Python and R, pre-installed scientific libraries (pandas, NumPy, Biopython, scanpy, pydeseq2, matplotlib, and 15+ others), and support for long-running background jobs. Code runs in isolated sandboxes with results streamed back inline or available asynchronously.
   </Step>
-  <Step title="Interpretation and reporting">
-    Annotated variants are available for querying, filtering, and analysis through the AI chat interface, variant browser, and code execution environment. Structured clinical reports can be generated on demand.
+  <Step title="Output layer">
+    Structured artifacts — reports, spreadsheets, visualizations, code files, protein viewers — generated from any analysis and versioned for review, export, or sharing.
   </Step>
 </Steps>
 
-## Supported applications
+## Genomic variant analysis
 
-The platform is compatible with data generated from the following sequencing technologies:
+MIP includes a full variant interpretation workflow for clinical and research genomics:
+
+| Step | What happens |
+|------|-------------|
+| **Data ingestion** | Upload VCF files in GRCh37 (hg19) or GRCh38 (hg38) format. The platform auto-detects the genome assembly and validates input. |
+| **Annotation** | Variants are annotated using Ensembl VEP 115 with RefSeq transcripts, population frequencies from gnomAD, clinical classifications from ClinVar, and in silico predictions from SIFT, PolyPhen-2, and AlphaMissense. See the [Annotation Pipeline](/pipeline) for technical details. |
+| **Classification** | Each variant receives an automated ACMG/AMP pathogenicity classification based on 28 standard criteria. Classifications can be refined interactively using AI-enhanced evidence gathering. |
+| **Interpretation** | Annotated variants are available for querying, filtering, and analysis through the AI chat interface, variant browser, and code execution environment. |
+| **Reporting** | Structured clinical reports can be generated on demand with findings, ACMG evidence, and case summaries. |
+
+Supported sequencing applications:
 
 | Application | Description |
 |------------|-------------|
-| **Whole Exome Sequencing (WES)** | Coding regions of the genome, typically 30,000–100,000 variants |
-| **Whole Genome Sequencing (WGS)** | Full genome coverage, up to 1 million variants (enterprise for larger datasets) |
-| **Targeted gene panels** | Custom or curated gene sets, typically 100–5,000 variants |
+| **Whole Exome Sequencing (WES)** | Coding regions, typically 30,000-100,000 variants |
+| **Whole Genome Sequencing (WGS)** | Full genome coverage, up to 1 million variants |
+| **Targeted gene panels** | Custom or curated gene sets, typically 100-5,000 variants |
 | **Chromosomal Microarray Analysis (CMA)** | Copy number variant detection from array-based platforms |
 
-## Nature of output
+## Multi-omics and custom data
 
-Purna delivers qualitative, semi-quantitative, and quantitative outputs to support genetic data interpretation:
+Beyond genomics, MIP supports analysis of any biological dataset you bring:
 
-<AccordionGroup>
-  <Accordion title="Variant annotations" icon="tags">
-    Each variant is annotated with HGVS nomenclature, consequence terms, transcript information, genomic coordinates, and dbSNP identifiers. Full annotation details are described in the [Annotation Pipeline](/pipeline#data-available-per-variant).
-  </Accordion>
-  <Accordion title="Pathogenicity classifications" icon="scale-balanced">
-    Automated ACMG/AMP classifications (Pathogenic, Likely Pathogenic, VUS, Likely Benign, Benign) with per-criterion evidence. Classifications can be reviewed and reclassified manually or with [AI Enhance](/guides/acmg).
-  </Accordion>
-  <Accordion title="Population frequencies" icon="earth-americas">
-    Global and population-specific allele frequencies from gnomAD, including maximum population frequency and homozygote counts.
-  </Accordion>
-  <Accordion title="In silico predictions" icon="microchip">
-    Functional impact predictions from SIFT, PolyPhen-2, and AlphaMissense with numeric scores and categorical predictions.
-  </Accordion>
-  <Accordion title="Clinical database cross-references" icon="hospital">
-    ClinVar clinical significance, review status, associated conditions, and accession identifiers.
-  </Accordion>
-  <Accordion title="Phenotype matching" icon="magnifying-glass">
-    HPO-based phenotype-to-gene matching with match scores and rankings using Phen2Gene integration.
-  </Accordion>
-  <Accordion title="Clinical reports" icon="file-lines">
-    Structured reports including variant interpretation, clinical findings, case summaries, ACMG evidence, and variant comparisons. See [Clinical Reports](/guides/clinical-reports).
-  </Accordion>
-  <Accordion title="Custom analysis outputs" icon="terminal">
-    Tables, statistical results, and publication-quality visualizations generated through [Code Execution](/code-execution) using Python or R.
-  </Accordion>
-</AccordionGroup>
+- **Transcriptomics** — RNA-seq count matrices, differential expression, pathway enrichment
+- **Proteomics** — Protein quantification, structure exploration via AlphaFold and PDB
+- **Metabolomics** — Metabolite identification, pathway mapping
+- **Single-cell** — scanpy-based workflows for clustering, trajectory analysis, marker identification
+- **Custom datasets** — Upload CSVs, TSVs, or other tabular data and analyze with natural language or code
+
+MIP doesn't require a specific input format for non-genomic data. Describe what you have, upload it, and the reasoning layer figures out how to work with it.
 
 ## Data sources
 
-Purna integrates evidence from the following public databases. All sources are updated on a regular schedule to reflect the latest available data.
+MIP integrates evidence from 40+ public databases across six categories. All sources are queried in real time.
 
-| Database | Category | Used For |
-|----------|----------|---------|
+| Database | Category | Used for |
+|----------|----------|----------|
+| **PubMed** | Literature | Peer-reviewed publications, systematic reviews, case reports |
+| **bioRxiv / medRxiv** | Literature | Preprints and emerging research |
 | **ClinVar** | Clinical | Variant clinical significance, review status, conditions |
-| **gnomAD** | Population | Allele frequencies across global populations |
 | **OMIM** | Clinical | Gene-disease relationships and inheritance patterns |
-| **PubMed** | Literature | Peer-reviewed publications and case reports |
-| **Ensembl VEP** | Annotation | Consequence prediction, transcript mapping, HGVS |
-| **RefSeq** | Annotation | Transcript definitions and gene models |
-| **AlphaMissense** | Prediction | Deep learning-based missense pathogenicity |
-| **SIFT** | Prediction | Sequence homology-based functional impact |
-| **PolyPhen-2** | Prediction | Structure and sequence-based functional impact |
-| **dbSNP** | Identifiers | Variant rsID identifiers |
 | **ClinGen** | Clinical | Gene-disease validity and dosage sensitivity |
 | **Orphanet** | Clinical | Rare disease classifications and epidemiology |
+| **gnomAD** | Population | Allele frequencies across global populations |
+| **dbSNP** | Population | Variant rsID identifiers |
+| **GWAS Catalog** | Population | Genome-wide association study results |
+| **Ensembl VEP** | Annotation | Consequence prediction, transcript mapping, HGVS nomenclature |
+| **RefSeq** | Annotation | Transcript definitions and gene models |
+| **UniProt** | Protein | Protein sequence, function, domains, PTMs, active sites |
+| **PDB** | Structure | Experimentally determined protein structures |
+| **AlphaFold** | Structure | AI-predicted protein structures |
+| **AlphaMissense** | Prediction | Deep learning-based missense pathogenicity scores |
+| **SIFT** | Prediction | Sequence homology-based functional impact |
+| **PolyPhen-2** | Prediction | Structure and sequence-based functional impact |
+| **ChEMBL** | Drug discovery | Bioactivity data, compound-target relationships |
+| **Open Targets** | Drug discovery | Target-disease associations, tractability |
+| **DrugBank** | Pharmacology | Drug mechanisms, interactions, pharmacokinetics |
 | **PharmGKB** | Pharmacogenomics | Drug-gene interactions and dosing guidelines |
+| **KEGG** | Pathways | Metabolic and signaling pathway maps |
+| **Reactome** | Pathways | Curated biological pathway knowledge base |
+| **Gene Ontology** | Annotation | Functional annotation, biological process, molecular function |
+| **MyGene.info** | Gene | Gene metadata aggregation across multiple sources |
+| **NCBI Gene** | Gene | Gene summaries, nomenclature, orthologs |
+| **HPO** | Phenotype | Human Phenotype Ontology terms and gene associations |
+| **Phen2Gene** | Phenotype | Phenotype-to-gene matching with ranked scores |
 
 <Tip>
-If there is a database or annotation source you would like to see integrated into Purna, let us know at [contact@purna.ai](mailto:contact@purna.ai). We are very receptive to feedback and actively prioritize feature requests from our users.
+If there is a database or data source you need integrated, let us know at [contact@purna.ai](mailto:contact@purna.ai). We actively prioritize requests from researchers.
 </Tip>
+
+## Output types
+
+MIP produces structured, versionable outputs from any analysis:
+
+<AccordionGroup>
+  <Accordion title="Variant annotations and classifications" icon="dna">
+    HGVS nomenclature, consequence terms, transcript mapping, population frequencies, in silico predictions, and automated ACMG/AMP classifications with per-criterion evidence. See [ACMG Classification](/guides/acmg).
+  </Accordion>
+  <Accordion title="Clinical reports" icon="file-lines">
+    Variant interpretation reports, findings summaries, case overviews, and ACMG evidence reports. See [Clinical Reports](/guides/clinical-reports).
+  </Accordion>
+  <Accordion title="Protein visualizations" icon="cubes">
+    Color-coded protein sequence viewers with domain annotations, PTMs, active sites, transmembrane regions, and feature tracks. Single protein and comparison modes with sequence alignment.
+  </Accordion>
+  <Accordion title="Literature synthesis" icon="book-open">
+    Summarized findings from PubMed searches, contradiction analysis, evidence tables, and citation-backed answers to specific research questions.
+  </Accordion>
+  <Accordion title="Hypothesis evaluation" icon="swords">
+    Multi-agent debate outputs including refined hypotheses, agent consensus, unresolved tensions, minority dissent, and aggregated literature evidence. See [Consilium](/guides/consilium).
+  </Accordion>
+  <Accordion title="Visualizations and charts" icon="chart-bar">
+    Publication-quality figures generated from natural language or code — bar, line, scatter, pie, heatmaps, volcano plots, and more.
+  </Accordion>
+  <Accordion title="Code execution results" icon="terminal">
+    Tables, statistical outputs, and programmatic analysis from Python or R running in a sandboxed compute environment. See [Code Execution](/code-execution).
+  </Accordion>
+  <Accordion title="Spreadsheets and exports" icon="table">
+    Tabular data in CSV or spreadsheet format, downloadable and shareable.
+  </Accordion>
+</AccordionGroup>
 
 ## Limitations
 
-- Purna is a decision-support tool. It does not make autonomous clinical decisions and is not intended to replace the judgment of qualified genetic specialists.
-- Automated ACMG/AMP classifications are rule-based starting points. All classifications should be reviewed by a trained professional before being used in a clinical setting.
+- MIP is a decision-support tool. It does not make autonomous clinical decisions and is not intended to replace the judgment of qualified professionals.
+- Automated ACMG/AMP classifications are rule-based starting points. All classifications should be reviewed by a trained professional before clinical use.
 - Variant annotations reflect the versions of reference databases at the time of processing. Re-annotation may be needed as databases are updated.
-- The platform currently supports Single Inherited Disease case types. Family Inherited Disease and Somatic case types are coming soon.
+- AI-generated analysis should be verified against primary sources. MIP provides citations to make this straightforward.
 
 ## Security and privacy
 
 - All data is encrypted in transit (TLS) and at rest.
-- Patient data is stored in your organization's isolated environment and is never shared across accounts.
-- Access to individual cases is controlled through role-based permissions configurable in [Team settings](/guides/team).
+- Patient and research data is stored in your organization's isolated environment and is never shared across accounts.
+- Access to individual cases and projects is controlled through role-based permissions configurable in [Team settings](/guides/team).
+- All data access and mutations are logged to an immutable audit trail.
 
 <Note>
 Never include patient-identifying information such as names, medical record numbers, or contact details in case names, notes, or shared conversations. Use anonymized identifiers for all cases.
