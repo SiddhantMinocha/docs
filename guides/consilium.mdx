@@ -1,0 +1,193 @@
+---
+title: "Consilium"
+description: "Run structured multi-agent debates to stress-test scientific hypotheses with evidence-grounded reasoning."
+icon: "swords"
+---
+
+Consilium is a hypothesis evaluation engine that assembles a panel of AI domain experts and runs a structured, multi-round debate around your research question. Instead of a single model answering in isolation, multiple specialized agents argue, cite literature, challenge each other, and converge toward a refined hypothesis — all grounded in real evidence from PubMed, ChEMBL, Reactome, UniProt, and other databases.
+
+## Why use Consilium
+
+A single AI response can sound confident while missing critical angles. Consilium solves this by:
+
+- **Multi-perspective analysis** — Each agent evaluates your hypothesis through a different scientific lens (molecular biology, genetics, structural biology, drug discovery, bioinformatics).
+- **Evidence grounding** — Agents search real databases and cite papers, structures, and pathways. Every claim is backed by verifiable references.
+- **Structured argumentation** — Rounds follow a deliberate progression: literature grounding, position statements, cross-examination, synthesis pressure, and convergence.
+- **Transparent disagreement** — Unresolved tensions and minority dissent are surfaced explicitly rather than hidden behind a single answer.
+
+## Creating a new debate
+
+Navigate to **Consilium** in the sidebar and click **New Debate**.
+
+### Step 1: Define your hypothesis
+
+Enter the research question or hypothesis you want to evaluate. This is the central claim that agents will argue for or against. Be specific — a focused hypothesis produces sharper debate.
+
+Good examples:
+- "Loss-of-function variants in PCSK9 are protective against coronary artery disease through LDL receptor upregulation"
+- "The p.V600E BRAF mutation drives melanoma progression primarily through the MAPK/ERK signaling pathway"
+- "Combining CDK4/6 inhibitors with endocrine therapy improves progression-free survival in HR+/HER2- breast cancer"
+
+You can optionally add a title. If you leave it blank, one is generated from your hypothesis.
+
+<Tip>
+Write your hypothesis as a testable claim, not an open-ended question. "Does BRCA1 matter?" is too vague. "Biallelic BRCA1 loss-of-function drives homologous recombination deficiency in triple-negative breast cancer" gives agents something concrete to evaluate.
+</Tip>
+
+### Step 2: Experiment canvas (optional)
+
+Provide additional context to help agents ground their analysis in your specific research setting:
+
+| Field | Description | Example |
+|-------|-------------|---------|
+| **Biological system** | The organism, tissue, cell type, or pathway under study | "Human hepatocytes, NAFLD context" |
+| **Available data** | What data you already have or plan to generate | "WES from 200 patients, matched RNA-seq" |
+| **Goal** | What you want to learn or decide | "Prioritize candidate variants for functional validation" |
+| **Constraints** | Budget, timeline, technical limitations | "No CRISPR screens, 3-month timeline" |
+
+This canvas is shared with all agents to scope their arguments appropriately.
+
+### Step 3: Select your agent panel
+
+Choose 2 to 8 domain experts from the available presets:
+
+| Agent | Focus area |
+|-------|------------|
+| **Molecular Biologist** | Mechanistic pathways, cellular dynamics, experimental feasibility |
+| **Geneticist / Genomicist** | Variant interpretation, GWAS, population genetics, heritability |
+| **Structural Biologist** | Protein conformation, binding sites, structure-function consequences |
+| **Drug Discovery Scientist** | Druggability, selectivity, ADMET, lead optimization |
+| **Bioinformatician** | Data quality, pipeline validity, statistical power, reproducibility |
+
+Each agent comes with a predefined persona and evaluation lens. You can customize the name, color, and persona if needed.
+
+A **Moderator** agent is added automatically. It does not argue for or against the hypothesis — instead, it synthesizes each round, identifies tensions, and decides when the debate should fork or converge.
+
+<Note>
+You need at least 2 agents to start a debate. For thorough evaluation, 3 to 5 agents with complementary perspectives work best.
+</Note>
+
+Click **Start Debate** to begin. The debate transitions from configuration to active execution.
+
+## How the debate runs
+
+Once started, the debate progresses through structured rounds. Each round has a specific purpose:
+
+### Round types
+
+| Round | Type | What happens |
+|-------|------|--------------|
+| 1 | **Literature grounding** | Agents search PubMed, ChEMBL, Reactome, and other databases for relevant evidence. They establish the factual foundation before arguing. |
+| 2 | **Position statements** | Each agent declares a stance — **support**, **oppose**, **neutral**, or **conditional** — and explains their reasoning with citations. |
+| 3+ | **Cross-examination** | Agents challenge each other's claims, identify weaknesses, and present counter-evidence. This is where the hypothesis gets stress-tested. |
+| N-1 | **Synthesis pressure** | Agents compress their reasoning into the most critical points. Weak arguments get dropped. |
+| N | **Convergence** | Final synthesis. The moderator determines whether the panel has converged on a refined position or whether the debate should fork into competing directions. |
+
+### What you see during the debate
+
+The debate page uses a three-panel layout:
+
+- **Left panel — Debate graph**: A visual map of the round progression. Click any round node to filter the feed to that round's statements.
+- **Center panel — Live feed**: Real-time stream of agent statements as they are generated. Each statement shows the agent's stance, key findings, agreements, conflicts, and cited evidence.
+- **Right panel — Summary**: Tabbed view with four sections (see below).
+
+### Summary panel tabs
+
+**Overview** — Shows the original and refined hypothesis side by side, agent consensus breakdown (stacked bar chart of support/conditional/neutral/oppose), and round progress.
+
+**Findings** — Surfaces unresolved tensions (points where agents disagree and could not reconcile) and minority dissent (positions held by only one or two agents that the majority rejected).
+
+**Literature** — Aggregated, deduplicated list of all evidence cited across all rounds and agents. Searchable and sorted by quality score. Each citation shows the source database, star rating, validation status, and which agent cited it.
+
+**Agents** — Grid of all participating agents with their role, evaluation lens, color, and active/eliminated status.
+
+## Intervening during a debate
+
+You are not a passive observer. While a debate is running, the **intervention bar** at the bottom of the feed lets you steer the discussion:
+
+| Intervention type | When to use it |
+|-------------------|----------------|
+| **Constraint** | Add a boundary that agents must respect going forward. Example: "Only consider FDA-approved therapies." |
+| **Challenge** | Push back on a specific claim or ask agents to address a gap. Example: "None of you have addressed the role of epigenetic silencing." |
+| **New data** | Inject new information that agents should incorporate. Example: "A Phase III trial (NCT04379596) just reported negative results for this combination." |
+
+You can also:
+- **Advance to the next round** manually if you want to skip ahead.
+- **Pause** the debate to review findings before continuing.
+- **End** the debate at any time.
+
+<Tip>
+Use the challenge intervention when you notice all agents converging too quickly — it forces them to reconsider assumptions and often surfaces overlooked evidence.
+</Tip>
+
+## Understanding the output
+
+When the debate completes (or converges), the summary panel contains the full output:
+
+### Refined hypothesis
+
+The moderator produces a refined version of your original hypothesis that incorporates the strongest evidence and arguments from all agents. The **Overview** tab shows both the original and refined hypothesis in separate blocks so you can compare exactly what changed.
+
+### Agent consensus
+
+A stacked bar chart shows how agents voted in the final round:
+
+- **Support** (green) — Agent believes the hypothesis is well-supported by evidence.
+- **Conditional** (yellow) — Agent supports the hypothesis with caveats or qualifications.
+- **Neutral** (gray) — Agent found insufficient evidence to take a position.
+- **Oppose** (red) — Agent believes the evidence contradicts the hypothesis.
+
+### Unresolved tensions
+
+Key disagreements that the panel could not resolve. These are the most valuable output for planning follow-up experiments — they point to exactly where the evidence is insufficient or contradictory.
+
+### Minority dissent
+
+Positions held by one or two agents that the majority rejected. These are worth reviewing carefully — minority positions in scientific debates sometimes turn out to be correct.
+
+### Literature evidence
+
+Every citation from every agent, deduplicated and quality-scored. Each entry includes:
+- Source database (PubMed, PDB, ChEMBL, Reactome, UniProt)
+- Star rating (1-5) based on evidence quality
+- Validation status
+- Which agent cited it and in which round
+- Direct link to the original source
+
+## Filtering and navigation
+
+- **Filter by agent**: Click the colored agent dots in the header to show only that agent's statements.
+- **Filter by round**: Click a round node in the left graph panel to jump to that round in the feed.
+- **Search literature**: Use the search bar in the Literature tab to find citations by title, source, journal, or type.
+
+## Managing debates
+
+The **Consilium** page lists all your debates with:
+- Status badge (configuring, running, paused, converged, completed, etc.)
+- Participating agents (shown as colored dots)
+- Round progress
+- Token usage
+- Creation date
+
+Use the search bar to find debates by title or hypothesis. Click the archive button to hide completed debates from the list without deleting them.
+
+<Note>
+Archived debates are not deleted — they are hidden from the default view. You can still access them if needed.
+</Note>
+
+## Use cases
+
+<AccordionGroup>
+  <Accordion title="Validating a variant's pathogenicity mechanism" icon="dna">
+    Set your hypothesis to a specific mechanism (e.g., "CFTR p.F508del causes cystic fibrosis through protein misfolding and ER retention, not channel gating defects"). Agents will debate the mechanism using structural data, functional studies, and clinical evidence, producing a nuanced view of the variant's impact.
+  </Accordion>
+  <Accordion title="Evaluating a drug target before committing resources" icon="flask">
+    Before investing in a drug discovery program, use Consilium to debate whether a target is druggable, selective, and clinically relevant. Agents from drug discovery, structural biology, and bioinformatics will surface risks that single-perspective analysis might miss.
+  </Accordion>
+  <Accordion title="Resolving conflicting literature" icon="book-medical">
+    When published studies disagree, frame the conflict as a hypothesis and let agents argue both sides with citations. The literature tab aggregates all relevant papers in one place, and unresolved tensions highlight exactly where the evidence is ambiguous.
+  </Accordion>
+  <Accordion title="Pre-registration hypothesis refinement" icon="clipboard-check">
+    Before submitting a pre-registration, run your hypothesis through Consilium to identify weaknesses, missing controls, and alternative explanations. The refined hypothesis output can directly inform your pre-registration document.
+  </Accordion>
+</AccordionGroup>
