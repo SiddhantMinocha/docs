@@ -20,8 +20,7 @@
               "platform",
               "quickstart",
               "concepts",
-              "usage",
-              "pipeline"
+              "usage"
             ]
           },
           {
@@ -38,6 +37,7 @@
           {
             "group": "Workbench",
             "pages": [
+              "pipeline",
               "guides/cases",
               "guides/case-overview",
               "guides/findings",
