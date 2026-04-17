@@ -1,0 +1,131 @@
+---
+title: "Enzyme Design"
+description: "Design novel enzymes and ligand-binding proteins from a SMILES string — sequence, 3D structure, and automatic refolding validation."
+icon: "flask-vial"
+---
+
+MIP can design a novel protein from scratch for a target small molecule. Give it a SMILES string, and it generates an amino acid sequence together with a co-folded 3D structure, then independently refolds the design as a sanity check — all inside your chat.
+
+Enzyme design is powered by **DISCO** (DIffusion for Sequence-structure CO-design), a diffusion model that jointly generates sequence and structure conditioned on a ligand. Designs are refolded with **NVIDIA Boltz-2** and rendered with **Mol\***, the same viewer used by RCSB PDB.
+
+## Starting a design
+
+Ask MIP to design a protein for a substrate or ligand:
+
+- "Design an enzyme that binds caffeine"
+- "Design a protein that catalyses cyclopropanation of styrene — use ethyl diazoacetate as the carbene source"
+- "Design 3 scaffolds for this SMILES: CN1C=NC2=C1C(=O)N(C)C(=O)N2C"
+
+MIP resolves the SMILES (pulling it from PubChem or ChEMBL if you give a common name), confirms parameters with you, estimates the GPU cost, and submits. A result card appears in chat while the design runs.
+
+### Input options
+
+| Parameter | What it does | Default |
+|-----------|--------------|---------|
+| `ligandSmiles` | SMILES of the target substrate or ligand. Required. | — |
+| `proteinSequence` | Partial sequence with `-` at positions to design. Enables motif scaffolding. | Fully masked 150-residue protein |
+| `dnaTarget` | ACGT sequence for DNA-binding designs | None |
+| `rnaTarget` | ACGU sequence for RNA-binding designs | None |
+| `effort` | `fast` (100 diffusion steps, 2 recycles) or `max` (200 steps, 4 recycles) | `max` |
+| `numDesigns` | Independent designs to generate (1–5) | 3 |
+
+### Motif scaffolding
+
+If you already know the catalytic residues you want to preserve, pass them inside `proteinSequence`. Fixed positions hold their amino acid, `-` positions are designed by DISCO.
+
+- `"----------S----------H----------D----------"` pins a Ser/His/Asp triad and lets DISCO scaffold the rest.
+- `"MKGH----------------------------GGHM"` fixes terminal residues and designs everything between.
+
+## The result card
+
+When the job completes, a result card opens inline:
+
+### Design target
+
+The ligand's 2D structure, rendered from its canonical SMILES. Click **Show SMILES** to copy the string.
+
+### 3D structure
+
+An interactive Mol* viewer with the designed protein backbone and the co-folded ligand. Residues whose Cα lies within 5 Å of the ligand are highlighted. Multi-design jobs get a tab strip at the top so you can switch between seeds.
+
+<Note>
+DISCO outputs backbone-only structures (N, Cα, C, O) — no sidechains. Highlighted residues are positional candidates near the ligand, not confirmed catalytic residues. Experimental characterisation is always required.
+</Note>
+
+### Structure composition
+
+A compact bar chart of helix, sheet, and coil fractions computed from the backbone with Biotite.
+
+### Physical and chemical properties
+
+Four sequence-derived numbers: molecular weight, isoelectric point, hydropathicity (GRAVY), and Guruprasad instability index.
+
+A collapsible **Sequence-derived heuristics** section underneath shows charge at pH 7, extinction coefficient, aromatic fraction, and rough suggestions for ion-exchange buffer conditions. These are heuristics from the amino acid sequence, not predictions of expression behaviour.
+
+### Model confidence
+
+DISCO's native confidence scores — ranking score, inter-chain ipTM, and steric-clash flag when present.
+
+### Boltz-2 validation
+
+Every design is automatically refolded with Boltz-2 to independently predict the structure from sequence and ligand. MIP then computes the backbone RMSD between DISCO's structure and Boltz-2's prediction.
+
+| RMSD | Verdict | Meaning |
+|------|---------|---------|
+| < 2.0 Å | **PASS** | The sequence encodes the intended fold (paper co-designability threshold) |
+| 2.0–3.0 Å | **Marginal** | Worth visual inspection; may be a loop difference |
+| > 3.0 Å | **Fail** | The sequence refolds to something different — consider regenerating |
+
+Click **Compare with Boltz-2 refold** to open a side-by-side viewer with synchronised cameras. Rotating one structure rotates the other, which makes spotting real conformational differences much faster than reading the number alone.
+
+### Designed sequence
+
+The amino acid sequence in monospace, color-coded by property group (hydrophobic, positive, negative, polar, Cys, Gly, Tyr). Residues with their Cα within 5 Å of the ligand are highlighted in emerald. Hover any residue to see its position and near-ligand status.
+
+## Downloading results
+
+The result card toolbar provides:
+
+- **FASTA** — the designed protein sequence as FASTA, ready for gene synthesis
+- **CIF / PDB** — the full co-folded structure, openable in Mol*, PyMOL, or ChimeraX
+
+Each design is also saved to your **Datasets** library so it is accessible from any future chat.
+
+## How it works
+
+1. **Validation** — MIP parses your SMILES with openchemlib, rejects invalid input before any GPU spins up, and uses the canonical form so equivalent SMILES hit the dedup cache.
+2. **Submission** — The DISCO input JSON is sent to a dedicated Cerebrium GPU (NVIDIA L40). Identical jobs submitted within 10 minutes return the existing result.
+3. **Design** — DISCO runs `effort` diffusion steps with the configured number of recycles. Typical runtime is 15–60 minutes for `effort=max` on a 150–250 residue protein, scaling linearly with `numDesigns`.
+4. **Storage** — Each design (CIF and FASTA) is uploaded to cloud storage.
+5. **Validation** — A Boltz-2 refolding job is dispatched automatically. Results are joined back to the DISCO design card as they complete.
+6. **Billing** — Charged at 10 credits per second of actual GPU time (including cold start), rounded up to the nearest minute.
+
+## Limits and guardrails
+
+| Parameter | Limit |
+|-----------|-------|
+| Protein sequence length | 1,000 residues (L40 GPU ceiling) |
+| SMILES length | 5,000 characters |
+| DNA / RNA target length | 10,000 bases |
+| Concurrent GPU jobs per user | 3 |
+| Minimum credit balance to start | 5,000 credits |
+| Boltz-2 validation cost | 1,000 credits per design (skipped with a notification if the balance is too low) |
+
+MIP refuses, before any GPU is used, to design for chemical-weapon agents or scheduled precursors, controlled substances without a clear research context, known toxin scaffolds, or gain-of-function targets on select agents. If your request is legitimate research and MIP refuses, reach out to your institution's biosafety officer and contact us.
+
+## When to use enzyme design vs structure prediction
+
+| Scenario | Recommended approach |
+|----------|---------------------|
+| You have a target protein and want its 3D structure | Use [structure prediction](/chat-experiences/structure-prediction) |
+| You have a small molecule and want a protein built for it | Use enzyme design |
+| You have a known scaffold and want to alter a few residues | Use structure prediction with mutant comparison |
+| You have a known active-site motif and want a new fold around it | Use enzyme design with motif scaffolding via `proteinSequence` |
+
+<Tip>
+Enzyme design is iterative. Generate 3–5 designs, inspect the Boltz-2 RMSD per design, and prioritise the co-designable ones for experimental expression. Designs with RMSD above 3 Å are not reliable starting points — regenerate with a different seed or adjust the scaffold.
+</Tip>
+
+<Note>
+Designed enzymes are computational predictions, not proven catalysts. Plan for experimental characterisation — expression, purification, and activity assays — before treating a design as a working enzyme. The DISCO paper reports that one round of directed evolution on a designed enzyme can deliver several-fold activity improvements.
+</Note>
