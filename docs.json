@@ -59,6 +59,8 @@
               "chat-experiences/protein-visualization",
               "chat-experiences/structure-prediction",
               "chat-experiences/enzyme-design",
+              "chat-experiences/protein-embeddings",
+              "chat-experiences/scientific-figures",
               "code-execution/index"
             ]
           },

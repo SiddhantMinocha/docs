@@ -1,0 +1,89 @@
+---
+title: "Scientific Figures"
+description: "Generate publication-quality diagrams, infographics, pathways, and illustrations directly inside a chat."
+icon: "palette"
+---
+
+MIP can draw publication-quality scientific figures on demand. Ask for a pathway, a labeled diagram, a multi-panel infographic, or a clean illustration, and a rendered figure appears inline in the chat. No separate tool, no prompt-engineering boilerplate, no copying into PowerPoint afterwards.
+
+![A scientific illustration generated inside MIP](https://jtvoivw4pq5vvtmu.public.blob.vercel-storage.com/illustration_feature.jpg)
+
+## When to use it
+
+Figure generation is for things you would normally open BioRender, Illustrator, or a slide deck to produce:
+
+- A labeled diagram of a pathway, receptor, complex, or cell
+- A multi-panel infographic summarizing a workflow or experiment
+- A schematic of a mechanism of action
+- An illustration of a protein, organelle, or signaling event
+- A visual summary of results you just pulled from databases in the same chat
+
+For tables of numbers, charts of data, or step-by-step text explanations, use the regular chat response, a table, or a chart instead. Figures are for visual concepts, not structured data.
+
+## Asking for a figure
+
+Simply describe what you want:
+
+- "Draw a diagram of the MAPK/ERK signaling pathway with the key kinases labeled."
+- "Create an infographic summarizing the three-step workflow I just ran."
+- "Illustrate a nucleus with the major compartments annotated."
+- "Make a schematic of antibody-antigen binding at the CDR loops."
+- "Visualize the VEGF signaling cascade as a pathway figure."
+
+The more specific you are about the subject, components, spatial layout, and labels, the better the output. A one-line prompt like "draw a cell" gives a generic result; a paragraph naming the exact components, relationships, and labels gives a figure you can drop straight into a paper or slide.
+
+<Tip>
+Put any label text you want preserved **verbatim** inside double quotes. MIP passes quoted strings through to the renderer unchanged so they show up correctly on the figure. Example: *labels "IL-6R", "JAK1", "STAT3"*.
+</Tip>
+
+## Intent, size, and quality
+
+MIP exposes a few controls you can set explicitly if you want a particular look. Most of the time the default (`auto`) is correct and you can ignore these.
+
+| Control | Values | When to set it |
+|---------|--------|----------------|
+| `intent` | `diagram`, `infographic`, `schematic`, `pathway`, `illustration`, `auto` | Set when you want a specific figure style. `pathway` emphasizes directed arrows; `schematic` favors clean line art; `infographic` lays out multiple panels. |
+| `size` | `square`, `portrait`, `landscape`, `auto` | Set when the figure needs to fit a specific layout (a poster panel, a slide header, a paper column). |
+| `quality` | `standard`, `high`, `auto` | `high` for dense text, many labels, or final-quality output. `standard` for quick drafts. |
+| `background` | `white`, `transparent`, `auto` | Use `transparent` when the figure will sit on a colored background (slide, poster). Default is white. |
+
+You can also write a natural-language request and MIP will pick sensible defaults. Mentioning "multi-panel" nudges it toward landscape and high quality; mentioning "quick sketch" nudges it toward standard.
+
+## Building figures from earlier chat results
+
+The most useful pattern is asking for a figure that synthesizes something you just did. MIP has the full context of the conversation, so it can lift the right elements into the diagram.
+
+Examples:
+
+- After a deep-research query on PCSK9: *"Draw a diagram of the PCSK9-LDLR mechanism based on what you just found."*
+- After a protein visualization for BRCA1: *"Make a schematic showing the BRCT and RING domains we just discussed, with key residues labeled."*
+- After an enzyme design result: *"Illustrate the designed active site with the substrate in place. Label the candidate catalytic residues."*
+
+MIP pulls the relevant facts, molecules, residue numbers, and labels from the preceding turns and produces a figure grounded in that material rather than a generic illustration.
+
+## What you get back
+
+The generated figure appears inline in the chat as a rendered image. You can:
+
+- **Right-click → Save image as** to download the PNG locally
+- **Click to open** in a full-size preview
+- **Ask for a revision** in the next turn ("change the arrows to dashed", "move the substrate to the top-left", "relabel 'Gene A' as 'BRCA1'") and MIP will regenerate with your edits applied
+
+Every figure is also persisted, so coming back to the chat days later will still show the image.
+
+<Note>
+Figure generation is a creative tool. For anything destined for a paper, a regulatory submission, or a clinical report, the figure should be reviewed, edited in a dedicated graphics tool if needed, and verified against the underlying data. Use it as a first draft that saves you the BioRender hour, not as a final deliverable.
+</Note>
+
+## Tips for great figures
+
+- **Describe, don't list.** "A kidney nephron showing the glomerulus, proximal tubule, and loop of Henle, with blood flow arrows and filtration labels" beats a bare bullet list.
+- **Anchor spatial layout.** Say "top-left", "flow from left to right", or "two panels side-by-side" if the layout matters.
+- **Quote exact labels.** Wrap every term you want rendered verbatim in double quotes, especially gene names, residue identifiers, and abbreviations.
+- **Start general, then refine.** A first pass establishes the composition; follow-up turns polish labels, colors, or emphasis.
+- **Lean on context.** If you have run searches, lookups, or analyses in the same chat, ask the figure to draw from them rather than re-specifying the content.
+- **Pick intent deliberately for dense diagrams.** `infographic` is the right default for a multi-panel summary; `pathway` is the right default for signal flow with arrows; `diagram` is the right default for an anatomical or structural schematic.
+
+<Tip>
+Figures are a natural companion to [Deep Research](/chat-experiences/deep-research). Ask a question, let MIP synthesize the answer from 40+ databases, then ask for a figure of the result. The figure inherits every fact MIP just pulled.
+</Tip>
